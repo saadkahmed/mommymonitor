@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput, View, Text } from 'react-native';
-//what's the difference between passing label and passing generic props
-  const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => {
+
+const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => {
   const { inputStyle, labelStyle, containerStyle } = styles;
 
   return (
@@ -10,7 +10,7 @@ import { TextInput, View, Text } from 'react-native';
       <TextInput
         secureTextEntry={secureTextEntry}
         placeholder={placeholder}
-        autoCorrect={false} // dont need autocorrect for emails
+        autoCorrect={false} // dont need autocorrect for emails & passwords
         style={inputStyle}
         value={value}
         onChangeText={onChangeText}

@@ -7,7 +7,7 @@ class LoginForm extends Component {
   state = { email: '', password: '', error: '', loading: false };
 
   onButtonPress() {
-    const { email, password } = this.state;
+    const { email, password } = this.state; //destructuring 2 properties from the state object
 
     this.setState({ error: '', loading: true });
 
