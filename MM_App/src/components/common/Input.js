@@ -10,7 +10,7 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => 
       <TextInput
         secureTextEntry={secureTextEntry}
         placeholder={placeholder}
-        autoCorrect={false} // dont need autocorrect for emails & passwords
+        autoCorrect={false} // dont need autocorrect for emails & passwordds
         style={inputStyle}
         value={value}
         onChangeText={onChangeText}
