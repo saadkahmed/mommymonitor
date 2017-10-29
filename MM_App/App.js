@@ -15,7 +15,7 @@ class App extends Component<{}> {
       authDomain: 'mommymonitorapp.firebaseapp.com',
       databaseURL: 'https://mommymonitorapp.firebaseio.com',
       projectId: 'mommymonitorapp',
-      storageBucket: '',
+      storageBucket: 'mommymonitorapp.appspot.com',
       messagingSenderId: '189527696222'
     });
 
