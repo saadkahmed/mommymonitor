@@ -1,67 +1,43 @@
-import React, { Component } from 'react';
-import {
-  View,
-} from 'react-native';
+//make app logo the full logo
+// How to comment in jsx
+// {/* A JSX comment, this will work :)
+//        <div>
+//
+//        </div>
+//        */}
+
+import React from 'react';
+import WelcomeScreen from './Components/WelcomeScreen';
+import Routing from './Components/myrouting';
 import firebase from 'firebase';
-import { Header, Button, Spinner, CardSection } from './src/components/common';
-import LoginForm from './src/components/LoginForm';
 
-class App extends Component<{}> {
-  state = { loggedIn: null };
+firebase.initializeApp({
+  apiKey: 'AIzaSyDGwT4CRUTv34Nxtu1io8ft0jcnEJFJPeo',
+  authDomain: 'mommymonitorapp.firebaseapp.com',
+  databaseURL: 'https://mommymonitorapp.firebaseio.com',
+  projectId: 'mommymonitorapp',
+  storageBucket: 'mommymonitorapp.appspot.com',
+  messagingSenderId: '189527696222',
+});
 
-  componentWillMount() {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyDGwT4CRUTv34Nxtu1io8ft0jcnEJFJPeo',
-      authDomain: 'mommymonitorapp.firebaseapp.com',
-      databaseURL: 'https://mommymonitorapp.firebaseio.com',
-      projectId: 'mommymonitorapp',
-      storageBucket: 'mommymonitorapp.appspot.com',
-      messagingSenderId: '189527696222'
-    });
-
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ loggedIn: true });
-      } else {
-          this.setState({ loggedIn: false });
+export default class Application extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+        component: <WelcomeScreen />
         }
-    });
-  }
-  renderContent() {
-    switch (this.state.loggedIn) {
-      case true:
-        return (
-          <CardSection>
-            <Button onPress={() => firebase.auth().signOut()}>
-              Log Out
-            </Button>
-          </CardSection>
-      );
-      case false:
-        return <LoginForm />;
-      default:
-        return <View style={styles.viewStyle}><Spinner size="large" /></View>;
     }
-  }
-
-  render() {
-    return (
-      <View>
-        <Header headerText='Login' />
-        {this.renderContent()}
-      </View>
-    );
-  }
+    componentDidMount(){
+        this.timeoutHandle = setTimeout(()=>{
+            this.setState({ component: <Routing/> })
+        }, 1000);
+    }
+    componentWillUnmount(){
+         clearTimeout(this.timeoutHandle);
+    }
+    render() {
+        return (
+          this.state.component
+        );
+    }
 }
-const styles = {
-  viewStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 300,
-  },
-  textStyle: { // there needs to be a space after the colon
-    fontSize: 20
-  }
-};
-
-export default App;

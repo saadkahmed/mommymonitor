@@ -1,4 +1,5 @@
 {
-  "name": "MM_App",
-  "displayName": "MM_App"
+  "expo": {
+    "sdkVersion": "22.0.0"
+  }
 }
