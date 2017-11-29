@@ -5,11 +5,10 @@
 //
 //        </div>
 //        */}
-
 import React from 'react';
+import firebase from 'firebase';
 import WelcomeScreen from './Components/WelcomeScreen';
 import Routing from './Components/myrouting';
-import firebase from 'firebase';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyDGwT4CRUTv34Nxtu1io8ft0jcnEJFJPeo',
@@ -21,18 +20,18 @@ firebase.initializeApp({
 });
 
 export default class Application extends React.Component {
-    constructor(props){
-        super(props)
+    constructor(props) {
+        super(props);
         this.state = {
         component: <WelcomeScreen />
-        }
+      };
     }
-    componentDidMount(){
-        this.timeoutHandle = setTimeout(()=>{
-            this.setState({ component: <Routing/> })
+    componentDidMount() {
+        this.timeoutHandle = setTimeout(() => {
+            this.setState({ component: <Routing /> });
         }, 1000);
     }
-    componentWillUnmount(){
+    componentWillUnmount() {
          clearTimeout(this.timeoutHandle);
     }
     render() {
