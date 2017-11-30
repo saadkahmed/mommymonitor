@@ -5,7 +5,6 @@ import { View,
         Alert } from 'react-native';
 import { Button, CardSection, Input, Header } from '../Components/common';
 
-
 export default class Register extends React.Component {
 
   constructor(props) {
@@ -31,11 +30,10 @@ export default class Register extends React.Component {
 
         <Header headerText="Registration" />
 
-
         <CardSection>
           <Input
             label="email"
-            placeholder="email@something.com"
+            placeholder="JohnSmith@hotmail.com"
             onChangeText={(email) => this.setState({ email })}
             value={this.props.email}
           />
@@ -48,7 +46,7 @@ export default class Register extends React.Component {
             placeholder="password"
             secureTextEntry
           />
-        </ CardSection>
+        </CardSection>
 
         <CardSection>
             <Button onPress={this.submitinfo.bind(this)} >
