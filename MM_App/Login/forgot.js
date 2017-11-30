@@ -28,9 +28,9 @@ export default class IForgot extends React.Component {
           <Input
             onChangeText={(email) => this.setState({ email })}
             label="Email"
-            placeholder="JohnSmith@hotmail.com"
+            placeholder="Email@something.com"
           />
-        </CardSection>
+        </ CardSection>
 
         <CardSection>
             <Button onPress={this.submitinfo.bind(this)} >
