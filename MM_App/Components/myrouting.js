@@ -2,10 +2,11 @@ import React from 'react';
 import { View, Text, } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-import Register from '../Login/register';
 import MainScreen from './MainScreen';
 import IForgot from '../Login/forgot';
-import SomeScreen from '../MainScreens/somescreen';
+
+import RegistrationRouter from './RegistrationRouter.js';
+import LoggedInRouter from './LoggedInRouter.js';
 
 export default class Routing extends React.Component {
       render()
@@ -17,9 +18,9 @@ export default class Routing extends React.Component {
 const AppStackNavigator = StackNavigator(
     {
     MainScreen: {screen: MainScreen},
-    Register: {screen: Register},
+    Register: {screen: RegistrationRouter},
     Forgot: {screen: IForgot},
-    SomeScreen: {screen: SomeScreen,
+    LoginPage: {screen: LoggedInRouter,
         navigationOptions: {
             gesturesEnabled: false,
         },

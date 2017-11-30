@@ -17,7 +17,7 @@ export default class MainScreen extends React.Component {
         const { navigate } = this.props.navigation;
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(function(user){
-        navigate('SomeScreen');
+        navigate('LoginPage');
         }).catch(function(e){ alert(e); });
     }
 
@@ -40,7 +40,7 @@ export default class MainScreen extends React.Component {
         <CardSection>
           <Input
             label="email"
-            placeholder="email@something.com"
+            placeholder="JohnSmith@hotmail.com"
             onChangeText={(email) => this.setState({ email })}
           />
         </CardSection>
@@ -52,25 +52,25 @@ export default class MainScreen extends React.Component {
             placeholder="password"
             secureTextEntry
           />
-        </ CardSection>
+        </CardSection>
 
           <CardSection>
             <Button onPress={this.loginuser.bind(this)} >
               Sign In
             </Button>
-          </ CardSection>
+          </CardSection>
 
           <CardSection>
             <Button onPress={() => navigate('Register')} >
               Register
             </Button>
-          </ CardSection>
+          </CardSection>
 
           <CardSection>
             <Button onPress={() => navigate('Forgot')} >
-              Forgot a Password
+              Forgot Password
             </Button>
-          </ CardSection>
+          </CardSection>
 
           </View>
 
