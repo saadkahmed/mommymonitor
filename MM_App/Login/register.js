@@ -27,7 +27,7 @@ export default class Register extends React.Component {
       }
       else
       {
-          alert('passwords do not match');
+          alert('Passwords do not match');
       }
     }
 
@@ -40,7 +40,7 @@ export default class Register extends React.Component {
 
         <CardSection>
           <Input
-            label="email"
+            label="Email"
             placeholder="JohnSmith@hotmail.com"
             onChangeText={(email) => this.setState({ email })}
             value={this.props.email}
@@ -59,7 +59,7 @@ export default class Register extends React.Component {
         <CardSection>
           <Input
             onChangeText={(confirmpassword) => this.setState({ confirmpassword })}
-            label="confirmpassword"
+            label="Confirmpassword"
             placeholder="password"
             secureTextEntry
           />
