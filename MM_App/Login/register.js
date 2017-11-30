@@ -12,15 +12,23 @@ export default class Register extends React.Component {
       this.state = {
           email: '',
           password: '',
+          confirmpassword: '',
       };
   }
 
   submitinfo() {
-      firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then(function(user) {
-          Alert.alert('Registration Complete');
-          //user.sendEmailVerification(); send the user a verification email
-      }).catch(function(e){ alert(e); })
+      if(this.state.confirmpassword==this.state.password)
+      {
+          firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then(function(user) {
+              Alert.alert('Registration Complete');
+              //user.sendEmailVerification(); send the user a verification email
+          }).catch(function(e){ alert(e); })
+      }
+      else
+      {
+          alert('passwords do not match');
+      }
     }
 
   render() {
@@ -43,6 +51,15 @@ export default class Register extends React.Component {
           <Input
             onChangeText={(password) => this.setState({ password })}
             label="Password"
+            placeholder="password"
+            secureTextEntry
+          />
+        </CardSection>
+
+        <CardSection>
+          <Input
+            onChangeText={(confirmpassword) => this.setState({ confirmpassword })}
+            label="confirmpassword"
             placeholder="password"
             secureTextEntry
           />
