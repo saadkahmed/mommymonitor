@@ -4,8 +4,8 @@ import { TabNavigator } from 'react-navigation';
 
 import Register from './register';
 
-import MainScreen from './MainScreen';
-import SomeScreen from './somescreen';
+//mport MainScreen from './MainScreen';
+//import SomeScreen from './somescreen';
 
 export default class RegistrationRouter extends React.Component {
       render() {

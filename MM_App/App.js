@@ -1,10 +1,3 @@
-//make app logo the full logo
-// How to comment in jsx
-// {/* A JSX comment, this will work :)
-//        <div>
-//
-//        </div>
-//        */}
 import React from 'react';
 import firebase from 'firebase';
 import WelcomeScreen from './src/Components/WelcomeScreen';
@@ -20,12 +13,14 @@ firebase.initializeApp({
 });
 
 export default class Application extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
         component: <WelcomeScreen />
       };
     }
+
     componentDidMount() {
         this.timeoutHandle = setTimeout(() => {
             this.setState({ component: <Routing /> });
@@ -34,6 +29,7 @@ export default class Application extends React.Component {
     componentWillUnmount() {
          clearTimeout(this.timeoutHandle);
     }
+
     render() {
         return (
           this.state.component
