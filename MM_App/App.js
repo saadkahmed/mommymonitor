@@ -7,8 +7,8 @@
 //        */}
 import React from 'react';
 import firebase from 'firebase';
-import WelcomeScreen from './Components/WelcomeScreen';
-import Routing from './Components/myrouting';
+import WelcomeScreen from './src/Components/WelcomeScreen';
+import Routing from './src/Components/myrouting';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyDGwT4CRUTv34Nxtu1io8ft0jcnEJFJPeo',

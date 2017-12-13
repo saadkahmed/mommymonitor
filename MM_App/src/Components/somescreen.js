@@ -1,8 +1,6 @@
 // create back button
-
-
 import React from 'react';
-import { StyleSheet, ImageBackground, View, Text, TouchableOpacity, TextInput} from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 export default class IForgot extends React.Component {
   render() {
@@ -18,7 +16,7 @@ let styles = StyleSheet.create({
     emailstyle: {
         height: 50,
         width: 150,
-        alignSelf: "center",
+        alignSelf: 'center',
         marginTop: 20,
         marginBottom: 20,
     },
@@ -34,14 +32,14 @@ let styles = StyleSheet.create({
         justifyContent: 'center',
     },
     loginbox: {
-        width:300,
-        backgroundColor:'green',
-        height:50,
-        justifyContent: "center",
+        width: 300,
+        backgroundColor: 'green',
+        height: 50,
+        justifyContent: 'center',
     },
     textstuff: {
         fontSize: 20,
         color: 'white',
-        alignSelf: "center",
+        alignSelf: 'center',
     }
 });

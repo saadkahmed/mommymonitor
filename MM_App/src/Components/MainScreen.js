@@ -27,14 +27,14 @@ export default class MainScreen extends React.Component {
     return (
 
         <ImageBackground
-        source={require('../pictures/BackgroundForPages.jpg')}
+        source={require('../../pictures/BackgroundForPages.jpg')}
         style={styles.backgroundImage}
         >
 
         <View>
 
         <View style={styles.imageStyle}>
-          <Image source={require('../pictures/mommymonitor-final-logo.png')} />
+          <Image source={require('../../pictures/mommymonitor-final-logo.png')} />
         </View>
 
         <CardSection>

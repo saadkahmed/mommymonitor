@@ -1,19 +1,18 @@
 import React from 'react';
-import { View, Text, } from 'react-native';
+//import { View, Text, } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-import SomeScreen from '../MainScreens/somescreen';
+import SomeScreen from './somescreen';
 
 export default class LoggedInRouter extends React.Component {
-      render()
-      {
+      render() {
         return <LoggedInNavigator />;
     }
 }
 
 const LoggedInNavigator = StackNavigator(
     {
-    SomeScreen: {screen: SomeScreen,
+    SomeScreen: { screen: SomeScreen,
         navigationOptions: {
             gesturesEnabled: false,
         },
@@ -22,7 +21,7 @@ const LoggedInNavigator = StackNavigator(
     {
     headerMode: 'none',
     }
-)
+);
 // navigationOptions: {
 //     gesturesEnabled: false,
 // },

@@ -4,7 +4,10 @@ import { StyleSheet, ImageBackground } from 'react-native';
 export default class WelcomeScreen extends React.Component {
   render() {
     return (
-        <ImageBackground source={require('../pictures/MainScreen.jpg')} style={styles.backgroundImage}/>
+        <ImageBackground
+        source={require('../../pictures/MainScreen.jpg')}
+        style={styles.backgroundImage}
+        />
     );
   }
 }
