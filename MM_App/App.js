@@ -12,7 +12,7 @@ firebase.initializeApp({
   messagingSenderId: '189527696222',
 });
 
-export default class Application extends React.Component {
+class Application extends React.Component {
 
     constructor(props) {
         super(props);
@@ -36,3 +36,5 @@ export default class Application extends React.Component {
         );
     }
 }
+
+export default Application;

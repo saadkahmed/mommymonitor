@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, ImageBackground } from 'react-native';
 
-export default class WelcomeScreen extends React.Component {
+class WelcomeScreen extends React.Component {
   render() {
     return (
         <ImageBackground
@@ -19,3 +19,5 @@ backgroundImage: {
     width: null,
 }
 });
+
+export default WelcomeScreen;

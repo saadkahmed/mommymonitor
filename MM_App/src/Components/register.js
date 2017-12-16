@@ -5,7 +5,7 @@ import { View,
         Alert } from 'react-native';
 import { Button, CardSection, Input, Header } from '../Components/common';
 
-export default class Register extends React.Component {
+class Register extends React.Component {
 
   constructor(props) {
       super(props);
@@ -75,3 +75,4 @@ export default class Register extends React.Component {
     );
   }
 }
+export default Register;

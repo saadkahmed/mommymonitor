@@ -4,7 +4,7 @@ import { Image,
         StyleSheet, ImageBackground, View } from 'react-native';
 import { CardSection, Input, Button } from './common';
 
-export default class MainScreen extends React.Component {
+class MainScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,9 +16,8 @@ export default class MainScreen extends React.Component {
     loginuser() {
         const { navigate } = this.props.navigation;
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then(function(user){
-        navigate('LoginPage');
-        }).catch(function(e){ alert(e); });
+        .then(function (user) {navigate('LoginPage');
+        }).catch(function (e) { alert(e); });
     }
 
   render() {
@@ -97,3 +96,5 @@ let styles = StyleSheet.create({
       position: 'relative'
     }
 });
+
+export default MainScreen;

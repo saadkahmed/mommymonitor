@@ -7,7 +7,7 @@ import forgot from './forgot';
 import RegistrationRouter from './RegistrationRouter.js';
 import LoggedInRouter from './LoggedInRouter.js';
 
-export default class Routing extends React.Component {
+class Routing extends React.Component {
       render() {
         return <AppStackNavigator />;
     }
@@ -28,6 +28,4 @@ const AppStackNavigator = StackNavigator(
     headerMode: 'none',
     }
 );
-// navigationOptions: {
-//     gesturesEnabled: false,
-// },
+export default Routing;

@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation';
 
 import SomeScreen from './somescreen';
 
-export default class LoggedInRouter extends React.Component {
+class LoggedInRouter extends React.Component {
       render() {
         return <LoggedInNavigator />;
     }
@@ -22,6 +22,5 @@ const LoggedInNavigator = StackNavigator(
     headerMode: 'none',
     }
 );
-// navigationOptions: {
-//     gesturesEnabled: false,
-// },
+
+export default LoggedInRouter;

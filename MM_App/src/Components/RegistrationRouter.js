@@ -7,7 +7,7 @@ import Register from './register';
 //mport MainScreen from './MainScreen';
 //import SomeScreen from './somescreen';
 
-export default class RegistrationRouter extends React.Component {
+class RegistrationRouter extends React.Component {
       render() {
         return <RegistrationTabNavigator />;
     }
@@ -18,6 +18,4 @@ const RegistrationTabNavigator = TabNavigator(
     Register: { screen: Register },
     },
 );
-// navigationOptions: {
-//     gesturesEnabled: false,
-// },
+export default RegistrationRouter;

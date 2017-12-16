@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-export default class IForgot extends React.Component {
+class IForgot extends React.Component {
   render() {
     return (
         <View style={styles.container}>
@@ -43,3 +43,5 @@ let styles = StyleSheet.create({
         alignSelf: 'center',
     }
 });
+
+export default IForgot;
