@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, ImageBackground } from 'react-native';
 
 const mainpic = require('../../pictures/MainScreen.jpg');
 
-class WelcomeScreen extends Component {
+class WelcomeScreen extends React.Component {
   render() {
     return (
         <ImageBackground
