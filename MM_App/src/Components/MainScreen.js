@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Image, StyleSheet, ImageBackground, View, Alert } from 'react-native';
 import { CardSection, Input, Button } from './common';
@@ -7,7 +7,7 @@ const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 
 const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 
-class MainScreen extends React.Component {
+class MainScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,6 +18,7 @@ class MainScreen extends React.Component {
 
     loginuser() {
         const { navigate } = this.props.navigation;
+
         if (this.state.email === '' || this.state.password === '') {
             Alert.alert('One or more fields left blank');
             return;
@@ -31,6 +32,7 @@ class MainScreen extends React.Component {
 
   render() {
       const { navigate } = this.props.navigation;
+
     return (
         <ImageBackground
         source={backgroundpic}
