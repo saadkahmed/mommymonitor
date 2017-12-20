@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Image, StyleSheet, ImageBackground, View, Alert } from 'react-native';
+import { connect } from 'react-redux';
 import { CardSection, Input, Button } from './common';
+import { emailChanged } from '../Actions';
 
 const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
-
 const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 
-class MainScreen extends React.Component {
+class MainScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,6 +16,10 @@ class MainScreen extends React.Component {
             password: '',
         };
     }
+
+    onEmailChange(text) {
+          this.props.emailChanged(text);
+        }
 
     loginuser() {
         const { navigate } = this.props.navigation;
@@ -46,7 +51,8 @@ class MainScreen extends React.Component {
           <Input
             label="email"
             placeholder="JohnSmith@hotmail.com"
-            onChangeText={(email) => this.setState({ email })}
+            onChangeText={this.onEmailChange.bind(this)}
+            value={this.props.email}
           />
         </CardSection>
 
@@ -103,4 +109,10 @@ let styles = StyleSheet.create({
     }
 });
 
-export default MainScreen;
+const mapStateToProps = state => {
+  return {
+    email: state.auth.email
+  };
+};
+
+export default connect(mapStateToProps, { emailChanged })(MainScreen);
