@@ -13,7 +13,6 @@ component applies the styling to it and exports it like normal.
 */
 
 const Card = (props) => {
-
   return (
     <View style={styles.containerStyle}>
       {props.children}

@@ -1,8 +1,7 @@
 // create back button
 import React from 'react';
 import firebase from 'firebase';
-import { View,
-        Alert } from 'react-native';
+import { View, Alert } from 'react-native';
 import { Button, CardSection, Input, Header } from '../Components/common';
 
 class Register extends React.Component {
@@ -17,25 +16,25 @@ class Register extends React.Component {
   }
 
   submitinfo() {
-      if(this.state.confirmpassword==this.state.password)
-      {
-          firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(function(user) {
-              Alert.alert('Registration Complete');
-              //user.sendEmailVerification(); send the user a verification email
-          }).catch(function(e){ alert(e); })
+if (this.state.email === '' || this.state.password === '' || this.state.confirmpassword === '') {
+          Alert.alert('Fields left blank');
       }
-      else
-      {
-          alert('Passwords do not match');
+      if (this.state.confirmpassword === this.state.password) {
+          firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then(user => {
+              Alert.alert('Registration Complete');
+              console.log(user.email);
+          }).catch(() => { Alert.alert('This Email is in use'); });
+      } else {
+          Alert.alert('Passwords do not match');
       }
     }
+    //user.sendEmailVerification(); send the user a verification email
 
   render() {
     return (
 
         <View>
-
         <Header headerText="Registration" />
 
         <CardSection>
@@ -59,7 +58,7 @@ class Register extends React.Component {
         <CardSection>
           <Input
             onChangeText={(confirmpassword) => this.setState({ confirmpassword })}
-            label="Confirmpassword"
+            label="Confirm password"
             placeholder="password"
             secureTextEntry
           />

@@ -4,12 +4,10 @@ import { Text, View } from 'react-native';
 
 //make components
 //components are functions which are always called the same thing as the folder theyre contained in
-
 const Header = (props) => {
 //flexbox is a system of positioning elements in a container
 //containing element is the viewStyle; child element is the text
-  const { textStyle, viewStyle } = styles;
-
+const { textStyle, viewStyle } = styles;
   return (
     <View style={viewStyle}>
       <Text style={textStyle}>{props.headerText}</Text>

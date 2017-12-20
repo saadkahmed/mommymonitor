@@ -3,7 +3,6 @@ import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import MainScreen from './MainScreen';
 import forgot from './forgot';
-
 import RegistrationRouter from './RegistrationRouter.js';
 import LoggedInRouter from './LoggedInRouter.js';
 

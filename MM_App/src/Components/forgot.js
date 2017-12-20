@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import { Button, CardSection, Input, Header } from '../Components/common';
 
 export default class IForgot extends React.Component {
@@ -12,9 +12,9 @@ export default class IForgot extends React.Component {
     }
 
     submitinfo() {
-        firebase.auth().sendPasswordResetEmail(this.state.email).then(function(){
-            Alert.alert("Email Sent");
-        }).catch(function(e){ alert(e); })
+        firebase.auth().sendPasswordResetEmail(this.state.email).then(() => {
+            Alert.alert('Email Sent');
+        }).catch(() => { Alert.alert('Invalid Email'); });
     }
 
   render() {
@@ -22,8 +22,6 @@ export default class IForgot extends React.Component {
         <View>
 
         <Header headerText="Forgot Password" />
-
-
         <CardSection>
           <Input
             onChangeText={(email) => this.setState({ email })}
