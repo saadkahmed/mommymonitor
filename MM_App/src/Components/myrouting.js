@@ -12,28 +12,24 @@ class Routing extends React.Component {
     }
   }
 
-const AppStackNavigator = StackNavigator(
-    {
+const AppStackNavigator = StackNavigator({
+
     MainScreen: { screen: MainScreen },
 
-    Register: { screen: RegistrationRouter,
-        navigationOptions: {
-  },
-},
+    Register: { screen: RegistrationRouter },
 
-    Forgot: { screen: forgot,
-              navigationOptions: {
-  },
-},
+    Forgot: { screen: forgot },
 
     LoginPage: { screen: LoggedInRouter,
         navigationOptions: {
             gesturesEnabled: false,
+            headerMode: 'none',
+
+
         },
     },
     },
-    {
-    headerMode: 'none',
-    }
+
+
 );
 export default Routing;

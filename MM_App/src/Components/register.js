@@ -2,9 +2,13 @@
 import React from 'react';
 import firebase from 'firebase';
 import { View, Alert } from 'react-native';
-import { Button, CardSection, Input, Header } from '../Components/common';
+import { Button, CardSection, Input } from '../Components/common';
 
 class Register extends React.Component {
+
+  static navigationOptions = {
+  title: 'Register an Account',
+};
 
   constructor(props) {
       super(props);
@@ -34,8 +38,6 @@ if (this.state.email === '' || this.state.password === '' || this.state.confirmp
     return (
 
         <View>
-        <Header headerText="Registration" />
-
         <CardSection>
           <Input
             label="Email"

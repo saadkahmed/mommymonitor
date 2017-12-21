@@ -1,12 +1,12 @@
 import React from 'react';
 import firebase from 'firebase';
 import { View, Alert } from 'react-native';
-import { Button, CardSection, Input, Header } from '../Components/common';
+import { Button, CardSection, Input } from '../Components/common';
 
-export default class IForgot extends React.Component {
+class IForgot extends React.Component {
 
   static navigationOptions = {
-  title: 'Welcome',
+  title: 'Forgot a Password',
 };
 
     constructor(props) {
@@ -25,7 +25,6 @@ export default class IForgot extends React.Component {
   render() {
     return (
         <View>
-        <Header headerText="Forgot Password" />
         <CardSection>
           <Input
             onChangeText={(email) => this.setState({ email })}
@@ -45,3 +44,5 @@ export default class IForgot extends React.Component {
     );
   }
 }
+
+export default IForgot;

@@ -8,6 +8,10 @@ import Register from './register';
 //import SomeScreen from './somescreen';
 
 class RegistrationRouter extends React.Component {
+  static navigationOptions = {
+  title: 'Forgot a Password',
+};
+
       render() {
         return <RegistrationTabNavigator />;
     }
