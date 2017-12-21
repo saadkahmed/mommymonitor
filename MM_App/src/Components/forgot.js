@@ -5,10 +5,6 @@ import { Button, CardSection, Input } from '../Components/common';
 
 class IForgot extends React.Component {
 
-  static navigationOptions = {
-  title: 'Forgot a Password',
-};
-
     constructor(props) {
         super(props);
         this.state = {

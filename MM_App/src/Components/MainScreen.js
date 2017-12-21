@@ -24,7 +24,7 @@ class MainScreen extends Component {
         } else {
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(user => {
-             navigate('LoginPage');
+             navigate('LoggedIn');
              console.log(user.email);
     }).catch(() => { Alert.alert('Invalid Email or Password'); });
     }

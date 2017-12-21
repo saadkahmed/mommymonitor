@@ -3,6 +3,11 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 class IForgot extends React.Component {
+  
+  static navigationOptions = {
+  title: 'Forgot a Password',
+};
+
   render() {
     return (
         <View style={styles.container}>

@@ -1,26 +1,16 @@
-import React from 'react';
-//import { View, Text, } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import SomeScreen from './somescreen';
-
-class LoggedInRouter extends React.Component {
-      render() {
-        return <LoggedInNavigator />;
-    }
-}
 
 const LoggedInNavigator = StackNavigator(
     {
     SomeScreen: { screen: SomeScreen,
         navigationOptions: {
             gesturesEnabled: false,
+            header: null
         },
     },
     },
-    {
-    headerMode: 'none',
-    }
 );
 
-export default LoggedInRouter;
+export default LoggedInNavigator;

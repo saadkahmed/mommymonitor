@@ -6,10 +6,6 @@ import { Button, CardSection, Input } from '../Components/common';
 
 class Register extends React.Component {
 
-  static navigationOptions = {
-  title: 'Register an Account',
-};
-
   constructor(props) {
       super(props);
       this.state = {
