@@ -13,7 +13,7 @@ firebase.initializeApp({
 });
 
 class Application extends React.Component {
-
+/*
     constructor(props) {
         super(props);
         this.state = {
@@ -29,10 +29,10 @@ class Application extends React.Component {
     componentWillUnmount() {
          clearTimeout(this.timeoutHandle);
     }
-
+*/
     render() {
         return (
-          this.state.component
+          <Routing />
         );
     }
 }

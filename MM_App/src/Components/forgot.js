@@ -4,6 +4,11 @@ import { View, Alert } from 'react-native';
 import { Button, CardSection, Input, Header } from '../Components/common';
 
 export default class IForgot extends React.Component {
+
+  static navigationOptions = {
+  title: 'Welcome',
+};
+
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +25,6 @@ export default class IForgot extends React.Component {
   render() {
     return (
         <View>
-
         <Header headerText="Forgot Password" />
         <CardSection>
           <Input

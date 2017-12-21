@@ -1,9 +1,5 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-<<<<<<< HEAD
-  "packagerPid": 597
-=======
-  "packagerPid": 69272
->>>>>>> parent of 9e8d5ad1... ran yarn upgrade and npm update
+  "packagerPid": 8298
 }
