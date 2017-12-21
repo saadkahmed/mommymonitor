@@ -1,3 +1,7 @@
+// use react-native dimenstions to align items as per screne size
+//var deviceHeight = Dimensions.get('window').height;
+//var deviceWidth = Dimensions.get('window').width;
+
 import React from 'react';
 import firebase from 'firebase';
 import WelcomeScreen from './src/Components/WelcomeScreen';

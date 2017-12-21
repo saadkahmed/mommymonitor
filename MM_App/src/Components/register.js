@@ -18,8 +18,7 @@ class Register extends React.Component {
   submitinfo() {
 if (this.state.email === '' || this.state.password === '' || this.state.confirmpassword === '') {
           Alert.alert('Fields left blank');
-      }
-      if (this.state.confirmpassword === this.state.password) {
+      } else if (this.state.confirmpassword === this.state.password) {
           firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(user => {
               Alert.alert('Registration Complete');
