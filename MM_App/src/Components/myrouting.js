@@ -15,8 +15,17 @@ class Routing extends React.Component {
 const AppStackNavigator = StackNavigator(
     {
     MainScreen: { screen: MainScreen },
-    Register: { screen: RegistrationRouter },
-    Forgot: { screen: forgot },
+
+    Register: { screen: RegistrationRouter,
+        navigationOptions: {
+  },
+},
+
+    Forgot: { screen: forgot,
+              navigationOptions: {
+  },
+},
+
     LoginPage: { screen: LoggedInRouter,
         navigationOptions: {
             gesturesEnabled: false,
