@@ -1,7 +1,9 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import firebase from 'firebase';
-//import Routing from './src/Components/myrouting';
 import RegistrationRouter from './src/Components/LoginRouter';
+import reducers from './src/Reducers';
 /*
 firebase.initializeApp({
   apiKey: 'AIzaSyDGwT4CRUTv34Nxtu1io8ft0jcnEJFJPeo',
@@ -28,7 +30,9 @@ class Application extends React.Component {
 
     render() {
         return (
+        <Provider store={createStore(reducers)}>
           <RegistrationRouter />
+        </Provider>
         );
     }
 }
