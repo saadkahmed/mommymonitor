@@ -21,18 +21,17 @@ class MainScreen extends Component {
 
         if (this.state.email === '' || this.state.password === '') {
             Alert.alert('One or more fields left blank');
-            return;
-        }
+        } else {
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(user => {
              navigate('LoginPage');
              console.log(user.email);
-    }).catch(() => { Alert.alert('Email or Password invalid'); });
+    }).catch(() => { Alert.alert('Invalid Email or Password'); });
     }
+}
 
   render() {
-      const { navigate } = this.props.navigation;
-
+    const { navigate } = this.props.navigation;
     return (
         <ImageBackground
         source={backgroundpic}
