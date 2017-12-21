@@ -1,6 +1,6 @@
 import { TabNavigator } from 'react-navigation';
 
-import Register from './register';
+import Register from './Register';
 
 const RegisterRouter = TabNavigator(
     {

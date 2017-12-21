@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 import MainScreen from './MainScreen';
-import forgot from './forgot';
+import forgot from './Forgot';
 import LoggedInRouter from './LoggedInRouter.js';
 import RegisterRouter from './RegisterRouter';
 
