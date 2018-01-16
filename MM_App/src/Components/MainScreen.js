@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Image, StyleSheet, ImageBackground, View, Alert } from 'react-native';
+import { connect } from 'react-redux';
+
+import { emailChanged, passwordChanged } from '../Actions';
 import { CardSection, Input, Button } from './common';
 
 const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
@@ -8,12 +11,12 @@ const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 
 class MainScreen extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: '',
-        };
+
+    onEmailChange(text) {
+      this.props.emailChanged(text);
+    }
+    onPasswordChange(text) {
+      this.props.passwordChanged(text);
     }
 
     loginuser() {
@@ -32,6 +35,7 @@ class MainScreen extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
+
     return (
         <ImageBackground
         source={backgroundpic}
@@ -47,15 +51,17 @@ class MainScreen extends Component {
           <Input
             label="email"
             placeholder="JohnSmith@hotmail.com"
-            onChangeText={(email) => this.setState({ email })}
+            onChangeText={this.onEmailChange.bind(this)}
+            value={this.props.email}
           />
         </CardSection>
 
         <CardSection>
           <Input
-            onChangeText={(password) => this.setState({ password })}
             label="Password"
             placeholder="password"
+            onChangeText={this.onPasswordChange.bind(this)}
+            value={this.props.password}
             secureTextEntry
           />
         </CardSection>
@@ -86,22 +92,29 @@ class MainScreen extends Component {
 }
 
 
-let styles = StyleSheet.create({
-    backgroundImage: {
-        flex: 1,
-        alignSelf: 'stretch',
-        width: null,
+  let styles = StyleSheet.create({
+      backgroundImage: {
+          flex: 1,
+          alignSelf: 'stretch',
+          width: null,
+          justifyContent: 'center',
+      },
+      imageStyle: {
+        borderBottomWidth: 1,
         justifyContent: 'center',
-    },
-    imageStyle: {
-      borderBottomWidth: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 5,
-      paddingBottom: 15,
-      borderColor: '#ddd',
-      position: 'relative'
-    }
-});
+        alignItems: 'center',
+        padding: 5,
+        paddingBottom: 15,
+        borderColor: '#ddd',
+        position: 'relative'
+      }
+  });
 
-export default MainScreen;
+const mapStateToProps = state => {
+    return {
+      email: state.auth.email,
+      password: state.auth.password
+    };
+  };
+
+export default connect(mapStateToProps, { emailChanged, passwordChanged })(MainScreen);
