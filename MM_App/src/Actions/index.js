@@ -1,16 +1,15 @@
-import { EMAIL_CHANGED } from './types';
-import { PASSWORD_CHANGED } from './types';
+<<<<<<< HEAD
+<<<<<<< HEAD
+//import firebase from 'firebase';
+import { EMAIL_CHANGED, PASSWORD_CHANGED } from './types';
 
+=======
+>>>>>>> parent of b7c85f13... email and password fields redux'd
+=======
+>>>>>>> parent of b7c85f13... email and password fields redux'd
 export const emailChanged = (text) => {
   return {
-    type: EMAIL_CHANGED,
-    payload: text
-  };
-};
-
-export const passwordChanged = (text) => {
-  return {
-    type: PASSWORD_CHANGED,
-    payload: text
+    type: 'email_changed',
+    payload: []
   };
 };

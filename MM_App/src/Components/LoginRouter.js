@@ -1,4 +1,5 @@
 import { StackNavigator } from 'react-navigation';
+import { addNavigationHelpers } from 'react-navigation';
 import MainScreen from './MainScreen';
 import forgot from './Forgot';
 import LoggedInRouter from './LoggedInRouter.js';

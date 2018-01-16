@@ -1,9 +1,23 @@
-import React from 'react';
+<<<<<<< HEAD
+<<<<<<< HEAD
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import firebase from 'firebase';
-import RegistrationRouter from './src/Components/LoginRouter';
+import LoginRouter from './src/Components/LoginRouter';
 import reducers from './src/Reducers';
+=======
+import React from 'react';
+import firebase from 'firebase';
+//import Routing from './src/Components/myrouting';
+import RegistrationRouter from './src/Components/LoginRouter';
+>>>>>>> parent of b7c85f13... email and password fields redux'd
+=======
+import React from 'react';
+import firebase from 'firebase';
+//import Routing from './src/Components/myrouting';
+import RegistrationRouter from './src/Components/LoginRouter';
+>>>>>>> parent of b7c85f13... email and password fields redux'd
 /*
 firebase.initializeApp({
   apiKey: 'AIzaSyDGwT4CRUTv34Nxtu1io8ft0jcnEJFJPeo',
@@ -14,7 +28,7 @@ firebase.initializeApp({
   messagingSenderId: '189527696222',
 });
 */
-class Application extends React.Component {
+class Application extends Component {
 
   componentWillMount() {
     const config = {
@@ -30,9 +44,17 @@ class Application extends React.Component {
 
     render() {
         return (
+<<<<<<< HEAD
+<<<<<<< HEAD
         <Provider store={createStore(reducers)}>
-          <RegistrationRouter />
+          <LoginRouter />
         </Provider>
+=======
+          <RegistrationRouter />
+>>>>>>> parent of b7c85f13... email and password fields redux'd
+=======
+          <RegistrationRouter />
+>>>>>>> parent of b7c85f13... email and password fields redux'd
         );
     }
 }
