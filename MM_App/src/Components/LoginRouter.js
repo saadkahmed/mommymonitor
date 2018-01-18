@@ -1,6 +1,4 @@
-import { StackNavigator, addNavigationHelpers } from 'react-navigation';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { StackNavigator } from 'react-navigation';
 import MainScreen from './MainScreen';
 import forgot from './Forgot';
 import LoggedInRouter from './LoggedInRouter.js';
@@ -31,19 +29,4 @@ const RootNavigator = StackNavigator({
 
 });
 
-class RootNavigation extends Component {
-    render() {
-        const { nav, dispatch } = this.props;
-        return (
-            <RootNavigator
-                navigation={addNavigationHelpers({ dispatch, state: nav })}
-            />
-        );
-    }
-}
-
-const mapStateToProps = (state) => ({
-  nav: state.nav,
-});
-
-export default connect(mapStateToProps)(RootNavigation);
+export default RootNavigator;
