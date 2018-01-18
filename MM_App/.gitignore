@@ -2,6 +2,13 @@
 #
 .DS_Store
 
+#
+./MM_App/.expo/packager-info.json
+
+#
+MM_App/.DS_Store
+
+
 # Xcode
 #
 build/
