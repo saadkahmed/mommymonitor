@@ -30,7 +30,7 @@ const RootNavigator = StackNavigator({
   }
 
 });
-
+/*
 class RootNavigation extends Component {
     render() {
         const { nav, dispatch } = this.props;
@@ -45,5 +45,5 @@ class RootNavigation extends Component {
 const mapStateToProps = (state) => ({
   nav: state.nav,
 });
-
-export default connect(mapStateToProps)(RootNavigation);
+*/
+export default RootNavigator;
