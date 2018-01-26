@@ -24,7 +24,12 @@ class MainScreen extends Component {
           routeName: 'Register'
       });
       this.props.navigation.dispatch(navigateToRegister);
-  }
+    }
+
+    onLoginPress() {
+      const { email, password } = this.props;
+      this.props.loginUser({ email, password });
+    }
 
     onEmailChange(text) {
       this.props.emailChanged(text);
