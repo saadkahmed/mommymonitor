@@ -1,8 +1,9 @@
 import React from 'react';
+import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import firebase from 'firebase';
-import RegistrationRouter from './src/Components/LoginRouter';
+import AppWithNavigationState from './src/Navigators/LoginRouter';
 import reducers from './src/Reducers';
 /*
 firebase.initializeApp({
@@ -14,6 +15,7 @@ firebase.initializeApp({
   messagingSenderId: '189527696222',
 });
 */
+
 class Application extends React.Component {
 
   componentWillMount() {
@@ -31,10 +33,13 @@ class Application extends React.Component {
     render() {
         return (
         <Provider store={createStore(reducers)}>
-          <RegistrationRouter />
+          <AppWithNavigationState />
         </Provider>
         );
     }
 }
+
+AppRegistry.registerComponent('MM_App', () => Application);
+
 
 export default Application;

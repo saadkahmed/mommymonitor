@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 
-import SomeScreen from './somescreen';
+import SomeScreen from '../Components/somescreen';
 
 const LoggedInNavigator = StackNavigator(
     {

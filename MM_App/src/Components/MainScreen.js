@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Image, StyleSheet, ImageBackground, View, Alert } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 
 import { emailChanged, passwordChanged } from '../Actions';
 import { CardSection, Input, Button } from './common';
@@ -11,6 +12,19 @@ const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 
 class MainScreen extends Component {
+
+    onForgotPress() {
+      const navigateToForgot = NavigationActions.navigate({
+        routeName: 'Forgot'
+      });
+      this.props.navigation.dispatch(navigateToForgot);
+    }
+    onRegisterPress() {
+      const navigateToRegister = NavigationActions.navigate({
+          routeName: 'Register'
+      });
+      this.props.navigation.dispatch(navigateToRegister);
+  }
 
     onEmailChange(text) {
       this.props.emailChanged(text);
@@ -73,13 +87,13 @@ class MainScreen extends Component {
           </CardSection>
 
           <CardSection>
-            <Button onPress={() => navigate('Register')} >
+            <Button onPress={this.onRegisterPress.bind(this)} >
               Register
             </Button>
           </CardSection>
 
           <CardSection>
-            <Button onPress={() => navigate('Forgot')} >
+            <Button onPress={this.onForgotPress.bind(this)} >
               Forgot Password
             </Button>
           </CardSection>
@@ -113,7 +127,8 @@ class MainScreen extends Component {
 const mapStateToProps = state => {
     return {
       email: state.auth.email,
-      password: state.auth.password
+      password: state.auth.password,
+      nav: state.nav
     };
   };
 
