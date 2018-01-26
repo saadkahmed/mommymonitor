@@ -27,7 +27,8 @@ class Application extends React.Component {
       storageBucket: 'mommymonitorapp.appspot.com',
       messagingSenderId: '189527696222',
     };
-    firebase.initializeApp(config);
+
+      firebase.initializeApp(config);
   }
 
     render() {

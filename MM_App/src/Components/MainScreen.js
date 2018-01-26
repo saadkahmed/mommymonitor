@@ -48,8 +48,6 @@ class MainScreen extends Component {
 }
 
   render() {
-    const { navigate } = this.props.navigation;
-
     return (
         <ImageBackground
         source={backgroundpic}
