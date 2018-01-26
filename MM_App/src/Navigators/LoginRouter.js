@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
-import forgot from '../Components/Forgot';
+import forgot from '../Components/forgot';
 import LoggedInRouter from './LoggedInRouter.js';
 import RegisterRouter from './RegisterRouter';
 import MainScreen from '../Components/MainScreen';
