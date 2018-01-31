@@ -1,7 +1,9 @@
 // create back button
 import React from 'react';
-import firebase from 'firebase';
 import { View, Alert } from 'react-native';
+import { connect } from 'react-redux';
+
+import { emailChangedR, passwordChangedR, passwordChangedR2, registerUser } from '../Actions';
 import { Button, CardSection, Input } from '../Components/common';
 
 class Register extends React.Component {
@@ -15,21 +17,41 @@ class Register extends React.Component {
       };
   }
 
-  submitinfo() {
-if (this.state.email === '' || this.state.password === '' || this.state.confirmpassword === '') {
-          Alert.alert('Fields left blank');
-      } else if (this.state.confirmpassword === this.state.password) {
-          firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(user => {
-              Alert.alert('Registration Complete');
-              console.log(user.email);
-          }).catch(() => { Alert.alert('This Email is in use'); });
-      } else {
-          Alert.alert('Passwords do not match');
+    onEmailChangeR(text) {
+      this.props.emailChangedR(text);
+    }
+    onPasswordChangeR(text) {
+      this.props.passwordChangedR(text);
+    }
+    onPasswordChangeR2(text) {
+      this.props.passwordChangedR2(text);
+    }
+
+    onRegisterPress() {
+      const { emailr, passwordr, passwordr2 } = this.props;
+
+      if (emailr === '' || passwordr === '' || passwordr2 === '') {
+        Alert.alert('Fields left blank');
+      } else if (passwordr === passwordr2) {
+        this.props.registerUser({ emailr, passwordr });
       }
     }
-    //user.sendEmailVerification(); send the user a verification email
-
+/*
+    submitinfo() {
+  if (this.state.email === '' || this.state.password === '' || this.state.confirmpassword === '') {
+            Alert.alert('Fields left blank');
+        } else if (this.state.confirmpassword === this.state.password) {
+            firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+              .then(user => {
+                Alert.alert('Registration Complete');
+                console.log(user.email);
+            }).catch(() => { Alert.alert('This Email is in use'); });
+        } else {
+            Alert.alert('Passwords do not match');
+        }
+      }
+      //user.sendEmailVerification(); send the user a verification email
+*/
   render() {
     return (
 
@@ -38,14 +60,15 @@ if (this.state.email === '' || this.state.password === '' || this.state.confirmp
           <Input
             label="Email"
             placeholder="JohnSmith@hotmail.com"
-            onChangeText={(email) => this.setState({ email })}
-            value={this.props.email}
+            onChangeText={this.onEmailChangeR.bind(this)}
+            value={this.props.emailr}
           />
         </CardSection>
 
         <CardSection>
           <Input
-            onChangeText={(password) => this.setState({ password })}
+            onChangeText={this.onPasswordChangeR.bind(this)}
+            value={this.props.passwordr} // not sure if i need this
             label="Password"
             placeholder="password"
             secureTextEntry
@@ -54,7 +77,8 @@ if (this.state.email === '' || this.state.password === '' || this.state.confirmp
 
         <CardSection>
           <Input
-            onChangeText={(confirmpassword) => this.setState({ confirmpassword })}
+            onChangeText={this.onPasswordChangeR2.bind(this)}
+            value={this.props.passwordr2}
             label="Confirm password"
             placeholder="password"
             secureTextEntry
@@ -62,7 +86,7 @@ if (this.state.email === '' || this.state.password === '' || this.state.confirmp
         </CardSection>
 
         <CardSection>
-            <Button onPress={this.submitinfo.bind(this)} >
+            <Button onPress={this.onRegisterPress.bind(this)} >
               Register
             </Button>
         </CardSection>
@@ -71,4 +95,17 @@ if (this.state.email === '' || this.state.password === '' || this.state.confirmp
     );
   }
 }
-export default Register;
+
+const mapStateToProps = state => {
+ return {
+   emailr: state.reg.emailr,
+   passwordr: state.reg.passwordr,
+   passwordr2: state.reg.passwordr2,
+   nav: state.nav
+ };
+};
+
+export default connect(mapStateToProps, { emailChangedR,
+                                          passwordChangedR,
+                                          passwordChangedR2,
+                                          registerUser })(Register);

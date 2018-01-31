@@ -1,5 +1,12 @@
 import firebase from 'firebase';
-import { EMAIL_CHANGED, PASSWORD_CHANGED } from './types';
+import { Alert } from 'react-native';
+import { EMAIL_CHANGED,
+    PASSWORD_CHANGED,
+    EMAIL_CHANGEDR,
+    PASSWORD_CHANGEDR,
+    PASSWORD_CHANGEDR2,
+    REGISTER_USER
+        } from './types';
 
 export const emailChanged = (text) => {
   return {
@@ -24,3 +31,33 @@ export const loginUser = ({ email, password }) => {
     }); //only return action when we return a user
   };
 };
+
+// for registration
+
+export const emailChangedR = (text) => {
+  return {
+    type: EMAIL_CHANGEDR,
+    payload: text
+  };
+};
+
+export const passwordChangedR = (text) => {
+  return {
+    type: PASSWORD_CHANGEDR,
+    payload: text
+  };
+};
+
+export const passwordChangedR2 = (text) => {
+  return {
+    type: PASSWORD_CHANGEDR2,
+    payload: text
+  };
+};
+
+export const registerUser = ({ emailr, passwordr }) => {
+  return {
+    type: REGISTER_USER,
+    payload: { emailr, passwordr }
+    };
+  };
