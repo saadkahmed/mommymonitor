@@ -4,7 +4,7 @@ import { Image, StyleSheet, ImageBackground, View, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
-import { emailChanged, passwordChanged } from '../Actions';
+import { emailChanged, passwordChanged, loginUser } from '../Actions';
 import { CardSection, Input, Button } from './common';
 
 const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
@@ -28,8 +28,17 @@ class MainScreen extends Component {
 
     onLoginPress() {
       const { email, password } = this.props;
-      this.props.loginUser({ email, password });
+
+/*
+      if (email === '' || password === '') {
+        Alert.alert('One or more fields left blank');
+    } else {
+      this.props.loginUser({ email, password }); //loginUser is expecting an object
     }
+    */
+    this.props.loginUser({ email, password }); //loginUser is expecting an object
+      }
+
 
     onEmailChange(text) {
       this.props.emailChanged(text);
@@ -37,7 +46,7 @@ class MainScreen extends Component {
     onPasswordChange(text) {
       this.props.passwordChanged(text);
     }
-
+/*
     loginuser() {
         const { navigate } = this.props.navigation;
 
@@ -51,7 +60,7 @@ class MainScreen extends Component {
     }).catch(() => { Alert.alert('Invalid Email or Password'); });
     }
 }
-
+*/
   render() {
     return (
         <ImageBackground
@@ -84,7 +93,7 @@ class MainScreen extends Component {
         </CardSection>
 
           <CardSection>
-            <Button onPress={this.loginuser.bind(this)} >
+            <Button onPress={this.onLoginPress.bind(this)} >
               Sign In
             </Button>
           </CardSection>
@@ -135,4 +144,4 @@ const mapStateToProps = state => {
     };
   };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged })(MainScreen);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(MainScreen);

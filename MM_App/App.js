@@ -1,8 +1,9 @@
 import React from 'react';
 import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
+import ReduxThunk from 'redux-thunk'; // thunk is middleware
 import AppWithNavigationState from './src/Navigators/LoginRouter';
 import reducers from './src/Reducers';
 /*
@@ -32,8 +33,10 @@ class Application extends React.Component {
   }
 
     render() {
+      const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+      
         return (
-        <Provider store={createStore(reducers)}>
+        <Provider store={store}>
           <AppWithNavigationState />
         </Provider>
         );
