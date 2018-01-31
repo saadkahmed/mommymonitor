@@ -1,7 +1,10 @@
 // create back button
 import React from 'react';
 import firebase from 'firebase';
+import { connect } from 'react-redux';
 import { View, Alert } from 'react-native';
+
+import { emailChangedR, passwordChangedR, passwordChanged2R } from '../Actions';
 import { Button, CardSection, Input } from '../Components/common';
 
 class Register extends React.Component {
@@ -13,6 +16,16 @@ class Register extends React.Component {
           password: '',
           confirmpassword: '',
       };
+  }
+
+  onEmailChangeR(text) {
+    this.props.emailChangedR(text);
+  }
+  onPasswordChangeR(text) {
+    this.props.passwordChangedR(text);
+  }
+  onPasswordChange2R(text) {
+    this.props.passwordChanged2R(text);
   }
 
   submitinfo() {
@@ -38,14 +51,15 @@ if (this.state.email === '' || this.state.password === '' || this.state.confirmp
           <Input
             label="Email"
             placeholder="JohnSmith@hotmail.com"
-            onChangeText={(email) => this.setState({ email })}
-            value={this.props.email}
+            onChangeText={this.onEmailChangeR.bind(this)}
+            value={this.props.emailr}
           />
         </CardSection>
 
         <CardSection>
           <Input
-            onChangeText={(password) => this.setState({ password })}
+            onChangeText={this.onPasswordChangeR}
+            value={this.props.passwordr}
             label="Password"
             placeholder="password"
             secureTextEntry
@@ -54,7 +68,8 @@ if (this.state.email === '' || this.state.password === '' || this.state.confirmp
 
         <CardSection>
           <Input
-            onChangeText={(confirmpassword) => this.setState({ confirmpassword })}
+            onChangeText={this.onPasswordChange2R}
+            value={this.props.passwordr2}
             label="Confirm password"
             placeholder="password"
             secureTextEntry
@@ -71,4 +86,16 @@ if (this.state.email === '' || this.state.password === '' || this.state.confirmp
     );
   }
 }
-export default Register;
+
+const mapStateToProps = state => {
+    return {
+      emailr: state.reg.emailr,
+      passwordr: state.reg.passwordr,
+      passwordr2: state.reg.passwordr2,
+      nav: state.nav
+    };
+  };
+
+export default connect(mapStateToProps, { emailChangedR,
+                                          passwordChangedR,
+                                          passwordChanged2R })(Register);

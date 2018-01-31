@@ -1,0 +1,3 @@
+rootProject.name = 'myMommyMonitor'
+
+include ':app'

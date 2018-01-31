@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
 import { Image, StyleSheet, ImageBackground, View, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
@@ -12,6 +11,8 @@ const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 
 class MainScreen extends Component {
+
+  // helper functions
 
     onForgotPress() {
       const navigateToForgot = NavigationActions.navigate({
@@ -44,7 +45,7 @@ class MainScreen extends Component {
     onPasswordChange(text) {
       this.props.passwordChanged(text);
     }
-/*
+/* // old login function
     loginuser() {
         const { navigate } = this.props.navigation;
 
@@ -59,6 +60,7 @@ class MainScreen extends Component {
     }
 }
 */
+
   render() {
     return (
         <ImageBackground
