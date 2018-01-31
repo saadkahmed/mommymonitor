@@ -29,14 +29,12 @@ class MainScreen extends Component {
     onLoginPress() {
       const { email, password } = this.props;
 
-/*
+
       if (email === '' || password === '') {
         Alert.alert('One or more fields left blank');
     } else {
       this.props.loginUser({ email, password }); //loginUser is expecting an object
     }
-    */
-    this.props.loginUser({ email, password }); //loginUser is expecting an object
       }
 
 
