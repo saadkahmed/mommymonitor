@@ -1,4 +1,10 @@
 {
-  "name": "myMommyMonitor",
-  "displayName": "myMommyMonitor"
+  "expo": {
+    "splash":{
+      "image": "./pictures/MainScreen.png",
+      "resizeMode": "cover"
+            },
+
+    "sdkVersion": "22.0.0"
+  }
 }
