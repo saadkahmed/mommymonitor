@@ -10,7 +10,6 @@ import { EMAIL_CHANGEDR,
 const INITIAL_STATE = { emailr: '', passwordr: '', passwordr2: '' };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case EMAIL_CHANGEDR: {
       console.log(action.payload);

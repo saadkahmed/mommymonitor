@@ -12,3 +12,8 @@ export const PASSWORD_CHANGEDR2 = 'password_changedR2';
 export const REGISTER_USER = 'register_user';
 export const EMPTY_REGISTRATION_FIELDS = 'empty_registration_fields';
 export const UNEQUAL_PASSWORDS = 'unequal_password';
+
+//forgot types
+
+export const EMAIL_CHANGEDF = 'email_changedF';
+export const SEND_FORGOT_REQUEST = 'send_forgot_request';

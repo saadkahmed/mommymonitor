@@ -9,12 +9,12 @@ import { EMAIL_CHANGED,
           LOGIN_USER_SUCCESS,
           LOGIN_USER_FAIL,
           EMPTY_REGISTRATION_FIELDS,
-          UNEQUAL_PASSWORDS
+          UNEQUAL_PASSWORDS,
+          EMAIL_CHANGEDF,
+          SEND_FORGOT_REQUEST
               } from './types';
 
-const navToLogin = NavigationActions.navigate({
-          routeName: 'LoggedIn'
-        });
+//for login
 
 export const emailChanged = (text) => {
   return {
@@ -30,8 +30,11 @@ export const passwordChanged = (text) => {
   };
 };
 
-
 export const loginUser = ({ email, password }) => {
+  const navToLogin = NavigationActions.navigate({
+            routeName: 'LoggedIn'
+          });
+
   return (dispatch) => {
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then(user => {
@@ -73,13 +76,22 @@ export const registrationProcedure = ({ emailr, passwordr, passwordr2 }) => {
     } else if (passwordr !== passwordr2) {
       dispatch({ type: UNEQUAL_PASSWORDS });
     }
-    dispatch({ type: REGISTER_USER, payload: { emailr, passwordr } });
+      dispatch({ type: REGISTER_USER, payload: { emailr, passwordr } });
   };
 };
 
-export const registerUser = ({ emailr, passwordr }) => {
+// for forgot password
+
+export const emailChangedF = (text) => {
   return {
-    type: REGISTER_USER,
-    payload: { emailr, passwordr }
-    };
+    type: EMAIL_CHANGEDF,
+    payload: text
   };
+};
+
+export const sendForgot = (emailf) => {
+  return {
+    type: SEND_FORGOT_REQUEST,
+    payload: emailf
+  };
+};

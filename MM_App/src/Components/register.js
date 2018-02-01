@@ -13,25 +13,6 @@ import { Button, CardSection, Input } from '../Components/common';
 
 class Register extends React.Component {
 
-  constructor(props) {
-      super(props);
-      this.state = {
-          email: '',
-          password: '',
-          confirmpassword: '',
-      };
-  }
-  /*
-  if (emailr === '' || passwordr === '' || passwordr2 === '') {
-    Alert.alert('Fields left blank');
-  } else if (passwordr !== passwordr2) {
-    this.props.passwordEqualityCheck({passwordr, })
-  }
-  else if (passwordr === passwordr2) {
-    this.props.registerUser({ emailr, passwordr });
-  }
-  */
-
     onEmailChangeR(text) {
       this.props.emailChangedR(text);
     }

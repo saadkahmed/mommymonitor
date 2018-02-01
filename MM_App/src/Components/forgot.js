@@ -1,10 +1,11 @@
 import React from 'react';
-import firebase from 'firebase';
-import { View, Alert } from 'react-native';
+import { connect } from 'react-redux';
+import { View } from 'react-native';
 import { Button, CardSection, Input } from '../Components/common';
+import { emailChangedF, sendForgot } from '../Actions';
 
 class IForgot extends React.Component {
-
+/*
     constructor(props) {
         super(props);
         this.state = {
@@ -17,20 +18,30 @@ class IForgot extends React.Component {
             Alert.alert('Email Sent');
         }).catch(() => { Alert.alert('Invalid Email'); });
     }
+*/
+    onEmailChangeF(text) {
+      this.props.emailChangedF(text);
+    }
+
+    submitForgot() {
+    const { emailf } = this.props;
+      this.props.sendForgot(emailf);
+    }
 
   render() {
     return (
         <View>
         <CardSection>
           <Input
-            onChangeText={(email) => this.setState({ email })}
+            onChangeText={this.onEmailChangeF.bind(this)}
+            value={this.props.emailf}
             label="Email"
             placeholder="JohnSmith@hotmail.com"
           />
         </CardSection>
 
         <CardSection>
-            <Button onPress={this.submitinfo.bind(this)} >
+            <Button onPress={this.submitForgot.bind(this)} >
               Register
             </Button>
         </CardSection>
@@ -41,4 +52,10 @@ class IForgot extends React.Component {
   }
 }
 
-export default IForgot;
+const mapStateToProps = state => {
+ return {
+   emailf: state.forg.emailf
+ };
+};
+
+export default connect(mapStateToProps, { emailChangedF, sendForgot })(IForgot);
