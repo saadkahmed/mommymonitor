@@ -3,7 +3,9 @@ import firebase from 'firebase';
 import { EMAIL_CHANGEDR,
          PASSWORD_CHANGEDR,
          PASSWORD_CHANGEDR2,
-         REGISTER_USER } from '../Actions/types';
+         REGISTER_USER,
+         EMPTY_REGISTRATION_FIELDS,
+         UNEQUAL_PASSWORDS } from '../Actions/types';
 
 const INITIAL_STATE = { emailr: '', passwordr: '', passwordr2: '' };
 
@@ -21,13 +23,18 @@ export default (state = INITIAL_STATE, action) => {
     case PASSWORD_CHANGEDR2: {
       return { ...state, passwordr2: action.payload };
     }
+    case EMPTY_REGISTRATION_FIELDS: {
+      Alert.alert('One or more fields are empty');
+      return state;
+    }
+    case UNEQUAL_PASSWORDS: {
+      Alert.alert('Passwords do not match, please try again');
+      return state;
+    }
     case REGISTER_USER: {
-      console.log(action.payload.emailr);
-      console.log(action.payload.passwordr);
-
-firebase.auth().createUserWithEmailAndPassword(action.payload.emailr, action.payload.passwordr)
-        .then(user => {
-          Alert.alert(user, 'Registration Complete');
+      firebase.auth().createUserWithEmailAndPassword(action.payload.emailr, action.payload.passwordr)
+        .then(() => {
+          Alert.alert('Registration Complete');
       })
       .catch(() => { Alert.alert('This Email is in use'); });
       return state;

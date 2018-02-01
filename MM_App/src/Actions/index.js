@@ -1,14 +1,16 @@
 import firebase from 'firebase';
 import { NavigationActions } from 'react-navigation';
 import { EMAIL_CHANGED,
-    PASSWORD_CHANGED,
-    EMAIL_CHANGEDR,
-    PASSWORD_CHANGEDR,
-    PASSWORD_CHANGEDR2,
-    REGISTER_USER,
-    LOGIN_USER_SUCCESS,
-    LOGIN_USER_FAIL
-        } from './types';
+          PASSWORD_CHANGED,
+          EMAIL_CHANGEDR,
+          PASSWORD_CHANGEDR,
+          PASSWORD_CHANGEDR2,
+          REGISTER_USER,
+          LOGIN_USER_SUCCESS,
+          LOGIN_USER_FAIL,
+          EMPTY_REGISTRATION_FIELDS,
+          UNEQUAL_PASSWORDS
+              } from './types';
 
 const navToLogin = NavigationActions.navigate({
           routeName: 'LoggedIn'
@@ -61,6 +63,17 @@ export const passwordChangedR2 = (text) => {
   return {
     type: PASSWORD_CHANGEDR2,
     payload: text
+  };
+};
+
+export const registrationProcedure = ({ emailr, passwordr, passwordr2 }) => {
+  return (dispatch) => {
+    if (emailr === '' || passwordr === '' || passwordr2 === '') {
+      dispatch({ type: EMPTY_REGISTRATION_FIELDS });
+    } else if (passwordr !== passwordr2) {
+      dispatch({ type: UNEQUAL_PASSWORDS });
+    }
+    dispatch({ type: REGISTER_USER, payload: { emailr, passwordr } });
   };
 };
 

@@ -12,6 +12,7 @@ const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 
 class MainScreen extends Component {
 
+    // button helper functions
     onForgotPress() {
       const navigateToForgot = NavigationActions.navigate({
         routeName: 'Forgot'
@@ -26,24 +27,25 @@ class MainScreen extends Component {
     }
 
     onLoginPress() {
-      const { email, password } = this.props;
+      const { email, password } = this.props; // destructuring email and pass for login verification
 
 
-      if (email === '' || password === '') {
+      if (email === '' || password === '') { // check empty fields (this could be done in reducer)
         Alert.alert('One or more fields left blank');
     } else {
       this.props.loginUser({ email, password }); //loginUser is expecting an object
     }
       }
 
-
+    // text handlers
     onEmailChange(text) {
       this.props.emailChanged(text);
     }
     onPasswordChange(text) {
       this.props.passwordChanged(text);
     }
-/*
+
+/* // old login function
     loginuser() {
         const { navigate } = this.props.navigation;
 

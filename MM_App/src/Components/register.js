@@ -1,9 +1,14 @@
 // create back button
 import React from 'react';
-import { View, Alert } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 
-import { emailChangedR, passwordChangedR, passwordChangedR2, registerUser } from '../Actions';
+import { emailChangedR,
+         passwordChangedR,
+         passwordChangedR2,
+         registerUser,
+         registrationProcedure } from '../Actions';
+
 import { Button, CardSection, Input } from '../Components/common';
 
 class Register extends React.Component {
@@ -16,6 +21,16 @@ class Register extends React.Component {
           confirmpassword: '',
       };
   }
+  /*
+  if (emailr === '' || passwordr === '' || passwordr2 === '') {
+    Alert.alert('Fields left blank');
+  } else if (passwordr !== passwordr2) {
+    this.props.passwordEqualityCheck({passwordr, })
+  }
+  else if (passwordr === passwordr2) {
+    this.props.registerUser({ emailr, passwordr });
+  }
+  */
 
     onEmailChangeR(text) {
       this.props.emailChangedR(text);
@@ -30,11 +45,7 @@ class Register extends React.Component {
     onRegisterPress() {
       const { emailr, passwordr, passwordr2 } = this.props;
 
-      if (emailr === '' || passwordr === '' || passwordr2 === '') {
-        Alert.alert('Fields left blank');
-      } else if (passwordr === passwordr2) {
-        this.props.registerUser({ emailr, passwordr });
-      }
+      this.props.registrationProcedure({ emailr, passwordr, passwordr2 });
     }
 /*
     submitinfo() {
@@ -108,4 +119,5 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, { emailChangedR,
                                           passwordChangedR,
                                           passwordChangedR2,
+                                          registrationProcedure,
                                           registerUser })(Register);
