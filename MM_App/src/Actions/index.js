@@ -1,12 +1,18 @@
 import firebase from 'firebase';
-import { Alert } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { EMAIL_CHANGED,
     PASSWORD_CHANGED,
     EMAIL_CHANGEDR,
     PASSWORD_CHANGEDR,
     PASSWORD_CHANGEDR2,
-    REGISTER_USER
+    REGISTER_USER,
+    LOGIN_USER_SUCCESS,
+    LOGIN_USER_FAIL
         } from './types';
+
+const navToLogin = NavigationActions.navigate({
+          routeName: 'LoggedIn'
+        });
 
 export const emailChanged = (text) => {
   return {
@@ -27,8 +33,11 @@ export const loginUser = ({ email, password }) => {
   return (dispatch) => {
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then(user => {
-      dispatch({ type: 'LOGIN_USER_SUCCESS', payload: user });
-    }); //only return action when we return a user
+      dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
+      dispatch(navToLogin);
+    }).catch(() => {
+      dispatch({ type: LOGIN_USER_FAIL });
+    });
   };
 };
 

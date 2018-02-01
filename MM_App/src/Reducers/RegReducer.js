@@ -25,7 +25,7 @@ export default (state = INITIAL_STATE, action) => {
       console.log(action.payload.emailr);
       console.log(action.payload.passwordr);
 
-      firebase.auth().createUserWithEmailAndPassword(action.payload.emailr, action.payload.passwordr)
+firebase.auth().createUserWithEmailAndPassword(action.payload.emailr, action.payload.passwordr)
         .then(user => {
           Alert.alert(user, 'Registration Complete');
       })
