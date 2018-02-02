@@ -1,10 +1,10 @@
 import { StackNavigator } from 'react-navigation';
 
-import SomeScreen from '../Components/somescreen';
+import ProfileAnalytics from '../Components/ProfileAnalytics';
 
 const LoggedInNavigator = StackNavigator(
     {
-    SomeScreen: { screen: SomeScreen,
+    SomeScreen: { screen: ProfileAnalytics,
         navigationOptions: {
             gesturesEnabled: false,
             header: null

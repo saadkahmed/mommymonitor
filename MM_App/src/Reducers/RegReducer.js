@@ -31,7 +31,8 @@ export default (state = INITIAL_STATE, action) => {
       return state;
     }
     case REGISTER_USER: {
-      firebase.auth().createUserWithEmailAndPassword(action.payload.emailr, action.payload.passwordr)
+      firebase.auth().createUserWithEmailAndPassword(action.payload.emailr,
+                                                     action.payload.passwordr)
         .then(() => {
           Alert.alert('Registration Complete');
       })
