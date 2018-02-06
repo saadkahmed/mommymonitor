@@ -28,6 +28,7 @@ export const RootNavigator = StackNavigator({
 
   LoggedIn: {
     screen: LoggedInRouter,
+    headerTitle: 'User Analytics',
   }
 
 });

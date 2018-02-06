@@ -71,7 +71,7 @@ export const passwordChangedR2 = (text) => {
 
 export const registrationProcedure = ({ emailr, passwordr, passwordr2 }) => {
   return (dispatch) => {
-    if (emailr === '' || passwordr === '' || passwordr2 === '') {
+    if (emailr === '' || passwordr === '' || passwordr2 === '') { // error here; both conditions are true
       dispatch({ type: EMPTY_REGISTRATION_FIELDS });
     } else if (passwordr !== passwordr2) {
       dispatch({ type: UNEQUAL_PASSWORDS });
