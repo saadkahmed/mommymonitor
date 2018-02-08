@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import { CardSection, Button } from './common';
 
 
 class Settings extends React.Component {
@@ -7,25 +8,33 @@ class Settings extends React.Component {
   static navigationOptions = {
     title: 'Settings',
     gesturesEnabled: true
+
 };
+
+onLogout() {
+  const { user } = this.props;
+
+
+}
   render() {
     return (
-      <View style={styles.Mainviewstyle}>
-        <TouchableOpacity>
-          <Text>press here</Text>
-        </TouchableOpacity>
-      </View>
+      <CardSection>
+        <Button onPress={this.onLogout.bind(this)} >
+          Forgot Password
+        </Button>
+      </CardSection>
     );
   }
 }
 
-let styles = StyleSheet.create({
-  Mainviewstyle: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'start',
-    backgroundColor: '#FFEFF9'
-  },
-});
+const mapStateToProps = state => {
+    return {
+      email: state.auth.email,
+      password: state.auth.password,
+      loading: state.auth.loading,
+      user: state.auth.user,
+      nav: state.nav,
+    };
+  };
 
-export default Settings;
+export default connect(mapStateToProps)(Settings);

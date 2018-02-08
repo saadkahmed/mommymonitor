@@ -7,6 +7,7 @@ import { EMAIL_CHANGED,
           PASSWORD_CHANGEDR2,
           REGISTER_USER,
           LOGIN_USER,
+          LOGOUT_USER,
           LOGIN_USER_SUCCESS,
           LOGIN_USER_FAIL,
           EMPTY_REGISTRATION_FIELDS,
@@ -15,7 +16,7 @@ import { EMAIL_CHANGED,
           SEND_FORGOT_REQUEST
               } from './types';
 
-//for login
+//for login/logout
 
 export const emailChanged = (text) => {
   return {
@@ -44,9 +45,19 @@ export const loginUser = ({ email, password }) => {
         dispatch(navToLogin);
       }).catch(() => {
         dispatch({ type: LOGIN_USER_FAIL });
-      });
-    };
+    });
   };
+};
+
+export const logoutUser = () => {
+  const Logout = NavigationActions.navigate({
+            routeName: 'MainScreen'
+          });
+  return (dispatch) => {
+    dispatch({ type: LOGOUT_USER });
+    dispatch(Logout);
+  };
+};
 
 // for registration
 

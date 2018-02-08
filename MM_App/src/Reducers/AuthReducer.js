@@ -3,7 +3,8 @@ import { EMAIL_CHANGED,
          PASSWORD_CHANGED,
          LOGIN_USER,
          LOGIN_USER_SUCCESS,
-         LOGIN_USER_FAIL } from '../Actions/types';
+         LOGIN_USER_FAIL,
+         LOGOUT_USER } from '../Actions/types';
 
 const INITIAL_STATE = { email: '',
                         password: '',
@@ -30,6 +31,9 @@ export default (state = INITIAL_STATE, action) => {
     case LOGIN_USER_FAIL: {
       Alert.alert('Invalid Email or Password');
       return { ...state, email: '', password: '', loading: false };
+    }
+    case LOGOUT_USER: {
+      return { ...state, user: null };
     }
     default:
       return state;
