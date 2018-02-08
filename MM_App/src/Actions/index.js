@@ -6,6 +6,7 @@ import { EMAIL_CHANGED,
           PASSWORD_CHANGEDR,
           PASSWORD_CHANGEDR2,
           REGISTER_USER,
+          LOGIN_USER,
           LOGIN_USER_SUCCESS,
           LOGIN_USER_FAIL,
           EMPTY_REGISTRATION_FIELDS,
@@ -35,15 +36,17 @@ export const loginUser = ({ email, password }) => {
             routeName: 'LoggedIn'
           });
   return (dispatch) => {
-  firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(user => {
-      dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
-      dispatch(navToLogin);
-    }).catch(() => {
-      dispatch({ type: LOGIN_USER_FAIL });
-    });
+    dispatch({ type: LOGIN_USER });
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(user => {
+        dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
+        dispatch(navToLogin);
+      }).catch(() => {
+        dispatch({ type: LOGIN_USER_FAIL });
+      });
+    };
   };
-};
 
 // for registration
 

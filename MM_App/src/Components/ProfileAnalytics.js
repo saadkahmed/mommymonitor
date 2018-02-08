@@ -16,6 +16,7 @@ class ProfileAnalytics extends React.Component {
 
 render() {
   return (
+
     <View style={styles.Mainviewstyle}>
 
       <View style={styles.Profileheaderstyle}>

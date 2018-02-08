@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
 import { emailChanged, passwordChanged, loginUser } from '../Actions';
-import { CardSection, Input, Button } from './common';
+import { CardSection, Input, Button, Spinner } from './common';
 
 const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 
@@ -49,6 +49,18 @@ class MainScreen extends Component {
       this.props.passwordChanged(text);
     }
 
+    // Login handler
+    renderButton() {
+  if (this.props.loading) {
+    return <Spinner size='large' />;
+  }
+  return (
+    <Button onPress={this.onLoginPress.bind(this)} >
+      Sign In
+    </Button>
+  );
+}
+
   render() {
     return (
         <ImageBackground
@@ -81,9 +93,7 @@ class MainScreen extends Component {
         </CardSection>
 
           <CardSection>
-            <Button onPress={this.onLoginPress.bind(this)} >
-              Sign In
-            </Button>
+            {this.renderButton()}
           </CardSection>
 
           <CardSection>
@@ -128,8 +138,12 @@ const mapStateToProps = state => {
     return {
       email: state.auth.email,
       password: state.auth.password,
+      loading: state.auth.loading,
       nav: state.nav,
     };
   };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(MainScreen);
+export default connect(mapStateToProps, { emailChanged,
+                                          passwordChanged,
+                                          loginUser
+                                        })(MainScreen);
