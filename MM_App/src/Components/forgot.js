@@ -5,20 +5,12 @@ import { Button, CardSection, Input } from '../Components/common';
 import { emailChangedF, sendForgot } from '../Actions';
 
 class IForgot extends React.Component {
-/*
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-        };
-    }
 
-    submitinfo() {
-        firebase.auth().sendPasswordResetEmail(this.state.email).then(() => {
-            Alert.alert('Email Sent');
-        }).catch(() => { Alert.alert('Invalid Email'); });
-    }
-*/
+  static navigationOptions = {
+    headerTitle: 'Password Retrieval',
+    gesturesEnabled: false
+};
+
     onEmailChangeF(text) {
       this.props.emailChangedF(text);
     }

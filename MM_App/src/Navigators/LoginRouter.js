@@ -9,29 +9,23 @@ import MainScreen from '../Components/MainScreen';
 
 export const RootNavigator = StackNavigator({
   Main: {
-    screen: MainScreen,
-    navigationOptions: {
-      header: null,
-    },
+    screen: MainScreen
   },
-
   Forgot: {
-    screen: forgot,
-    navigationOptions: {
-      headerTitle: 'Forgot a Password',
-    },
+    screen: forgot
   },
-
   Register: {
     screen: RegisterRouter,
   },
-
   LoggedIn: {
-    screen: LoggedInRouter,
-    headerTitle: 'User Analytics',
+    screen: LoggedInRouter
   }
 
-});
+},
+{
+initialRouteName: MainScreen,
+}
+);
 
 const AppWithNavigationState = ({ dispatch, nav }) => (
   <RootNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />

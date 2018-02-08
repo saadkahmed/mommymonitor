@@ -13,6 +13,11 @@ import { Button, CardSection, Input } from '../Components/common';
 
 class Register extends React.Component {
 
+  static navigationOptions = {
+    headerTitle: 'Registration',
+    gesturesEnabled: false
+};
+
     onEmailChangeR(text) {
       this.props.emailChangedR(text);
     }

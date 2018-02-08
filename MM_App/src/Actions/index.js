@@ -34,7 +34,6 @@ export const loginUser = ({ email, password }) => {
   const navToLogin = NavigationActions.navigate({
             routeName: 'LoggedIn'
           });
-
   return (dispatch) => {
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then(user => {
@@ -71,7 +70,7 @@ export const passwordChangedR2 = (text) => {
 
 export const registrationProcedure = ({ emailr, passwordr, passwordr2 }) => {
   return (dispatch) => {
-    if (emailr === '' || passwordr === '' || passwordr2 === '') { // error here; both conditions are true
+    if (emailr === '' || passwordr === '' || passwordr2 === '') { // error here
       dispatch({ type: EMPTY_REGISTRATION_FIELDS });
     } else if (passwordr !== passwordr2) {
       dispatch({ type: UNEQUAL_PASSWORDS });

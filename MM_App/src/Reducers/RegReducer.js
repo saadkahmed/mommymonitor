@@ -7,7 +7,9 @@ import { EMAIL_CHANGEDR,
          EMPTY_REGISTRATION_FIELDS,
          UNEQUAL_PASSWORDS } from '../Actions/types';
 
+
 const INITIAL_STATE = { emailr: '', passwordr: '', passwordr2: '' };
+
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -36,8 +38,8 @@ export default (state = INITIAL_STATE, action) => {
         .then(() => {
           Alert.alert('Registration Complete');
       })
-      .catch(() => { Alert.alert('This Email is in use'); });
-      return state;
+        .catch(() => { Alert.alert('This e-mail is in use, try again.'); });
+      return { ...state, emailr: '', passwordr: '', passwordr2: '' };
   }
     default:
       return state;

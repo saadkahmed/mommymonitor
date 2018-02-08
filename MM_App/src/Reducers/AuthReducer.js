@@ -6,7 +6,8 @@ import { EMAIL_CHANGED,
 
 const INITIAL_STATE = { email: '',
                         password: '',
-                        user: null };
+                        user: null,
+                      };
 
 export default (state = INITIAL_STATE, action) => {
   console.log(action);
@@ -19,11 +20,11 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, password: action.payload };
     }
     case LOGIN_USER_SUCCESS: {
-      return { ...state, user: action.payload };
+      return { ...state, user: action.payload, email: '', password: '' };
     }
     case LOGIN_USER_FAIL: {
       Alert.alert('Invalid Email or Password');
-      return state;
+      return { ...state, email: '', password: '' };
     }
     default:
       return state;

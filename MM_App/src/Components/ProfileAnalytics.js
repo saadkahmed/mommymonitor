@@ -1,9 +1,18 @@
 import React from 'react';
+import { NavigationActions } from 'react-navigation';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import { Icon } from 'native-base';
 
 const profilePic = require('../../pictures/ProfilePic.png');
 
+
+
 class ProfileAnalytics extends React.Component {
+
+  static navigationOptions = {
+    title: 'Profile',
+    gesturesEnabled: true,
+};
 
 render() {
   return (

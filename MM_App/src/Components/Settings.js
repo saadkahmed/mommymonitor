@@ -3,6 +3,11 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 
 class Settings extends React.Component {
+
+  static navigationOptions = {
+    title: 'Settings',
+    gesturesEnabled: true
+};
   render() {
     return (
       <View style={styles.Mainviewstyle}>

@@ -4,10 +4,8 @@ import Register from '../Components/Register';
 
 const RegisterRouter = TabNavigator(
     {
-    Register: { screen: Register,
-      navigationOptions: {
-        headerTitle: 'Registration',
-}, },
+    Register: {
+      screen: Register },
 
 });
 

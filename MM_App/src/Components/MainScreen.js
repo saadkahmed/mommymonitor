@@ -12,6 +12,10 @@ const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 
 class MainScreen extends Component {
 
+  static navigationOptions = {
+  header: null
+};
+
     // button helper functions
     onForgotPress() {
       const navigateToForgot = NavigationActions.navigate({
@@ -45,21 +49,6 @@ class MainScreen extends Component {
       this.props.passwordChanged(text);
     }
 
-/* // old login function
-    loginuser() {
-        const { navigate } = this.props.navigation;
-
-        if (this.state.email === '' || this.state.password === '') {
-            Alert.alert('One or more fields left blank');
-        } else {
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then(user => {
-             navigate('LoggedIn');
-             console.log(user.email);
-    }).catch(() => { Alert.alert('Invalid Email or Password'); });
-    }
-}
-*/
   render() {
     return (
         <ImageBackground
@@ -139,7 +128,7 @@ const mapStateToProps = state => {
     return {
       email: state.auth.email,
       password: state.auth.password,
-      nav: state.nav
+      nav: state.nav,
     };
   };
 
