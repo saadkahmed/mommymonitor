@@ -83,11 +83,13 @@ export const passwordChangedR2 = (text) => {
 };
 
 export const registrationProcedure = ({ emailr, passwordr, passwordr2 }) => {
-  return (dispatch) => {
-    if (emailr === '' || passwordr === '' || passwordr2 === '') { // error here
+ return (dispatch) => {
+   if (emailr === '' || passwordr === '' || passwordr2 === '') { // error here
       dispatch({ type: EMPTY_REGISTRATION_FIELDS });
+      return;
     } else if (passwordr !== passwordr2) {
       dispatch({ type: UNEQUAL_PASSWORDS });
+      return;
     }
       dispatch({ type: REGISTER_USER, payload: { emailr, passwordr } });
   };
