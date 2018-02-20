@@ -1,17 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { Icon } from 'native-base';
 
 const profilePic = require('../../pictures/ProfilePic.png');
 
-
-
 class ProfileAnalytics extends React.Component {
 
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: 'Profile',
     gesturesEnabled: true,
-};
+    headerLeft: <Text onPress={() => navigation.navigate('DrawerOpen')}>Menu</Text>
+});
 
 render() {
   return (

@@ -9,16 +9,28 @@ import MainScreen from '../Components/MainScreen';
 
 export const RootNavigator = StackNavigator({
   Main: {
-    screen: MainScreen
+    screen: MainScreen,
+    navigationOptions: {
+        gesturesEnabled: false,
+    },
   },
   Forgot: {
-    screen: forgot
+    screen: forgot,
+    navigationOptions: {
+        gesturesEnabled: false,
+    },
   },
   Register: {
     screen: RegisterRouter,
+    navigationOptions: {
+        gesturesEnabled: false,
+    },
   },
   LoggedIn: {
-    screen: LoggedInRouter
+    screen: LoggedInRouter,
+    navigationOptions: {
+        gesturesEnabled: false,
+    },
   }
 
 },

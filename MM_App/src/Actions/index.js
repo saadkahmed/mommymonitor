@@ -49,7 +49,7 @@ export const loginUser = ({ email, password }) => {
   };
 };
 
-export const logoutUser = () => {
+export const onLogout = () => {
   const Logout = NavigationActions.navigate({
             routeName: 'MainScreen'
           });

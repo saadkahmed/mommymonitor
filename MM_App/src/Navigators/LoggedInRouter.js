@@ -12,6 +12,10 @@ const LoggedInNavigator = DrawerNavigator(
     screen: SettingsPage,
   },
 },
+{
+  initialRouteName: 'Profile',
+  drawerPosition: 'left',
+}
 
 );
 
