@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-// import { navigation } from 'react-navigation';
 
 const profilePic = require('../../pictures/ProfilePic.png');
 

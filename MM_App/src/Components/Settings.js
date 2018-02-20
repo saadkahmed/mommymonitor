@@ -13,14 +13,13 @@ class Settings extends React.Component {
 };
 //this logout routine hasnt been tested
 onLogout() {
-  const { user } = this.props;
-  this.props.onLogout(user);
+  this.props.onLogout();
 }
   render() {
     return (
       <CardSection>
         <Button onPress={this.onLogout.bind(this)} >
-          Forgot Password
+          Log Out
         </Button>
       </CardSection>
     );
@@ -29,9 +28,6 @@ onLogout() {
 
 const mapStateToProps = state => {
     return {
-      email: state.auth.email,
-      password: state.auth.password,
-      loading: state.auth.loading,
       user: state.auth.user,
       nav: state.nav,
     };
