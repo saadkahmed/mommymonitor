@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import { Button, CardSection, Input } from '../Components/common';
 import { emailChangedF, sendForgot } from '../Actions';
 
@@ -10,6 +10,12 @@ class IForgot extends React.Component {
     headerTitle: 'Password Retrieval',
     gesturesEnabled: false
 };
+
+    componentDidUpdate() {
+        if (this.props.message) {
+            Alert.alert(this.props.message);
+        }
+    }
 
     onEmailChangeF(text) {
       this.props.emailChangedF(text);
@@ -46,7 +52,8 @@ class IForgot extends React.Component {
 
 const mapStateToProps = state => {
  return {
-   emailf: state.forg.emailf
+   emailf: state.forg.emailf,
+   message: state.forg.message
  };
 };
 

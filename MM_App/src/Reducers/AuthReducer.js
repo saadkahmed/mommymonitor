@@ -1,40 +1,47 @@
-import { Alert } from 'react-native';
 import { EMAIL_CHANGED,
          PASSWORD_CHANGED,
          LOGIN_USER,
          LOGIN_USER_SUCCESS,
          LOGIN_USER_FAIL,
-         LOGOUT_USER } from '../Actions/types';
+         LOGOUT_USER,
+         } from '../Actions/types';
 
 const INITIAL_STATE = { email: '',
                         password: '',
                         user: null,
-                        loading: false
+                        loading: false,
+                        error: ''
                       };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case EMAIL_CHANGED:
-      console.log(action.payload);
-      return { ...state, email: action.payload };
+      return { ...state, email: action.payload, error: '' };
+
     case PASSWORD_CHANGED: {
-      console.log(action.payload);
-      return { ...state, password: action.payload };
+      return { ...state, password: action.payload, error: '' };
     }
+
     case LOGIN_USER: {
-      return { ...state, loading: true };
+      return { ...state, loading: true, error: '' };
     }
+
     case LOGIN_USER_SUCCESS: {
-      return { ...state, user: action.payload, email: '', password: '', loading: false };
+        return { email: '',
+                password: '',
+                loading: false,
+                error: '',
+                user: action.payload };
     }
+
     case LOGIN_USER_FAIL: {
-      Alert.alert('Invalid Email or Password');
-      return { ...state, email: '', password: '', loading: false };
+      return { ...state, password: '', loading: false, error: action.payload };
     }
+
     case LOGOUT_USER: {
-      return { ...state, user: null };
+      return INITIAL_STATE;
     }
+
     default:
       return state;
   }

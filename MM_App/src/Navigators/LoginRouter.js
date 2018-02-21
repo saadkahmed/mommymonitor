@@ -6,7 +6,6 @@ import LoggedInRouter from './LoggedInRouter.js';
 import RegisterRouter from './RegisterRouter';
 import MainScreen from '../Components/MainScreen';
 
-
 export const RootNavigator = StackNavigator({
   Main: {
     screen: MainScreen,
@@ -32,12 +31,10 @@ export const RootNavigator = StackNavigator({
         gesturesEnabled: false,
     },
   }
-
 },
 {
 initialRouteName: MainScreen,
-}
-);
+});
 
 const AppWithNavigationState = ({ dispatch, nav }) => (
   <RootNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />

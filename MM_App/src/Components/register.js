@@ -1,13 +1,13 @@
 // create back button
 import React from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import { connect } from 'react-redux';
 
-import { emailChangedR,
-         passwordChangedR,
-         passwordChangedR2,
-         registerUser,
-         registrationProcedure } from '../Actions';
+import { emailChangedReg,
+         passwordChangedReg,
+         passwordChangedConfirm,
+         registerUser
+         } from '../Actions';
 
 import { Button, CardSection, Input } from '../Components/common';
 
@@ -18,37 +18,27 @@ class Register extends React.Component {
     gesturesEnabled: false
 };
 
-    onEmailChangeR(text) {
-      this.props.emailChangedR(text);
+    onEmailChange(text) {
+      this.props.emailChangedReg(text);
     }
-    onPasswordChangeR(text) {
-      this.props.passwordChangedR(text);
+    onPasswordChange(text) {
+      this.props.passwordChangedReg(text);
     }
-    onPasswordChangeR2(text) {
-      this.props.passwordChangedR2(text);
+    onPasswordConfirmChange(text) {
+      this.props.passwordChangedConfirm(text);
     }
 
     onRegisterPress() {
-      const { emailr, passwordr, passwordr2 } = this.props;
-
-      this.props.registrationProcedure({ emailr, passwordr, passwordr2 });
+      const { email, password, confirmPassword } = this.props;
+      this.props.registerUser({ email, password, confirmPassword });
     }
-/*
-    submitinfo() {
-  if (this.state.email === '' || this.state.password === '' || this.state.confirmpassword === '') {
-            Alert.alert('Fields left blank');
-        } else if (this.state.confirmpassword === this.state.password) {
-            firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-              .then(user => {
-                Alert.alert('Registration Complete');
-                console.log(user.email);
-            }).catch(() => { Alert.alert('This Email is in use'); });
-        } else {
-            Alert.alert('Passwords do not match');
+
+    renderMessage() {
+        if (this.props.message) {
+            Alert.alert(this.props.message);
         }
-      }
-      //user.sendEmailVerification(); send the user a verification email
-*/
+    }
+
   render() {
     return (
 
@@ -57,25 +47,26 @@ class Register extends React.Component {
           <Input
             label="Email"
             placeholder="JohnSmith@hotmail.com"
-            onChangeText={this.onEmailChangeR.bind(this)}
-            value={this.props.emailr}
+            onChangeText={this.onEmailChange.bind(this)}
+            value={this.props.email}
           />
         </CardSection>
 
         <CardSection>
           <Input
-            onChangeText={this.onPasswordChangeR.bind(this)}
-            value={this.props.passwordr} // not sure if i need this
+            onChangeText={this.onPasswordChange.bind(this)}
+            value={this.props.password}
             label="Password"
             placeholder="password"
             secureTextEntry
           />
         </CardSection>
 
+        {this.renderMessage()}
         <CardSection>
           <Input
-            onChangeText={this.onPasswordChangeR2.bind(this)}
-            value={this.props.passwordr2}
+            onChangeText={this.onPasswordConfirmChange.bind(this)}
+            value={this.props.confirmPassword}
             label="Confirm password"
             placeholder="password"
             secureTextEntry
@@ -95,15 +86,16 @@ class Register extends React.Component {
 
 const mapStateToProps = state => {
  return {
-   emailr: state.reg.emailr,
-   passwordr: state.reg.passwordr,
-   passwordr2: state.reg.passwordr2,
-   nav: state.nav
+   email: state.reg.email,
+   password: state.reg.password,
+   confirmPassword: state.reg.confirmPassword,
+   nav: state.nav,
+   message: state.reg.message
  };
 };
 
-export default connect(mapStateToProps, { emailChangedR,
-                                          passwordChangedR,
-                                          passwordChangedR2,
-                                          registrationProcedure,
-                                          registerUser })(Register);
+export default connect(mapStateToProps, { emailChangedReg,
+                                          passwordChangedReg,
+                                          passwordChangedConfirm,
+                                          registerUser
+                                          })(Register);

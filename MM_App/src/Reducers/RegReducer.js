@@ -1,46 +1,49 @@
-import { Alert } from 'react-native';
-import firebase from 'firebase';
-import { EMAIL_CHANGEDR,
-         PASSWORD_CHANGEDR,
-         PASSWORD_CHANGEDR2,
+import { EMAIL_CHANGEDREG,
+         PASSWORD_CHANGEDREG,
+         PASSWORD_CHANGEDCONFIRM,
          REGISTER_USER,
-         EMPTY_REGISTRATION_FIELDS,
-         UNEQUAL_PASSWORDS } from '../Actions/types';
+         REGISTER_FAILED,
+         REGISTER_SUCCESS,
+         REGISTER_COMPLETE
+      } from '../Actions/types';
 
-
-const INITIAL_STATE = { emailr: '', passwordr: '', passwordr2: '' };
-
+const INITIAL_STATE = { email: '', password: '', confirmPassword: '', message: '', loading: false };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case EMAIL_CHANGEDR: {
-      console.log(action.payload);
-      return { ...state, emailr: action.payload };
+
+    case EMAIL_CHANGEDREG: {
+      return { ...state, email: action.payload, message: '' };
     }
-    case PASSWORD_CHANGEDR: {
-      console.log(action.payload);
-      return { ...state, passwordr: action.payload };
+
+    case PASSWORD_CHANGEDREG: {
+      return { ...state, password: action.payload, message: '' };
     }
-    case PASSWORD_CHANGEDR2: {
-      return { ...state, passwordr2: action.payload };
+
+    case PASSWORD_CHANGEDCONFIRM: {
+      return { ...state, confirmPassword: action.payload, message: '' };
     }
-    case EMPTY_REGISTRATION_FIELDS: {
-      Alert.alert('One or more fields are empty');
-      return state;
-    }
-    case UNEQUAL_PASSWORDS: {
-      Alert.alert('Passwords do not match, please try again');
-      return state;
-    }
+
     case REGISTER_USER: {
-      firebase.auth().createUserWithEmailAndPassword(action.payload.emailr,
-                                                     action.payload.passwordr)
-        .then(() => {
-          Alert.alert('Registration Complete');
-      })
-        .catch(() => { Alert.alert('This e-mail is in use, try again.'); });
-      return { ...state, emailr: '', passwordr: '', passwordr2: '' };
-  }
+        return { ...state, loading: true };
+    }
+
+    case REGISTER_SUCCESS: {
+        return { email: '',
+                password: '',
+                confirmPassword: '',
+                loading: false,
+                message: 'Account Created' };
+    }
+
+    case REGISTER_FAILED: {
+        return { ...state, message: action.payload };
+    }
+
+    case REGISTER_COMPLETE: {
+        return INITIAL_STATE;
+    }
+
     default:
       return state;
   }

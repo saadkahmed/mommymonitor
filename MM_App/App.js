@@ -6,16 +6,6 @@ import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk'; // thunk is middleware
 import AppWithNavigationState from './src/Navigators/LoginRouter';
 import reducers from './src/Reducers';
-/*
-firebase.initializeApp({
-  apiKey: 'AIzaSyDGwT4CRUTv34Nxtu1io8ft0jcnEJFJPeo',
-  authDomain: 'mommymonitorapp.firebaseapp.com',
-  databaseURL: 'https://mommymonitorapp.firebaseio.com',
-  projectId: 'mommymonitorapp',
-  storageBucket: 'mommymonitorapp.appspot.com',
-  messagingSenderId: '189527696222',
-});
-*/
 
 class Application extends React.Component {
 
@@ -28,13 +18,11 @@ class Application extends React.Component {
       storageBucket: 'mommymonitorapp.appspot.com',
       messagingSenderId: '189527696222',
     };
-
       firebase.initializeApp(config);
   }
 
     render() {
       const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
-
         return (
         <Provider store={store}>
           <AppWithNavigationState />
@@ -44,6 +32,5 @@ class Application extends React.Component {
 }
 
 AppRegistry.registerComponent('MM_App', () => Application);
-
 
 export default Application;

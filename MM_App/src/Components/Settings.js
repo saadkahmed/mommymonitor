@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { CardSection, Button } from './common';
-import { onLogout } from '../Actions';
+import { logoutUser } from '../Actions';
 
 
 class Settings extends React.Component {
@@ -13,7 +13,7 @@ class Settings extends React.Component {
 };
 //this logout routine hasnt been tested
 onLogout() {
-  this.props.onLogout();
+  this.props.logoutUser();
 }
   render() {
     return (
@@ -33,4 +33,4 @@ const mapStateToProps = state => {
     };
   };
 
-export default connect(mapStateToProps, { onLogout })(Settings);
+export default connect(mapStateToProps, { logoutUser })(Settings);

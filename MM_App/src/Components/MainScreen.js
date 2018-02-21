@@ -7,22 +7,32 @@ import { emailChanged, passwordChanged, loginUser } from '../Actions';
 import { CardSection, Input, Button, Spinner } from './common';
 
 const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
-
 const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 
 class MainScreen extends Component {
 
-  static navigationOptions = {
-  header: null
-};
 
-    // button helper functions
+    // dont show the header for the MainScreen
+    static navigationOptions = {
+        header: null
+    };
+
+    componentDidUpdate() {
+        if (this.props.error) {
+            Alert.alert(this.props.error);
+        }
+    }
+// button helper functions
+
+    // navigate to forgot screen
     onForgotPress() {
       const navigateToForgot = NavigationActions.navigate({
         routeName: 'Forgot'
       });
       this.props.navigation.dispatch(navigateToForgot);
     }
+
+    // navigate to register screen
     onRegisterPress() {
       const navigateToRegister = NavigationActions.navigate({
           routeName: 'Register'
@@ -30,21 +40,17 @@ class MainScreen extends Component {
       this.props.navigation.dispatch(navigateToRegister);
     }
 
+    //attempt to log user in
     onLoginPress() {
       const { email, password } = this.props; // destructuring email and pass for login verification
-
-
-      if (email === '' || password === '') { // check empty fields (this could be done in reducer)
-        Alert.alert('One or more fields left blank');
-    } else {
       this.props.loginUser({ email, password }); //loginUser is expecting an object
-    }
       }
 
     // text handlers
     onEmailChange(text) {
       this.props.emailChanged(text);
     }
+
     onPasswordChange(text) {
       this.props.passwordChanged(text);
     }
@@ -139,11 +145,16 @@ const mapStateToProps = state => {
       email: state.auth.email,
       password: state.auth.password,
       loading: state.auth.loading,
+      error: state.auth.error,
       nav: state.nav,
     };
   };
 
-export default connect(mapStateToProps, { emailChanged,
-                                          passwordChanged,
-                                          loginUser
-                                        })(MainScreen);
+export default connect(mapStateToProps, {
+    emailChanged,
+    passwordChanged,
+    loginUser })(MainScreen);
+
+  //   if (email === '' || password === '') { // check empty fields (this could be done in reducer)
+  //     Alert.alert('One or more fields left blank');
+  // }
