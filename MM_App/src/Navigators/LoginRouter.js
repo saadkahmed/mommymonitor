@@ -5,6 +5,7 @@ import forgot from '../Components/Forgot';
 import LoggedInRouter from './LoggedInRouter.js';
 import RegisterRouter from './RegisterRouter';
 import MainScreen from '../Components/MainScreen';
+import { addListener } from '../utils/redux';
 
 export const RootNavigator = StackNavigator({
   Main: {
@@ -36,9 +37,22 @@ export const RootNavigator = StackNavigator({
 initialRouteName: MainScreen,
 });
 
-const AppWithNavigationState = ({ dispatch, nav }) => (
-  <RootNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
-);
+
+class AppWithNavigationState extends React.Component {
+  render() {
+    const { dispatch, nav } = this.props;
+    return (
+      <RootNavigator
+        navigation={addNavigationHelpers({
+          dispatch,
+          state: nav,
+          addListener,
+        })}
+      />
+    );
+  }
+}
+
 
 const mapStateToProps = state => ({
   nav: state.nav,
