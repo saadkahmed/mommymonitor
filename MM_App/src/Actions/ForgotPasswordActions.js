@@ -15,7 +15,7 @@ export const emailChangedF = (text) => {
 
 export const sendForgot = (emailf) => {
     const navToLogin = NavigationActions.navigate({
-              routeName: 'LoggedIn'
+              routeName: 'Main'
             });
 
   return (dispatch) => {
