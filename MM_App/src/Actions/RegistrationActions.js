@@ -1,11 +1,10 @@
 import firebase from 'firebase';
+import { Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { EMAIL_CHANGEDREG,
          PASSWORD_CHANGEDREG,
          PASSWORD_CHANGEDCONFIRM,
          REGISTER_USER,
-         REGISTER_FAILED,
-         REGISTER_SUCCESS,
          REGISTER_COMPLETE
       } from './types';
 // for registration
@@ -31,25 +30,26 @@ export const passwordChangedConfirm = (text) => {
 };
 
 export const registerUser = ({ email, password, confirmPassword }) => {
+    let err;
     const navToMain = NavigationActions.navigate({
              routeName: 'Main'
            });
     return (dispatch) => {
     if (email === '' || password === '' || confirmPassword === '') { // error here
-       dispatch({ type: REGISTER_FAILED, payload: 'Fields Left Blank' });
-       return;
+       err = 'fields left blank';
    } else if (password !== confirmPassword) {
-       dispatch({ type: REGISTER_FAILED, payload: 'Passwords Do Not Match' });
-       return;
+       err = 'passwords do no match';
    }
     dispatch({ type: REGISTER_USER });
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(() => {
-        dispatch({ type: REGISTER_SUCCESS });
+        Alert.alert('Account Created');
         dispatch(navToMain);
         dispatch({ type: REGISTER_COMPLETE });
     }).catch((e) => {
-        dispatch({ type: REGISTER_FAILED, payload: e.message });
+        if (err) {
+            Alert.alert(err);
+        } else { Alert.alert(e.message); }
     });
   };
 };

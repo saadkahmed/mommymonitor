@@ -1,0 +1,17 @@
+filenames should be all lowercase and no spacing use '_' for example this_is_a_good_file_name.txt
+
+but components should be capital "LoginForm.Js is a component.
+
+directory names / path names also be lowercase and be in camel case notation. try to make them meaningful
+lets not have the same path names in different folders
+
+reusable components should have capital filenames
+
+whenever you do an npm intall or a yarn add, anything to do with node modules
+please make note of it because dependencies and modules are ignored by git. 
+its the reason we get alot of errors when we pull from each other! 
+
+function calls to servers should be important before any local file imports
+
+
+

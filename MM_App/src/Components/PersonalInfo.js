@@ -1,6 +1,5 @@
-// create back button
 import React from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import { connect } from 'react-redux';
 
 import { emailChangedReg,
@@ -33,6 +32,12 @@ class Register extends React.Component {
       this.props.registerUser({ email, password, confirmPassword });
     }
 
+    renderMessage() {
+        if (this.props.message) {
+            Alert.alert(this.props.message);
+        }
+    }
+
   render() {
     return (
 
@@ -56,6 +61,7 @@ class Register extends React.Component {
           />
         </CardSection>
 
+        {this.renderMessage()}
         <CardSection>
           <Input
             onChangeText={this.onPasswordConfirmChange.bind(this)}
@@ -83,6 +89,7 @@ const mapStateToProps = state => {
    password: state.reg.password,
    confirmPassword: state.reg.confirmPassword,
    nav: state.nav,
+   message: state.reg.message
  };
 };
 

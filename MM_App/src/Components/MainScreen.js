@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, ImageBackground, View, Alert } from 'react-native';
+import { Image, StyleSheet, ImageBackground, View } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
@@ -17,11 +17,6 @@ class MainScreen extends Component {
         header: null
     };
 
-    componentDidUpdate() {
-        if (this.props.error) {
-            Alert.alert(this.props.error);
-        }
-    }
 // button helper functions
 
     // navigate to forgot screen
@@ -145,7 +140,6 @@ const mapStateToProps = state => {
       email: state.auth.email,
       password: state.auth.password,
       loading: state.auth.loading,
-      error: state.auth.error,
       nav: state.nav,
     };
   };
@@ -153,8 +147,5 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
     emailChanged,
     passwordChanged,
-    loginUser })(MainScreen);
-
-  //   if (email === '' || password === '') { // check empty fields (this could be done in reducer)
-  //     Alert.alert('One or more fields left blank');
-  // }
+    loginUser
+    })(MainScreen);
