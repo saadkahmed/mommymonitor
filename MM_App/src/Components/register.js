@@ -15,7 +15,7 @@ class Register extends React.Component {
 
   static navigationOptions = {
     headerTitle: 'Registration',
-    gesturesEnabled: false
+    gesturesEnabled: true
 };
 
     onEmailChange(text) {

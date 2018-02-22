@@ -17,6 +17,10 @@ export const REGISTER_FAILED = 'register_failed'; // never used alert is inside 
 export const REGISTER_COMPLETE = 'register_complete';
 export const REGISTER_RESET = 'regiser_reset'; //never used
 
+
+//registration/user info types
+
+
 //forgot types
 export const EMAIL_CHANGEDF = 'email_changedF';
 export const SEND_FORGOT_REQUEST = 'send_forgot_request';
