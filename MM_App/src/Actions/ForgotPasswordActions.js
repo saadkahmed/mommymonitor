@@ -1,9 +1,8 @@
 import firebase from 'firebase';
+import { Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { EMAIL_CHANGEDF,
-        SEND_FORGOT_REQUEST,
         FORGOT_REQUEST_SUCCESS,
-        SENT_FORGOT_REQUEST
         } from './types';
 
 // for forgot password
@@ -23,9 +22,8 @@ export const sendForgot = (emailf) => {
       dispatch({ type: FORGOT_REQUEST_SUCCESS });
       firebase.auth().sendPasswordResetEmail(emailf)
       .then(() => {
-          dispatch({ type: SEND_FORGOT_REQUEST, payload: 'Email Sent' });
+          Alert.alert('Email sent');
           dispatch(navToLogin);
-          dispatch({ type: SENT_FORGOT_REQUEST });
-    }).catch((e) => { dispatch({ type: SEND_FORGOT_REQUEST, payload: e.message }); });
+    }).catch((e) => { Alert.alert(e.message); });
   };
 };

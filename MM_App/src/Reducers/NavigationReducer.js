@@ -1,7 +1,8 @@
 import { NavigationActions } from 'react-navigation';
-
 import { RootNavigator } from '../Navigators/LoginRouter';
-
+import { LOGIN,
+        LOGOUT,
+    } from '../Actions/types';
 
 const initialState = RootNavigator.router.getStateForAction(
   RootNavigator.router.getActionForPathAndParams('Main'));
@@ -9,13 +10,13 @@ const initialState = RootNavigator.router.getStateForAction(
 export default (state = initialState, action) => {
   let nextState;
   switch (action.type) {
-    case 'Login':
+    case LOGIN:
     nextState = RootNavigator.router.getStateForAction(
       NavigationActions.navigate({ routeName: 'LoggedIn' }),
       state
       );
       break;
-    case 'Logout':
+    case LOGOUT:
       nextState = RootNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Main' }),
         state
