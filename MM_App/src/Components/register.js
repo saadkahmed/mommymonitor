@@ -14,7 +14,7 @@ import { Button, CardSection, Input } from '../Components/common';
 class Register extends React.Component {
 
   static navigationOptions = {
-    headerTitle: 'Registration',
+    title: 'Registration',
     gesturesEnabled: true
 };
 
