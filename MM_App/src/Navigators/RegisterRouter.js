@@ -2,6 +2,7 @@ import { StackNavigator } from 'react-navigation';
 
 import Register from '../Components/Register';
 import PersonalInfo from '../Components/PersonalInfo';
+import Questionnaire from '../Components/RegQuestionnaire';
 
 const RegisterRouter = StackNavigator({
     Register: {
@@ -10,6 +11,9 @@ const RegisterRouter = StackNavigator({
     PersonalInfo: {
         screen: PersonalInfo
     },
+    Questionnaire: {
+      screen: Questionnaire
+    }
 
 },
 {

@@ -52,7 +52,7 @@ let styles = StyleSheet.create({
   Mainviewstyle: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'start',
+    justifyContent: 'flex-start',
     backgroundColor: '#FFEFF9'
   },
   Profileheaderstyle: {
@@ -70,7 +70,7 @@ let styles = StyleSheet.create({
     borderRadius: 30,
   },
   Profiletextviewstyle: {
-    fles: 1.5,
+    flex: 1.5,
     flexDirection: 'column',
     justifyContent: 'center',
     marginBottom: 15,

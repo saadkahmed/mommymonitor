@@ -2,6 +2,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 
 import { emailChangedReg,
          passwordChangedReg,
@@ -31,6 +32,11 @@ class Register extends React.Component {
     onRegisterPress() {
       const { email, password, confirmPassword } = this.props;
       this.props.registerUser({ email, password, confirmPassword });
+
+      const navigateToPersonalInfo = NavigationActions.navigate({
+        routeName: 'PersonalInfo'
+      });
+      this.props.navigation.dispatch(navigateToPersonalInfo);
     }
 
   render() {
