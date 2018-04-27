@@ -1,8 +1,10 @@
 import React from 'react';
-import { Field, reduxForm, propTypes } from 'redux-form';
-import { ScrollView, Picker, Text } from 'react-native';
+import { Field, reduxForm } from 'redux-form';
+import { ScrollView, Picker } from 'react-native';
+import { Container, Card, CardItem } from 'native-base';
 
 import Button from '../common/Button';
+import CardSection from '../common/CardSection';
 import Forminput from '../common/Forminput';
 import Formpicker from '../common/Formpicker';
 
@@ -15,45 +17,46 @@ const postalcheck = value => (
   value && !/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/.test(value)
     ? 'Invalid Postal Code'
     : undefined);
-const dirtyCheck = () => {
-  if (propTypes.dirty) {
-    return <Text>dirty</Text>;
-  }
-};
 function Registration2(props) {
   return (
-    <ScrollView keyboardShouldPersistTaps={'handled'}>
-      {dirtyCheck}
+
+  <ScrollView keyboardShouldPersistTaps={'handled'}>
       <Field
         name={'first_name'}
         label={'First Name'}
         validate={[required]}
         component={Forminput}
       />
+
       <Field
         name={'last_name'}
         label={'Last Name'}
         validate={[required]}
         component={Forminput}
       />
+
       <Field
         name={'phone_number'}
         label={'Phone Number'}
         validate={[required, phonecheck]}
         component={Forminput}
       />
+
       <Field
         name={'postal_code'}
         label={'Postal Code'}
         validate={[required, postalcheck]}
         component={Forminput}
       />
+
       <Field
         name={'age'}
         label={'Age'}
         validate={[required]} // no age checking right now
         component={Forminput}
       />
+
+
       <Field
         name={'trimester'}
         label={'Trimester'}
@@ -113,10 +116,49 @@ function Registration2(props) {
 
       </Field>
 
+      <Field
+        name={'marital_status'}
+        label={'Marital Status'}
+        mode='dropdown'
+        validate={[required]}
+        component={Formpicker}
+      >
+        <Picker.Item label="Single" value="1" />
+        <Picker.Item label="Married" value="2" />
+        <Picker.Item label="Divorced" value="3" />
+
+
+      </Field>
+
+      <Field
+        name={'current_children'}
+        label={'Current Number of Children'}
+        mode='dropdown'
+        validate={[required]}
+        component={Formpicker}
+      >
+        <Picker.Item label="0" value="0" />
+        <Picker.Item label="1" value="1" />
+        <Picker.Item label="2" value="2" />
+        <Picker.Item label="3" value="3" />
+        <Picker.Item label="4" value="4" />
+        <Picker.Item label="5" value="5" />
+        <Picker.Item label="6" value="6" />
+        <Picker.Item label="7" value="7" />
+        <Picker.Item label="8" value="8" />
+        <Picker.Item label="9" value="9" />
+        <Picker.Item label="10" value="10" />
+        <Picker.Item label="11" value="11" />
+
+      </Field>
+
       <Button onPress={props.handleSubmit}>
         validation and submit
       </Button>
-    </ScrollView>
+
+</ScrollView>
+
+
   );
 }
 
