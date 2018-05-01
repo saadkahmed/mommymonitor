@@ -14,27 +14,28 @@ const INITIAL_STATE = { email: '',
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case EMAIL_CHANGED:
+    case EMAIL_CHANGED: { //action for email being changed
       return { ...state, email: action.payload };
+    }
 
-    case PASSWORD_CHANGED: {
+    case PASSWORD_CHANGED: { //action for password change
       return { ...state, password: action.payload };
     }
 
-    case LOGIN_USER: {
+    case LOGIN_USER: { //logining in the user
       return { ...state, loading: true };
     }
 
-    case LOGIN_USER_SUCCESS: {
+    case LOGIN_USER_SUCCESS: { //after user has successfully logged in
         return { INITIAL_STATE,
                 user: action.payload };
     }
 
-    case LOGIN_USER_FAIL: {
+    case LOGIN_USER_FAIL: { //when attempt to login fails
       return { ...state, password: '', loading: false };
     }
 
-    case LOGOUT_USER: {
+    case LOGOUT_USER: {  //once user logs out return inital states
       return INITIAL_STATE;
     }
 

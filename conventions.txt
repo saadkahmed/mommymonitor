@@ -11,7 +11,7 @@ whenever you do an npm intall or a yarn add, anything to do with node modules
 please make note of it because dependencies and modules are ignored by git. 
 its the reason we get alot of errors when we pull from each other! 
 
-function calls to servers should be important before any local file imports
+function calls to servers should be imported before any local file imports
 
 
 

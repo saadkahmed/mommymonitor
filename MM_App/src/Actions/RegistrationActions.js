@@ -31,8 +31,8 @@ export const passwordChangedConfirm = (text) => {
 
 export const registerUser = ({ email, password, confirmPassword }) => {
     let err;
-    const navToMain = NavigationActions.navigate({
-             routeName: 'Main'
+    const navToQuestionaire = NavigationActions.navigate({
+             routeName: 'PersonalInfo'
            });
     return (dispatch) => {
     if (email === '' || password === '' || confirmPassword === '') { // error here
@@ -44,7 +44,7 @@ export const registerUser = ({ email, password, confirmPassword }) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(() => {
         Alert.alert('Account Created');
-        dispatch(navToMain);
+        dispatch(navToQuestionaire);
         dispatch({ type: REGISTER_COMPLETE });
     }).catch((e) => {
         if (err) {
