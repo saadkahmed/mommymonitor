@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { ScrollView, Picker } from 'react-native';
+import { ScrollView, Picker, Platform } from 'react-native';
 import { Card } from 'native-base';
 //jsut didnt want warnings
 
@@ -9,6 +9,13 @@ import Button from '../common/Button';
 import Forminput from '../common/Forminput';
 import Formpicker from '../common/Formpicker';
 import FormNumInput from '../common/FormNumInput';
+import Formdatepicker from '../common/Formdatepicker';
+
+const OtherFormdatepicker = 'text';
+const NewFormDatePicker = Platform.OS === 'ios' ? Formdatepicker : OtherFormdatepicker;
+
+//USE THIS FOR ANDROID OR IOS DEV***********************************
+console.log(NewFormDatePicker);
 
 const required = value => (value ? undefined : 'required');
 
@@ -66,19 +73,21 @@ const Registration2 = props => {
       <Field
         name={'age'}
         label={'Age'}
-        validate={[required]} // no age checking right now
+        validate={[required]}
         component={Forminput}
       />
+  {/* no age checking right now*/}
   </Card>
 
       <Field
         name={'trimester'}
         label={'Trimester'}
         mode='dropdown'
-        validate={[required]}
         component={Formpicker}
       >
-        <Picker.Item label="First Trimester)" value="1" />
+      {/*validate={[required]}*/}
+
+        <Picker.Item label="First Trimester" value="1" />
         <Picker.Item label="Second Trimester" value="2" />
         <Picker.Item label="Third Trimester" value="3" />
 
@@ -88,9 +97,10 @@ const Registration2 = props => {
         name={'ethnicity'}
         label={'Ethnicity'}
         mode='dropdown'
-        validate={[required]}
         component={Formpicker}
       >
+      {/*validate={[required]}*/}
+
         <Picker.Item label="Aboriginal (Inuit, Métis, North American Indian)" value="1" />
         <Picker.Item
           label="Arab/West Asian (e.g., Armenian, Egyptian, Iranian, Lebanese, Moroccan)" value="2"
@@ -111,9 +121,10 @@ const Registration2 = props => {
         name={'number_children'}
         label={'Number of Children'}
         mode='dropdown'
-        validate={[required]}
         component={Formpicker}
       >
+      {/*validate={[required]}*/}
+
         <Picker.Item label="0" value="0" />
         <Picker.Item label="1" value="1" />
         <Picker.Item label="2" value="2" />
@@ -134,9 +145,10 @@ const Registration2 = props => {
         name={'marital_status'}
         label={'Marital Status'}
         mode='dropdown'
-        validate={[required]}
         component={Formpicker}
       >
+      {/*validate={[required]}*/}
+
         <Picker.Item label="Single" value="1" />
         <Picker.Item label="Married" value="2" />
         <Picker.Item label="Divorced" value="3" />
@@ -148,9 +160,10 @@ const Registration2 = props => {
         name={'current_children'}
         label={'Current Number of Children'}
         mode='dropdown'
-        validate={[required]}
         component={Formpicker}
       >
+      {/*validate={[required]}*/}
+
         <Picker.Item label="0" value="0" />
         <Picker.Item label="1" value="1" />
         <Picker.Item label="2" value="2" />
@@ -165,6 +178,14 @@ const Registration2 = props => {
         <Picker.Item label="11" value="11" />
 
       </Field>
+
+      <Field
+          name={'expecting_date'}
+          label={'expecting date'}
+          mode='dropdown'
+          component={Formdatepicker}
+          placeholder=""
+      />
 
       <Button onPress={handleSubmit}>
         validation and submit
