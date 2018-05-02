@@ -1,61 +1,75 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { ScrollView, Picker } from 'react-native';
-import { Container, Card, CardItem } from 'native-base';
+import { Card } from 'native-base';
+//jsut didnt want warnings
 
 import Button from '../common/Button';
-import CardSection from '../common/CardSection';
+//import CardSection from '../common/CardSection';
 import Forminput from '../common/Forminput';
 import Formpicker from '../common/Formpicker';
+import FormNumInput from '../common/FormNumInput';
 
 const required = value => (value ? undefined : 'required');
+
 export const phonecheck = value => (
   value && !/^(0|[1-9][0-9]{9})$/i.test(value)
     ? 'Invalid phone number, must be 10 digits'
     : undefined);
+
 const postalcheck = value => (
   value && !/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/.test(value)
     ? 'Invalid Postal Code'
     : undefined);
-function Registration2(props) {
+
+
+const Registration2 = props => {
+    const { handleSubmit } = props;
   return (
-
   <ScrollView keyboardShouldPersistTaps={'handled'}>
-      <Field
-        name={'first_name'}
-        label={'First Name'}
-        validate={[required]}
-        component={Forminput}
-      />
+      <Card>
+          <Field
+            name={'first_name'}
+            label={'First Name'}
+            validate={[required]}
+            component={Forminput}
+          />
+  </Card>
 
-      <Field
-        name={'last_name'}
-        label={'Last Name'}
-        validate={[required]}
-        component={Forminput}
-      />
-
+  <Card>
+          <Field
+            name={'last_name'}
+            label={'Last Name'}
+            validate={[required]}
+            component={Forminput}
+          />
+  </Card>
+      <Card>
       <Field
         name={'phone_number'}
         label={'Phone Number'}
         validate={[required, phonecheck]}
-        component={Forminput}
+        component={FormNumInput}
       />
+  </Card>
 
+  <Card>
       <Field
         name={'postal_code'}
         label={'Postal Code'}
         validate={[required, postalcheck]}
         component={Forminput}
       />
+  </Card>
 
+  <Card>
       <Field
         name={'age'}
         label={'Age'}
         validate={[required]} // no age checking right now
         component={Forminput}
       />
-
+  </Card>
 
       <Field
         name={'trimester'}
@@ -152,7 +166,7 @@ function Registration2(props) {
 
       </Field>
 
-      <Button onPress={props.handleSubmit}>
+      <Button onPress={handleSubmit}>
         validation and submit
       </Button>
 
@@ -160,7 +174,9 @@ function Registration2(props) {
 
 
   );
-}
+};
+const Registration = reduxForm({
+    form: 'registration'
+})(Registration2);
 
-export default reduxForm({
-  form: 'registration2' })(Registration2);
+export default Registration;

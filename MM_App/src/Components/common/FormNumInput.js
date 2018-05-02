@@ -15,6 +15,7 @@ export default function MyTextInput(props) {
         onBlur={input.onBlur}
         onFocus={input.onFocus}
         value={input.value}
+        keyboardType={'phone-pad'}
       />
       {touched &&
         ((error && <Text>{error}</Text>) ||
@@ -30,13 +31,13 @@ const styles = {
     paddingLeft: 5,
     fontSize: 18,
     lineHeight: 23, //space between each line of text
-    flex: 4// 2/3 of the space to the input
+    flex: 5// 2/3 of the space to the input
 
   },
   labelStyle: {
     fontSize: 20,
     paddingLeft: 20,
-    flex: 1// 1/4 of the space for the label
+    flex: 2// 1/4 of the space for the label
   },
   containerStyle: {
     flexDirection: 'row',

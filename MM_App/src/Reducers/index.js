@@ -10,5 +10,5 @@ export default combineReducers({
   nav,
   reg,
   forg,
-  form: formReducer
+  form: formReducer //redux form connection to store
 });
