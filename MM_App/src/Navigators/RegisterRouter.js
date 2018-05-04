@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 
-import Register from '../Components/Register';
+import Register from '../Components/register';
 import PersonalInfo from '../Components/PersonalInfo';
 import Questionnaire from '../Components/RegQuestionnaire';
 

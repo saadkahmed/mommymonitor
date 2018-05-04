@@ -23,5 +23,5 @@ const Formdatepicker = ({ input, label, placeholder }) => {
     </View>
     );
     };
-    
+
 export default Formdatepicker;
