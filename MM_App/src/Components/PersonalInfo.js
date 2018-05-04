@@ -30,7 +30,10 @@ class Register extends React.Component {
     return (
 
         <View>
-          <Registration onSubmit={this.Registration2Submit} />
+          <Registration
+              onSubmit={this.Registration2Submit}
+          />
+
           <Button onPress={this.moveToQuestionnaire.bind(this)}>
             move to questionnaire
           </Button>

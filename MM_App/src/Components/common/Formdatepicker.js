@@ -1,27 +1,23 @@
 import React from 'react';
 import {
   View,
-  Text
+  Text,
+  DatePickerIOS
 } from 'react-native';
-import DatePicker from 'react-native-datepicker';
-import { moment } from 'moment';
-//import { Card } from 'native-base';
 
-const Formdatepicker = ({ input, label, placeholder }) => {
+export default function Formdatepicker(props) {
+    const { label } = props;
+    const { onChange, value } = props.input;
     return (
         <View>
             <Text>
                 {label}
             </Text>
-                <DatePicker
-                    {...input}
-                    placeholder={placeholder}
-                    dateFormat="YYYY-MM-DD"
-                    selected={input.value ? moment(input.value, 'YYYY-MM-DD') : null}
-                    onChange={this.handleChange}
-                />
+            <DatePickerIOS
+                date={new Date(value)}
+                onDateChange={(newvalue) => onChange(newvalue)}
+                mode='date'
+            />
     </View>
     );
-    };
-    
-export default Formdatepicker;
+    }

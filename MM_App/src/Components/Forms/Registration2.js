@@ -13,9 +13,7 @@ import Formdatepicker from '../common/Formdatepicker';
 
 const OtherFormdatepicker = 'text';
 const NewFormDatePicker = Platform.OS === 'ios' ? Formdatepicker : OtherFormdatepicker;
-
-//USE THIS FOR ANDROID OR IOS DEV***********************************
-console.log(NewFormDatePicker);
+//****************USE THIS FOR ANDROID OR IOS DEV***********************************
 
 const required = value => (value ? undefined : 'required');
 
@@ -28,7 +26,6 @@ const postalcheck = value => (
   value && !/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/.test(value)
     ? 'Invalid Postal Code'
     : undefined);
-
 
 const Registration2 = props => {
     const { handleSubmit } = props;
@@ -176,16 +173,15 @@ const Registration2 = props => {
         <Picker.Item label="9" value="9" />
         <Picker.Item label="10" value="10" />
         <Picker.Item label="11" value="11" />
-
       </Field>
 
       <Field
           name={'expecting_date'}
-          label={'expecting date'}
-          mode='dropdown'
-          component={Formdatepicker}
-          placeholder=""
+          label={'Expecting Date'}
+          value={new Date()}
+          component={NewFormDatePicker}
       />
+
 
       <Button onPress={handleSubmit}>
         validation and submit
