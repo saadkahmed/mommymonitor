@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     borderColor: '#ddd',
     borderBottomWidth: 1,
-    padding: 2,
     flex: 2 / 3
   },
   labelStyle: {
@@ -56,6 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'flex-start',
-    padding: 5
+    padding: 5,
+    marginBottom: 10
   }
 });

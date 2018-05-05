@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
 
 import {} from '../Actions';
 import { Button } from '../Components/common';
@@ -23,6 +24,7 @@ class Register extends React.Component {
   Registration2Submit(values) {
     //Alert.alert('Submitted!', JSON.stringify(values));
     console.log(values);
+    //console.log(this.props);
   }
 
   render() {
@@ -50,5 +52,10 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = state => {
+    return {
+      formvalues: state.form, //trying to pull form values from redux store
+    };
+  };
 
-export default Register;
+export default connect(mapStateToProps, {})(Register);
