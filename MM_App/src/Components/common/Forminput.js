@@ -7,18 +7,24 @@ export default function MyTextInput(props) {
   const { touched, error, warning } = props.meta;
   return (
     <View style={styles.containerStyle}>
+
       <Text style={styles.labelStyle}>{label}</Text>
-      <TextInput
-        style={styles.inputStyle}
-        {...inputProps}
-        onChangeText={input.onChange}
-        onBlur={input.onBlur}
-        onFocus={input.onFocus}
-        value={input.value}
-      />
-      {touched &&
-        ((error && <Text>{error}</Text>) ||
-          (warning && <Text>{warning}</Text>))}
+
+      <View style={styles.inputContainerStyle}>
+        <TextInput
+          style={styles.inputStyle}
+          {...inputProps}
+          onChangeText={input.onChange}
+          onBlur={input.onBlur}
+          onFocus={input.onFocus}
+          value={input.value}
+
+        />
+        {touched &&
+          ((error && <Text>{error}</Text>) ||
+            (warning && <Text>{warning}</Text>))}
+      </View>
+
     </View>
   );
 }
@@ -26,20 +32,28 @@ export default function MyTextInput(props) {
 const styles = {
   inputStyle: {
     color: '#000',
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    lineHeight: 23, //space between each line of text
-    flex: 4// 2/3 of the space to the input
-
+    fontSize: 16,
+    lineHeight: 25, //space between each line of text
+    flex: 1
+  },
+  inputContainerStyle: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    borderColor: '#ddd',
+    borderBottomWidth: 1,
+    padding: 2,
+    flex: 2 / 3
   },
   labelStyle: {
-    fontSize: 20,
-    paddingLeft: 20,
-    flex: 1// 1/4 of the space for the label
+    fontSize: 16,
+    paddingLeft: 5,
+    flex: 1 / 3// 1/4 of the space for the label
   },
   containerStyle: {
+    flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    padding: 5
   }
 };

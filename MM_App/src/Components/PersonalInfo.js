@@ -1,6 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
-import { connect } from 'react-redux';
+import { View, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
 import {} from '../Actions';
@@ -29,7 +28,7 @@ class Register extends React.Component {
   render() {
     return (
 
-        <View>
+        <View style={styles.container}>
           <Registration
               onSubmit={this.Registration2Submit}
           />
@@ -42,10 +41,14 @@ class Register extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
- return {
-     state
- };
-};
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    padding: 7,
+    backgroundColor: '#FFF'
+  },
+});
 
-export default connect(mapStateToProps, {})(Register);
+
+export default Register;
