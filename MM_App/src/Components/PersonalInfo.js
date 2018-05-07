@@ -1,42 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
 
-import {} from '../Actions';
-import { Button } from '../Components/common';
+import { UpdateInfo } from '../Actions';
 import Registration from './Forms/Registration2';
 
-class Register extends React.Component {
-
-  static navigationOptions = {
-    headerTitle: 'About you',
-    gesturesEnabled: true
-};
-
-  moveToQuestionnaire() {
-    const navigateToQuestionnaire = NavigationActions.navigate({
-      routeName: 'Questionnaire'
-    });
-    this.props.navigation.dispatch(navigateToQuestionnaire);
-  }
-
+class RegisterInfo extends Component {
   Registration2Submit(values) {
-    //Alert.alert('Submitted!', JSON.stringify(values));
-    console.log(values);
+      this.props.UpdateInfo(values);
   }
 
   render() {
     return (
-
         <View>
           <Registration
-              onSubmit={this.Registration2Submit}
+              onSubmit={(values) => this.Registration2Submit(values)}
           />
-
-          <Button onPress={this.moveToQuestionnaire.bind(this)}>
-            move to questionnaire
-          </Button>
         </View>
     );
   }
@@ -44,8 +23,8 @@ class Register extends React.Component {
 
 const mapStateToProps = state => {
  return {
-     state
+     loading: state.ques.loading,
  };
 };
 
-export default connect(mapStateToProps, {})(Register);
+export default connect(mapStateToProps, { UpdateInfo })(RegisterInfo);

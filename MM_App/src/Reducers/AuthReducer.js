@@ -35,7 +35,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, password: '', loading: false };
     }
 
-    case LOGOUT_USER: {  //once user logs out return inital states
+    case LOGOUT_USER: { //once user logs out return inital states
       return INITIAL_STATE;
     }
 

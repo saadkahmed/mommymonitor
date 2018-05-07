@@ -12,6 +12,7 @@ export const RootNavigator = StackNavigator({
     screen: MainScreen,
     navigationOptions: {
         gesturesEnabled: false,
+        header: null
     },
   },
   Forgot: {

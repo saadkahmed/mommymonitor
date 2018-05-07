@@ -5,7 +5,7 @@ import { EMAIL_CHANGEDREG,
          PASSWORD_CHANGEDREG,
          PASSWORD_CHANGEDCONFIRM,
          REGISTER_USER,
-         REGISTER_COMPLETE
+         REGISTER_COMPLETE,
       } from './types';
 // for registration
 export const emailChangedReg = (text) => {
@@ -42,8 +42,8 @@ export const registerUser = ({ email, password, confirmPassword }) => {
    }
     dispatch({ type: REGISTER_USER });
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        Alert.alert('Account Created');
+      .then((user) => {
+        console.log(user.uid);
         dispatch(navToQuestionaire);
         dispatch({ type: REGISTER_COMPLETE });
     }).catch((e) => {

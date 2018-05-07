@@ -19,7 +19,8 @@ export const REGISTER_RESET = 'regiser_reset'; //never used
 
 
 //registration/user info types
-
+export const MAININFORMATIONUPDATE = 'main_information_update';
+export const CHOSENMATERNALMENTOR = 'chosen_maternal_mentor';
 
 //forgot types
 export const EMAIL_CHANGEDF = 'email_changedF';

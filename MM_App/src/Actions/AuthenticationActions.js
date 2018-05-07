@@ -37,8 +37,9 @@ export const loginUser = ({ email, password }) => {
     dispatch({ type: LOGIN_USER });
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => {
-        dispatch(navToLogin);
-        dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
+          console.log(user.uid);
+          dispatch(navToLogin);
+          dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
     }).catch((e) => {
         if (err) {
             Alert.alert(err);
@@ -49,11 +50,15 @@ export const loginUser = ({ email, password }) => {
 };
 
 export const logoutUser = () => {
-  const Logout = NavigationActions.navigate({
+  firebase.auth().signOut().then(() => {
+      const { currentUser } = firebase.auth();
+      console.log(currentUser.uid);
+      const Logout = NavigationActions.navigate({
             routeName: 'Main'
-          });
-  return (dispatch) => {
+        });
+    return (dispatch) => {
     dispatch({ type: LOGOUT_USER });
     dispatch(Logout);
   };
+});
 };

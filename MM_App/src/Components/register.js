@@ -12,12 +12,6 @@ import { emailChangedReg,
 import { Button, CardSection, Input } from '../Components/common';
 
 class Register extends React.Component {
-
-  static navigationOptions = {
-    title: 'Registration',
-    gesturesEnabled: true
-};
-
     onEmailChange(text) {
       this.props.emailChangedReg(text);
     }
@@ -31,7 +25,6 @@ class Register extends React.Component {
     onRegisterPress() {
       // const { email, password, confirmPassword } = this.props;
       // this.props.registerUser({ email, password, confirmPassword });
-
       //dont navigate after they press register only go there after registration,
       //this should be inside of registrationactions
       const navigateToPersonalInfo = NavigationActions.navigate({

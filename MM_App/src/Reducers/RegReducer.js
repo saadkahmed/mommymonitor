@@ -9,7 +9,6 @@ const INITIAL_STATE = { email: '', password: '', confirmPassword: '', loading: f
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-
     case EMAIL_CHANGEDREG: { //email changed
       return { ...state, email: action.payload };
     }

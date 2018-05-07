@@ -5,12 +5,6 @@ import { logoutUser } from '../Actions';
 
 
 class Settings extends React.Component {
-
-  static navigationOptions = {
-    title: 'Settings',
-    gesturesEnabled: true
-
-};
 //this logout routine hasnt been tested
 onLogout() {
   this.props.logoutUser();

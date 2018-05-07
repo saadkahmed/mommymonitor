@@ -8,7 +8,6 @@ const INITIAL_STATE = { emailf: '', loading: false };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-
     case EMAIL_CHANGEDF: { //email changed
       return { ...state, emailf: action.payload };
     }

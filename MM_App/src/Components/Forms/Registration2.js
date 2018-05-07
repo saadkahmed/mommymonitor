@@ -182,13 +182,11 @@ const Registration2 = props => {
           component={NewFormDatePicker}
       />
 
-
       <Button onPress={handleSubmit}>
         validation and submit
       </Button>
 
 </ScrollView>
-
 
   );
 };

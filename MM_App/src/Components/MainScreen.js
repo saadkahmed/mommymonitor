@@ -10,15 +10,7 @@ const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 
 class MainScreen extends Component {
-
-
-    // dont show the header for the MainScreen
-    static navigationOptions = {
-        header: null
-    };
-
 // button helper functions
-
     // navigate to forgot screen
     onForgotPress() {
       const navigateToForgot = NavigationActions.navigate({

@@ -10,6 +10,10 @@ const LoggedInNavigator = DrawerNavigator(
   },
   Settings: {
     screen: SettingsPage,
+    navigationOptions: {
+      title: 'Settings',
+      gesturesEnabled: true
+    }
   },
 },
 {
