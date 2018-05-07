@@ -1,7 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { ScrollView, Picker, Platform } from 'react-native';
-import { Card } from 'native-base';
 //jsut didnt want warnings
 
 import Button from '../common/Button';
@@ -31,42 +30,37 @@ const Registration2 = props => {
     const { handleSubmit } = props;
   return (
   <ScrollView keyboardShouldPersistTaps={'handled'}>
-      <Card>
-          <Field
-            name={'first_name'}
-            label={'First Name'}
-            validate={[required]}
-            component={Forminput}
-          />
-  </Card>
 
-  <Card>
-          <Field
-            name={'last_name'}
-            label={'Last Name'}
-            validate={[required]}
-            component={Forminput}
-          />
-  </Card>
-      <Card>
+      <Field
+        name={'first_name'}
+        label={'First Name'}
+        validate={[required]}
+        component={Forminput}
+      />
+
+
+      <Field
+        name={'last_name'}
+        label={'Last Name'}
+        validate={[required]}
+        component={Forminput}
+      />
+
       <Field
         name={'phone_number'}
         label={'Phone Number'}
         validate={[required, phonecheck]}
         component={FormNumInput}
       />
-  </Card>
 
-  <Card>
+
       <Field
         name={'postal_code'}
         label={'Postal Code'}
         validate={[required, postalcheck]}
         component={Forminput}
       />
-  </Card>
 
-  <Card>
       <Field
         name={'age'}
         label={'Age'}
@@ -74,7 +68,6 @@ const Registration2 = props => {
         component={Forminput}
       />
   {/* no age checking right now*/}
-  </Card>
 
       <Field
         name={'trimester'}
@@ -190,6 +183,7 @@ const Registration2 = props => {
 
   );
 };
+
 const Registration = reduxForm({
     form: 'registration'
 })(Registration2);

@@ -1,17 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 
-/*
-This card component is meant to be something reusable because it's a styled box
-we're meant to reuse this box over and over.
-Whenever some other component is wrapped in another user-made component (Cards in
-our case), it passes to it: a props.children property which has its contents
-throw the props.children property in the viewtags. now, whenever this component
-is encapsulating another component like text, that components will show up
-in this component wherever the props.children object appears. then, this
-component applies the styling to it and exports it like normal.
-*/
-
 const Card = (props) => {
   return (
     <View style={styles.containerStyle}>

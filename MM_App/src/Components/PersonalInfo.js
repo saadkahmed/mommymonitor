@@ -21,6 +21,15 @@ class RegisterInfo extends Component {
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    padding: 7,
+    backgroundColor: '#FFF'
+  },
+});
+
 const mapStateToProps = state => {
  return {
      loading: state.ques.loading,
