@@ -21,13 +21,13 @@ const RegisterRouter = StackNavigator({
         }
     },
     Questionnaire: {
-      screen: Questionnaire
+        screen: Questionnaire
   },
-  PickPackage: {
-      screen: PickPackage,
-      navigationOptions: {
-          title: 'Packages',
-          gesturesEnabled: true
+    PickPackage: {
+        screen: PickPackage,
+        navigationOptions: {
+            title: 'Packages',
+            gesturesEnabled: true
       }
   }
 

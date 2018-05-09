@@ -33,6 +33,10 @@ class Register extends React.Component {
       // this.props.navigation.dispatch(navigateToPersonalInfo);
     }
 
+    onContinueRegistration() {
+      this.props.navigation.navigate('PersonalInfo');
+    }
+
   render() {
     return (
 
@@ -69,6 +73,11 @@ class Register extends React.Component {
         <CardSection>
             <Button onPress={this.onRegisterPress.bind(this)} >
               Register
+            </Button>
+        </CardSection>
+        <CardSection>
+            <Button onPress={this.onContinueRegistration.bind(this)} >
+              Continue Registration
             </Button>
         </CardSection>
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, ImageBackground, View } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
 
 import { emailChanged, passwordChanged, loginUser } from '../Actions';
 import { CardSection, Input, Button, Spinner } from './common';
@@ -13,18 +12,12 @@ class MainScreen extends Component {
 // button helper functions
     // navigate to forgot screen
     onForgotPress() {
-      const navigateToForgot = NavigationActions.navigate({
-        routeName: 'Forgot'
-      });
-      this.props.navigation.dispatch(navigateToForgot);
+      this.props.navigation.navigate('Forgot');
     }
 
     // navigate to register screen
     onRegisterPress() {
-      const navigateToRegister = NavigationActions.navigate({
-          routeName: 'Register'
-      });
-      this.props.navigation.dispatch(navigateToRegister);
+        this.props.navigation.navigate('Register');
     }
 
     //attempt to log user in
@@ -100,7 +93,6 @@ class MainScreen extends Component {
               Forgot Password
             </Button>
           </CardSection>
-
           </View>
 
         </ImageBackground>
