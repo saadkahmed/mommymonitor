@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { ScrollView, Picker, Platform } from 'react-native';
+import { ScrollView, Picker, Platform, Alert } from 'react-native';
 //jsut didnt want warnings
 
 import Button from '../common/Button';
@@ -178,7 +178,6 @@ const Registration2 = props => {
       <Button onPress={handleSubmit}>
         validation and submit
       </Button>
-
 </ScrollView>
 
   );

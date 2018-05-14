@@ -23,7 +23,6 @@ import { Button, CardSection, Input } from '../Components/common';
 //     )
 // });
 class Register extends React.Component {
-
     componentWillMount() {
         console.log('this is the register screen \n', this.props);
     }
@@ -40,6 +39,10 @@ class Register extends React.Component {
     onRegisterPress() {
       const { email, password, confirmPassword } = this.props;
       this.props.registerUser({ email, password, confirmPassword });
+    }
+
+    onContinueRegistration() {
+      this.props.navigation.navigate('PersonalInfo');
     }
 
   render() {
@@ -77,6 +80,11 @@ class Register extends React.Component {
         <CardSection>
             <Button onPress={this.onRegisterPress.bind(this)} >
               Register
+            </Button>
+        </CardSection>
+        <CardSection>
+            <Button onPress={this.onContinueRegistration.bind(this)} >
+              Continue Registration
             </Button>
         </CardSection>
 

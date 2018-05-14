@@ -103,7 +103,6 @@ class MainScreen extends Component {
               Forgot Password
             </Button>
           </CardSection>
-
           </View>
 
         </ImageBackground>
