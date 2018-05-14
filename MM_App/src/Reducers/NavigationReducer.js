@@ -5,7 +5,7 @@ import { LOGIN,
     } from '../Actions/types';
 
 const initialState = RootNavigator.router.getStateForAction(
-  RootNavigator.router.getActionForPathAndParams('Main'));
+  RootNavigator.router.getActionForPathAndParams('MainScreen'));
 
 export default (state = initialState, action) => {
   let nextState;
@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
       }
       case LOGOUT: { //after logout return to login screen
         nextState = RootNavigator.router.getStateForAction(
-            NavigationActions.navigate({ routeName: 'Main' }),
+            NavigationActions.navigate({ routeName: 'MainScreen' }),
             state
         );
         break;

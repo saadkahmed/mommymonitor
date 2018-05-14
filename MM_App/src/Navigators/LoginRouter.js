@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
+
 import forgot from '../Components/Forgot';
 import LoggedInRouter from './LoggedInRouter.js';
 import RegisterRouter from './RegisterRouter';
@@ -8,26 +9,29 @@ import MainScreen from '../Components/MainScreen';
 import { addListener } from '../utils/redux';
 
 export const RootNavigator = StackNavigator({
-  Main: {
+  MainScreen: {
     screen: MainScreen,
     navigationOptions: {
         gesturesEnabled: false,
-        header: null
+        header: null,
     },
   },
   Forgot: {
     screen: forgot,
     navigationOptions: {
         gesturesEnabled: false,
+        title: 'Forgot',
+        headerTitle: 'Password Retrieval',
     },
   },
-  Register: {
+  RegisterRouter: {
     screen: RegisterRouter,
-    navigationOptions: {
+    navigationOptions: () => ({
         gesturesEnabled: false,
-    },
+        header: null,
+        }),
   },
-  LoggedIn: {
+  LoggedInRouter: {
     screen: LoggedInRouter,
     navigationOptions: {
         gesturesEnabled: false,
@@ -36,8 +40,8 @@ export const RootNavigator = StackNavigator({
 },
 {
 initialRouteName: MainScreen,
-});
-
+}
+);
 
 class AppWithNavigationState extends React.Component {
   render() {
@@ -53,7 +57,6 @@ class AppWithNavigationState extends React.Component {
     );
   }
 }
-
 
 const mapStateToProps = state => ({
   nav: state.nav,

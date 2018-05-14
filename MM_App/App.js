@@ -8,7 +8,6 @@ import AppWithNavigationState from './src/Navigators/LoginRouter';
 import reducers from './src/Reducers';
 
 class Application extends React.Component {
-
   componentWillMount() {
     const config = {
       apiKey: 'AIzaSyDGwT4CRUTv34Nxtu1io8ft0jcnEJFJPeo',
@@ -24,9 +23,9 @@ class Application extends React.Component {
     render() {
       const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
         return (
-        <Provider store={store}>
-          <AppWithNavigationState />
-        </Provider>
+            <Provider store={store}>
+                <AppWithNavigationState />
+            </Provider>
         );
     }
 }

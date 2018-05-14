@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 const profilePic = require('../../pictures/ProfilePic.png');
 
 class ProfileAnalytics extends React.Component {
-
   static navigationOptions = ({ navigation }) => ({
     title: 'Profile',
     gesturesEnabled: true,

@@ -1,8 +1,7 @@
 // create back button
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableHighlight, Text } from 'react-native';
 import { connect } from 'react-redux';
-//import { NavigationActions } from 'react-navigation';
 import { emailChangedReg,
          passwordChangedReg,
          passwordChangedConfirm,
@@ -10,8 +9,24 @@ import { emailChangedReg,
          } from '../Actions';
 
 import { Button, CardSection, Input } from '../Components/common';
-
+// static navigationOptions = ({ navigation, goBack }) => ({
+//     gesturesEnabled: false,
+//     headerTitle: 'Registration',
+//     headerLeft: (
+//         <TouchableHighlight
+//             onPress={() => {
+//                 navigation.goBack({ routeName: 'MainScreen' });
+//             }}
+//         >
+//             <Text> back </Text>
+//         </TouchableHighlight>
+//     )
+// });
 class Register extends React.Component {
+
+    componentWillMount() {
+        console.log('this is the register screen \n', this.props);
+    }
     onEmailChange(text) {
       this.props.emailChangedReg(text);
     }
@@ -25,17 +40,10 @@ class Register extends React.Component {
     onRegisterPress() {
       const { email, password, confirmPassword } = this.props;
       this.props.registerUser({ email, password, confirmPassword });
-      //dont navigate after they press register only go there after registration,
-      //this should be inside of registrationactions
-      // const navigateToPersonalInfo = NavigationActions.navigate({
-      //   routeName: 'PersonalInfo'
-      // });
-      // this.props.navigation.dispatch(navigateToPersonalInfo);
     }
 
   render() {
     return (
-
         <View>
         <CardSection>
           <Input
@@ -82,7 +90,6 @@ const mapStateToProps = state => {
    email: state.reg.email,
    password: state.reg.password,
    confirmPassword: state.reg.confirmPassword,
-   nav: state.nav,
  };
 };
 

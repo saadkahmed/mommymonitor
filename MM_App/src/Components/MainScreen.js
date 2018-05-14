@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, ImageBackground, View } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
 
 import { emailChanged, passwordChanged, loginUser } from '../Actions';
 import { CardSection, Input, Button, Spinner } from './common';
@@ -10,21 +9,25 @@ const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 
 class MainScreen extends Component {
-// button helper functions
+    componentWillMount() {
+        console.log('this is the mainscreen props \n', this.props);
+    }
+    // button helper functions
     // navigate to forgot screen
+
     onForgotPress() {
-      const navigateToForgot = NavigationActions.navigate({
-        routeName: 'Forgot'
-      });
-      this.props.navigation.dispatch(navigateToForgot);
+      // const navigateToForgot = NavigationActions.navigate({
+      //   routeName: 'Forgot'
+      // });
+      this.props.navigation.navigate('Forgot');
     }
 
     // navigate to register screen
     onRegisterPress() {
-      const navigateToRegister = NavigationActions.navigate({
-          routeName: 'Register'
-      });
-      this.props.navigation.dispatch(navigateToRegister);
+      // const navigateToRegister = NavigationActions.navigate({
+      //     routeName: 'RegisterRouter'
+      // });
+      this.props.navigation.navigate('RegisterRouter');
     }
 
     //attempt to log user in
@@ -132,7 +135,6 @@ const mapStateToProps = state => {
       email: state.auth.email,
       password: state.auth.password,
       loading: state.auth.loading,
-      nav: state.nav,
     };
   };
 
