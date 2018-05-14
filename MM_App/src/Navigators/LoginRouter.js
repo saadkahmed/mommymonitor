@@ -26,10 +26,10 @@ export const RootNavigator = StackNavigator({
   },
   RegisterRouter: {
     screen: RegisterRouter,
-    navigationOptions: () => ({
+    navigationOptions: {
         gesturesEnabled: false,
         header: null,
-        }),
+        },
   },
   LoggedInRouter: {
     screen: LoggedInRouter,
