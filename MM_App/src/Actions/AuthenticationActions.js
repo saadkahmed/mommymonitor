@@ -27,7 +27,7 @@ export const passwordChanged = (text) => {
 export const loginUser = ({ email, password }) => {
     let err;
   const navToLogin = NavigationActions.navigate({
-            routeName: 'LoggedIn'
+            routeName: 'LoggedInRouter'
           });
 
   return (dispatch) => {

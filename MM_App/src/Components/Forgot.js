@@ -5,12 +5,6 @@ import { Button, CardSection, Input } from '../Components/common';
 import { emailChangedF, sendForgot } from '../Actions';
 
 class IForgot extends React.Component {
-
-  static navigationOptions = {
-    headerTitle: 'Password Retrieval',
-    gesturesEnabled: false
-};
-
     componentDidUpdate() {
         if (this.props.message) {
             Alert.alert(this.props.message);
@@ -40,7 +34,7 @@ class IForgot extends React.Component {
 
         <CardSection>
             <Button onPress={this.submitForgot.bind(this)} >
-              Register
+              Send Confirmation Email
             </Button>
         </CardSection>
 

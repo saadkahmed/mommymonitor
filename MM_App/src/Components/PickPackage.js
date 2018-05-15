@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Platform } from 'react-native';
+import { NavigationActions } from 'react-navigation';
+//not used right now
 import { connect } from 'react-redux';
 import { Button } from './common';
 
@@ -10,9 +12,15 @@ const newpay = Platform.OS === 'ios' ? applepay : androidpay;
 
 
 class PickPackage extends Component {
-    goToPay(product) {
-        newpay(product);
+    componentWillMount() {
+        console.log('this is the pick Package screen \n', this.props);
     }
+    goToPay(product) {
+        console.log(newpay(), product);
+        NavigationActions.navigate({
+                 routeName: 'PickMentor'
+             });
+         }
 
     render() {
         return (

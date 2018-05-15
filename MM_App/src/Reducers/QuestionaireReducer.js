@@ -15,4 +15,4 @@ export default (state = INITIAL_STATE, action) => {
   }
 };
 // add inital states for the information retrieved from the payload: Obj
-// store the important info into the state 
+// store the important info into the state

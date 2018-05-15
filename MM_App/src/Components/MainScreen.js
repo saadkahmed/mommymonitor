@@ -9,19 +9,31 @@ const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 
 class MainScreen extends Component {
-// button helper functions
+    componentWillMount() {
+        console.log('this is the mainscreen props \n', this.props);
+    }
+    // button helper functions
     // navigate to forgot screen
+<<<<<<< HEAD
 componentWillMount(props) {
   console.log(props);
 }
+=======
+>>>>>>> 47aa553d5a5e6a403ff990854b32ce10767e6bc1
 
     onForgotPress() {
+      // const navigateToForgot = NavigationActions.navigate({
+      //   routeName: 'Forgot'
+      // });
       this.props.navigation.navigate('Forgot');
     }
 
     // navigate to register screen
     onRegisterPress() {
-        this.props.navigation.navigate('Register');
+      // const navigateToRegister = NavigationActions.navigate({
+      //     routeName: 'RegisterRouter'
+      // });
+      this.props.navigation.navigate('RegisterRouter');
     }
 
     //attempt to log user in
@@ -128,7 +140,6 @@ const mapStateToProps = state => {
       email: state.auth.email,
       password: state.auth.password,
       loading: state.auth.loading,
-      nav: state.nav,
     };
   };
 

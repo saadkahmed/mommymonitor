@@ -1,9 +1,14 @@
 {
   "extends": "rallycoding",
   "parserOptions": {
-    "ecmaVersion": 8 // or 2017
-  },
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+            }
+            },
   "rules": {
     "arrow-body-style": 0
-  }
+  },
+  "env": { "es6": true }
 }
