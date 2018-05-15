@@ -11,6 +11,10 @@ const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 class MainScreen extends Component {
 // button helper functions
     // navigate to forgot screen
+componentWillMount(props) {
+  console.log(props);
+}
+
     onForgotPress() {
       this.props.navigation.navigate('Forgot');
     }

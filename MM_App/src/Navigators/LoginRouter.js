@@ -11,26 +11,26 @@ export const RootNavigator = StackNavigator({
   Main: {
     screen: MainScreen,
     navigationOptions: {
-        gesturesEnabled: false,
+        //gesturesEnabled: false,
         header: null
     },
   },
   Forgot: {
     screen: forgot,
     navigationOptions: {
-        gesturesEnabled: false,
+        //gesturesEnabled: false,
     },
   },
   Register: {
     screen: RegisterRouter,
     navigationOptions: {
-        gesturesEnabled: false,
+        //gesturesEnabled: false,
     },
   },
   LoggedIn: {
     screen: LoggedInRouter,
     navigationOptions: {
-        gesturesEnabled: false,
+        //gesturesEnabled: false,
     },
   }
 },

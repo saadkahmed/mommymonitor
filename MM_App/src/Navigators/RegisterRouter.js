@@ -10,14 +10,14 @@ const RegisterRouter = StackNavigator({
       screen: Register,
       navigationOptions: {
         title: 'Registration',
-        gesturesEnabled: true
+        //gesturesEnabled: false
     }
   },
     PersonalInfo: {
         screen: PersonalInfo,
         navigationOptions: {
             headerTitle: 'About you',
-            gesturesEnabled: true
+            //gesturesEnabled: false
         }
     },
     Questionnaire: {
@@ -27,7 +27,7 @@ const RegisterRouter = StackNavigator({
         screen: PickPackage,
         navigationOptions: {
             title: 'Packages',
-            gesturesEnabled: true
+            //gesturesEnabled: false
       }
   }
 
