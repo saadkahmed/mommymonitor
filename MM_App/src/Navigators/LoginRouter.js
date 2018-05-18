@@ -34,7 +34,7 @@ export const RootNavigator = StackNavigator({
   LoggedInRouter: {
     screen: LoggedInRouter,
     navigationOptions: {
-        gesturesEnabled: false,
+        //gesturesEnabled: false,
     },
   }
 },
