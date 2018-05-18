@@ -8,14 +8,6 @@ import PickMentor from '../Components/PickMentor';
 
 const RegisterRouter = StackNavigator({
     Register: {
-<<<<<<< HEAD
-      screen: Register,
-      navigationOptions: {
-        title: 'Registration',
-        //gesturesEnabled: false
-    }
-  },
-=======
         screen: Register,
         navigationOptions: ({ navigation }) => ({
             gesturesEnabled: false,
@@ -28,30 +20,18 @@ const RegisterRouter = StackNavigator({
                 </TouchableHighlight>
             ) }),
     },
->>>>>>> 47aa553d5a5e6a403ff990854b32ce10767e6bc1
     PersonalInfo: {
         screen: PersonalInfo,
         navigationOptions: {
             headerTitle: 'About you',
-<<<<<<< HEAD
-            //gesturesEnabled: false
-=======
             gesturesEnabled: false
->>>>>>> 47aa553d5a5e6a403ff990854b32ce10767e6bc1
         }
     },
     PickPackage: {
         screen: PickPackage,
         navigationOptions: {
             title: 'Packages',
-<<<<<<< HEAD
-            //gesturesEnabled: false
-      }
-  }
-
-=======
             gesturesEnabled: false
-        }
     },
     PickMentor: {
         screen: PickMentor,
@@ -60,7 +40,6 @@ const RegisterRouter = StackNavigator({
             gesturesEnabled: true
         }
     }
->>>>>>> 47aa553d5a5e6a403ff990854b32ce10767e6bc1
 },
 {
   initialRouteName: 'Register',

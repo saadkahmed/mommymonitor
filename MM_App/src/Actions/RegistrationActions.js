@@ -6,6 +6,7 @@ import { EMAIL_CHANGEDREG,
          PASSWORD_CHANGEDCONFIRM,
          REGISTER_USER,
          REGISTER_COMPLETE,
+         SWITCH_VALUE_CHANGED
       } from './types';
 // for registration
 export const emailChangedReg = (text) => {
@@ -29,28 +30,42 @@ export const passwordChangedConfirm = (text) => {
   };
 };
 
-export const registerUser = ({ email, password, confirmPassword }) => {
+export const switchchange = (value) => {
+    return {
+        type: SWITCH_VALUE_CHANGED,
+        payload: value
+    };
+};
+
+export const registerUser = ({ email, password, confirmPassword, switchvalue }) => {
     let err;
     const navToQuestionaire = NavigationActions.navigate({
              routeName: 'PersonalInfo'
-           });
+         });
     return (dispatch) => {
     if (email === '' || password === '' || confirmPassword === '') { // error here
        err = 'fields left blank';
    } else if (password !== confirmPassword) {
        err = 'passwords do no match';
+   } else if (switchvalue === false) {
+       err = 'you must accept terms and conditions';
    }
-    dispatch({ type: REGISTER_USER });
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        console.log(user.uid);
-        dispatch(navToQuestionaire);
-        dispatch({ type: REGISTER_COMPLETE });
-    }).catch((e) => {
-        if (err) {
-            Alert.alert(err);
-        } else { Alert.alert(e.message); }
-    });
+   if (err) {
+       Alert.alert(err);
+   } else {
+        dispatch({ type: REGISTER_USER });
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((user) => {
+            firebase.database().ref(`/users/${user.uid}/registration`)
+            .set({ complete: false });
+            console.log(user.uid);
+            dispatch(navToQuestionaire);
+            dispatch({ type: REGISTER_COMPLETE });
+        }).catch((e) => {
+            Alert.alert(e.message);
+        });
+    }
   };
 };
+
 // right now we are navigating straight to maternal mentor selection change this latter

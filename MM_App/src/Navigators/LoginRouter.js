@@ -12,46 +12,30 @@ export const RootNavigator = StackNavigator({
   MainScreen: {
     screen: MainScreen,
     navigationOptions: {
-<<<<<<< HEAD
-        //gesturesEnabled: false,
-        header: null
-=======
-        gesturesEnabled: false,
         header: null,
->>>>>>> 47aa553d5a5e6a403ff990854b32ce10767e6bc1
+        gesturesEnabled: false,
+
     },
   },
   Forgot: {
     screen: forgot,
     navigationOptions: {
-<<<<<<< HEAD
-        //gesturesEnabled: false,
-=======
         gesturesEnabled: false,
         title: 'Forgot',
         headerTitle: 'Password Retrieval',
->>>>>>> 47aa553d5a5e6a403ff990854b32ce10767e6bc1
     },
   },
   RegisterRouter: {
     screen: RegisterRouter,
     navigationOptions: {
-<<<<<<< HEAD
-        //gesturesEnabled: false,
-    },
-=======
         gesturesEnabled: false,
-        header: null,
         },
->>>>>>> 47aa553d5a5e6a403ff990854b32ce10767e6bc1
   },
   LoggedInRouter: {
     screen: LoggedInRouter,
     navigationOptions: {
-        //gesturesEnabled: false,
     },
-  }
-},
+  },
 {
 initialRouteName: MainScreen,
 }

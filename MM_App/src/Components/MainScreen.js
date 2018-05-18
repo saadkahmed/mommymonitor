@@ -1,38 +1,37 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, ImageBackground, View } from 'react-native';
 import { connect } from 'react-redux';
-
 import { emailChanged, passwordChanged, loginUser } from '../Actions';
 import { CardSection, Input, Button, Spinner } from './common';
 
 const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 
+// information about prenatal health information
+// on demand, maternal mentors being able to communicate
+// education - long term.
+// website should have information about more medical stuff
+
+// long term machine learning
+
+// what if a mentor stops doing their job, like they arent getting paid
+// how do we compensate the user????
+// -elise we will have customer service number/email
+
+// dont allow landscape mode
 class MainScreen extends Component {
     componentWillMount() {
-        console.log('this is the mainscreen props \n', this.props);
+        //console.log('this is the mainscreen props \n', this.props);
     }
     // button helper functions
     // navigate to forgot screen
-<<<<<<< HEAD
-componentWillMount(props) {
-  console.log(props);
-}
-=======
->>>>>>> 47aa553d5a5e6a403ff990854b32ce10767e6bc1
 
     onForgotPress() {
-      // const navigateToForgot = NavigationActions.navigate({
-      //   routeName: 'Forgot'
-      // });
       this.props.navigation.navigate('Forgot');
     }
 
     // navigate to register screen
     onRegisterPress() {
-      // const navigateToRegister = NavigationActions.navigate({
-      //     routeName: 'RegisterRouter'
-      // });
       this.props.navigation.navigate('RegisterRouter');
     }
 
