@@ -1,71 +1,83 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { View, FlatList, Text, Image } from 'react-native';
+import firebase from 'firebase';
+import { FlatList, Text, Image } from 'react-native';
 import { connect } from 'react-redux';
+import { Container, Card, CardItem, } from 'native-base';
+
 import {
     MentorChange,
     MentorFetch,
     AssignMentor,
     } from '../Actions';
-import {
-    CardSection,
-    Card,
-    Button,
-    } from './common';
+import { Button } from './common';
 // if we want to limit the number of people per maternal mentor we can push
 // user ids to the mentor upon selection and only display those with less then x
 // number of user ids
+// above doesnt need to be done if mentor is picking
+// maternl mentor has to approve of the person requesting then a communication line is
+// set up
+
+// stack over flow type of thing for mid wives.
+// do mentors have to be private
+
+// remove age, and phone number
+// find a secure email and phone communicaton
+
+// try to make seperate login for matnernal mentors
+
 class PickMentor extends Component {
     componentWillMount() {
         this.props.MentorFetch();
         console.log('this is the PickMentor screen \n', this.props);
+        console.log(
+            firebase.storage().ref('gs://mommymonitorapp.appspot.com/images/cover.png').getDownloadURL()
+        );
     }
 
     keyExtractor = (item, index) => item.id;
 
-//theres gotta be a more efficent way of doing this lol
-// <Image
-//     style={{ width: '100%', height: '40%', resizeMode: 'contain' }}
-//     source={{ uri: item.pic }}
-// />
-//image breaks it for some reason.... might be the percent for hight or resize mode
     renderItem = ({ item }) => (
-      <View>
-          <Card>
-              <CardSection>
-                  <Text>
-                    Name: {item.name}
-                      {'\n'}
-                    Age: {item.age}
-                      {'\n'}
-                     Number Of Children: {item.children}
-                      {'\n'}
-                      Languages Spoken: {item.languages}
-                      {'\n'}
-                      Ethnicity: {item.ethnicity}
-                      {'\n'}
-                      Phone Number: {item.phonenumber}
-                      {'\n'}
-                      Prefered mode of communication: {item.pref}
-                  </Text>
-              </CardSection>
-              <CardSection>
-                  <Button onPress={() => this.props.AssignMentor(item)} >
-                      {item.name}
-                  </Button>
-              </CardSection>
-          </Card>
-      </View>
+          <Container>
+              <Card>
+                  <CardItem>
+                      <Image
+                          style={{ width: 100, height: 100, resizeMode: 'contain' }}
+                          source={{ uri: item.pic }}
+                      />
+                  </CardItem>
+                  <CardItem>
+                      <Text>
+                          Name: {item.name}
+                          {'\n'}
+                          Age: {item.age}
+                          {'\n'}
+                          Number Of Children: {item.children}
+                          {'\n'}
+                          Languages Spoken: {item.languages}
+                          {'\n'}
+                          Ethnicity: {item.ethnicity}
+                          {'\n'}
+                          Phone Number: {item.phonenumber}
+                          {'\n'}
+                          Prefered mode of communication: {item.pref}
+                      </Text>
+                  </CardItem>
+                  <CardItem>
+                       <Button onPress={() => this.props.AssignMentor(item)} >
+                           {item.name}
+                       </Button>
+                  </CardItem>
+            </Card>
+          </Container>
     );
     render() {
         return (
-            <View>
                 <FlatList
                     data={this.props.mentors}
                     keyExtractor={this.keyExtractor}
                     renderItem={this.renderItem}
                 />
-            </View>
         );
     }
 }

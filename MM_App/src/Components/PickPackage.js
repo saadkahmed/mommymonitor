@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import { View, Text, Platform } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+//import { NavigationActions } from 'react-navigation';
 //not used right now
 import { connect } from 'react-redux';
 import { Button } from './common';
 
-const applepay = 'text';
-const androidpay = 'text';
+const applepay = 'appletext';
+const androidpay = 'andoirdtext';
 const newpay = Platform.OS === 'ios' ? applepay : androidpay;
 //****************USE THIS FOR ANDROID OR IOS DEV***********************************
 
 
 class PickPackage extends Component {
     componentWillMount() {
-        console.log('this is the pick Package screen \n', this.props);
+        //console.log('this is the pick Package screen \n', this.props);
     }
     goToPay(product) {
-        console.log(newpay(), product);
-        NavigationActions.navigate({
-                 routeName: 'PickMentor'
-             });
-         }
+        console.log(newpay, product);
+        this.props.navigation.navigate('PickMentor');
+    }
 
     render() {
         return (
@@ -33,5 +31,6 @@ class PickPackage extends Component {
         );
     }
 }
-
+// dont have to check for packages for maternal mentor
+//
 export default connect(null, {})(PickPackage);

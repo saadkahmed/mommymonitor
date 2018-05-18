@@ -2,10 +2,17 @@ import { EMAIL_CHANGEDREG,
          PASSWORD_CHANGEDREG,
          PASSWORD_CHANGEDCONFIRM,
          REGISTER_USER,
-         REGISTER_COMPLETE
+         REGISTER_COMPLETE,
+         SWITCH_VALUE_CHANGED
       } from '../Actions/types';
 
-const INITIAL_STATE = { email: '', password: '', confirmPassword: '', loading: false };
+const INITIAL_STATE = {
+    email: '',
+    password: '',
+    confirmPassword: '',
+    loading: false,
+    switchvalue: false
+};
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -27,6 +34,10 @@ export default (state = INITIAL_STATE, action) => {
 
     case REGISTER_COMPLETE: { //register user complete
         return INITIAL_STATE;
+    }
+    
+    case SWITCH_VALUE_CHANGED: {
+        return { ...state, switchvalue: action.payload };
     }
 
     default:

@@ -6,7 +6,7 @@ import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk'; // thunk is middleware
 import AppWithNavigationState from './src/Navigators/LoginRouter';
 import reducers from './src/Reducers';
-
+//create new firebase key and stuff before publishing
 class Application extends React.Component {
   componentWillMount() {
     const config = {

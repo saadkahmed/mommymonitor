@@ -16,7 +16,9 @@ export const REGISTER_SUCCESS = 'register_success'; // never used alert is insid
 export const REGISTER_FAILED = 'register_failed'; // never used alert is inside action
 export const REGISTER_COMPLETE = 'register_complete';
 export const REGISTER_RESET = 'regiser_reset'; //never used
+export const SWITCH_VALUE_CHANGED = 'switch_value_changed';
 
+export const LOADING_DATA = 'loading_data';
 //MaternalMentors types
 export const MENTOR_FETCH_SUCCESS = 'mentor_fetch_success';
 export const MENTOR_FETCH_FAILED = 'mentor_fetch_failed';

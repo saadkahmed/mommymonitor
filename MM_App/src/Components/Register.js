@@ -1,30 +1,19 @@
-// create back button
 import React from 'react';
-import { View, TouchableHighlight, Text } from 'react-native';
+import { View, Switch, Text } from 'react-native';
 import { connect } from 'react-redux';
+
 import { emailChangedReg,
          passwordChangedReg,
          passwordChangedConfirm,
-         registerUser
-         } from '../Actions';
+         registerUser,
+         switchchange
+              } from '../Actions';
 
 import { Button, CardSection, Input } from '../Components/common';
-// static navigationOptions = ({ navigation, goBack }) => ({
-//     gesturesEnabled: false,
-//     headerTitle: 'Registration',
-//     headerLeft: (
-//         <TouchableHighlight
-//             onPress={() => {
-//                 navigation.goBack({ routeName: 'MainScreen' });
-//             }}
-//         >
-//             <Text> back </Text>
-//         </TouchableHighlight>
-//     )
-// });
+
 class Register extends React.Component {
     componentWillMount() {
-        console.log('this is the register screen \n', this.props);
+        //console.log('this is the register screen \n', this.props);
     }
     onEmailChange(text) {
       this.props.emailChangedReg(text);
@@ -37,13 +26,10 @@ class Register extends React.Component {
     }
 
     onRegisterPress() {
-      const { email, password, confirmPassword } = this.props;
-      this.props.registerUser({ email, password, confirmPassword });
+      const { email, password, confirmPassword, switchvalue } = this.props;
+      this.props.registerUser({ email, password, confirmPassword, switchvalue });
     }
 
-    onContinueRegistration() {
-      this.props.navigation.navigate('PersonalInfo');
-    }
 
   render() {
     return (
@@ -78,16 +64,15 @@ class Register extends React.Component {
         </CardSection>
 
         <CardSection>
+            <Switch
+                onValueChange={(value) => this.props.switchchange(value)}
+                value={this.props.switchvalue}
+            />
+            <Text> Accept Terms and Conditions </Text>
             <Button onPress={this.onRegisterPress.bind(this)} >
               Register
             </Button>
         </CardSection>
-        <CardSection>
-            <Button onPress={this.onContinueRegistration.bind(this)} >
-              Continue Registration
-            </Button>
-        </CardSection>
-
         </View>
     );
   }
@@ -98,11 +83,13 @@ const mapStateToProps = state => {
    email: state.reg.email,
    password: state.reg.password,
    confirmPassword: state.reg.confirmPassword,
+   switchvalue: state.reg.switchvalue
  };
 };
 
 export default connect(mapStateToProps, { emailChangedReg,
                                           passwordChangedReg,
                                           passwordChangedConfirm,
-                                          registerUser
+                                          registerUser,
+                                          switchchange
                                           })(Register);
