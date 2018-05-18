@@ -12,8 +12,9 @@ export const RootNavigator = StackNavigator({
   MainScreen: {
     screen: MainScreen,
     navigationOptions: {
-        gesturesEnabled: false,
         header: null,
+        gesturesEnabled: false,
+
     },
   },
   Forgot: {
@@ -28,16 +29,13 @@ export const RootNavigator = StackNavigator({
     screen: RegisterRouter,
     navigationOptions: {
         gesturesEnabled: false,
-        header: null,
         },
   },
   LoggedInRouter: {
     screen: LoggedInRouter,
     navigationOptions: {
-        //gesturesEnabled: false,
     },
-  }
-},
+  },
 {
 initialRouteName: MainScreen,
 }

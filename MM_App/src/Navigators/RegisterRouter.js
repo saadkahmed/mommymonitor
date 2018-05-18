@@ -32,7 +32,6 @@ const RegisterRouter = StackNavigator({
         navigationOptions: {
             title: 'Packages',
             gesturesEnabled: false
-        }
     },
     PickMentor: {
         screen: PickMentor,

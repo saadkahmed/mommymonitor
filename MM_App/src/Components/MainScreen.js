@@ -25,7 +25,7 @@ class MainScreen extends Component {
     }
     // button helper functions
     // navigate to forgot screen
-    
+
     onForgotPress() {
       this.props.navigation.navigate('Forgot');
     }
