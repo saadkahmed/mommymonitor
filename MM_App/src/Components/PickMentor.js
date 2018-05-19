@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import firebase from 'firebase';
 import { FlatList, Text, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Card, CardItem, } from 'native-base';
@@ -31,7 +30,7 @@ class PickMentor extends Component {
         this.props.MentorFetch();
         console.log('this is the PickMentor screen \n', this.props);
         console.log(
-            firebase.storage().ref('gs://mommymonitorapp.appspot.com/images/cover.png').getDownloadURL()
+            //firebase.storage().ref('gs://mommymonitorapp.appspot.com/images/cover.png').getDownloadURL()
         );
     }
 
