@@ -34,7 +34,7 @@ class PickMentor extends Component {
         );
     }
 
-    keyExtractor = (item, index) => item.id;
+    keyExtractor = (item) => item.id;
 
     renderItem = ({ item }) => (
           <Container>
@@ -42,7 +42,7 @@ class PickMentor extends Component {
                   <CardItem>
                       <Image
                           style={{ width: 100, height: 100, resizeMode: 'contain' }}
-                          source={{ uri: item.pic }}
+                          source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/mommymonitorapp.appspot.com/o/images%2Fcover.png?alt=media&token=b9a8fd70-90ab-43f8-bf56-8000a745d0c1' }}
                       />
                   </CardItem>
                   <CardItem>
