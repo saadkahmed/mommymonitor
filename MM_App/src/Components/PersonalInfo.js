@@ -11,10 +11,10 @@ class RegisterInfo extends Component {
         //console.log('this is the PersonalInfo screen \n', this.props);
         //load previous data into form
         //should we have unique keys for user info? is this really needed?
-        this.props.LoadData();
+        //this.props.LoadData();
     }
     Registration2Submit(values) {
-        this.props.UpdateInfo({ ...values, expecting_date: values.expecting_date.toString() });
+        //this.props.UpdateInfo({ ...values, expecting_date: values.expecting_date.toString() });
     }
 
   render() {

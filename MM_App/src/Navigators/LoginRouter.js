@@ -28,6 +28,7 @@ export const RootNavigator = StackNavigator({
     screen: RegisterRouter,
     navigationOptions: {
         gesturesEnabled: false,
+        header: null,
         },
   },
   LoggedInRouter: {

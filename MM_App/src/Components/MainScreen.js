@@ -22,6 +22,7 @@ const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
 class MainScreen extends Component {
     componentWillMount() {
         //console.log('this is the mainscreen props \n', this.props);
+        this.props.navigation.navigate('PersonalInfo');
     }
     // button helper functions
     // navigate to forgot screen
