@@ -1,6 +1,6 @@
-import React, { Dimensions } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { View, ScrollView, Picker, Platform, Image } from 'react-native';
+import { View, Text, ScrollView, Picker, Platform, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 import Button from '../common/Button';
@@ -35,45 +35,78 @@ const Registration2 = props => {
           <Image style={[{ position: 'absolute' }]} source={backgroundpic} />
         </View>
         <ScrollView>
+              <Text style={styles.titleLabelStyle}>PERSONAL INFO</Text>
               <Field
                   name={'first_name'}
-                  label={'First Name'}
+                  label={'FIRST NAME'}
                   validate={[required]}
                   component={Forminput}
               />
 
               <Field
                   name={'last_name'}
-                  label={'Last Name'}
+                  label={'LAST NAME'}
                   validate={[required]}
                   component={Forminput}
               />
 
               <Field
                   name={'phone_number'}
-                  label={'Phone Number'}
+                  label={'PHONE NUMBER'}
                   validate={[required, phonecheck]}
                   component={FormNumInput}
               />
 
               <Field
                   name={'postal_code'}
-                  label={'Postal Code'}
+                  label={'POSTAL CODE'}
                   validate={[required, postalcheck]}
                   component={Forminput}
               />
 
               <Field
                   name={'age'}
-                  label={'Age'}
+                  label={'AGE'}
                   validate={[required]}
                   component={Forminput}
               />
           {/* no age checking right now*/}
+          <Field
+              name={'ethnicity'}
+              label={'ETHNICITY'}
+              mode='dropdown'
+              component={Formpicker}
+          >
+          {/*validate={[required]}*/}
+
+              <Picker.Item
+                  label="Aboriginal (Inuit, Métis, North American Indian)"
+                  value="1"
+              />
+              <Picker.Item
+                  label="Arab/West Asian (e.g., Armenian,
+                         Egyptian,
+                         Iranian,
+                         Lebanese,
+                         Moroccan)" value="2"
+              />
+              <Picker.Item label="Black (e.g., African, Haitian, Jamaican, Somali)" value="3" />
+              <Picker.Item label="Chinese" value="4" />
+              <Picker.Item label="Filipino" value="5" />
+              <Picker.Item label="Japanese" value="6" />
+              <Picker.Item label="Korean" value="7" />
+              <Picker.Item label="Latin American" value="8" />
+              <Picker.Item label="South Asian" value="9" />
+              <Picker.Item label="South East Asian" value="10" />
+              <Picker.Item label="White (Caucasian)" value="11" />
+              <Picker.Item label="Other" value="12" />
+          </Field>
+
+          <Text style={styles.titleLabelStyle}>PREGNANCY</Text>
 
               <Field
                   name={'trimester'}
-                  label={'Trimester'}
+                  label={'TRIMESTER'}
                   mode='dropdown'
                   component={Formpicker}
               >
@@ -85,36 +118,8 @@ const Registration2 = props => {
               </Field>
 
               <Field
-                  name={'ethnicity'}
-                  label={'Ethnicity'}
-                  mode='dropdown'
-                  component={Formpicker}
-              >
-              {/*validate={[required]}*/}
-
-                  <Picker.Item
-                      label="Aboriginal (Inuit, Métis, North American Indian)"
-                      value="1"
-                  />
-                  <Picker.Item
-                      label="Arab/West Asian (e.g., Armenian, Egyptian, Iranian, Lebanese, Moroccan)"
-                      value="2"
-                  />
-                  <Picker.Item label="Black (e.g., African, Haitian, Jamaican, Somali)" value="3" />
-                  <Picker.Item label="Chinese" value="4" />
-                  <Picker.Item label="Filipino" value="5" />
-                  <Picker.Item label="Japanese" value="6" />
-                  <Picker.Item label="Korean" value="7" />
-                  <Picker.Item label="Latin American" value="8" />
-                  <Picker.Item label="South Asian" value="9" />
-                  <Picker.Item label="South East Asian" value="10" />
-                  <Picker.Item label="White (Caucasian)" value="11" />
-                  <Picker.Item label="Other" value="12" />
-              </Field>
-
-              <Field
                   name={'number_children'}
-                  label={'Number of Children'}
+                  label={'NUMBER OF CHILDREN'}
                   mode='dropdown'
                   component={Formpicker}
               >
@@ -136,7 +141,7 @@ const Registration2 = props => {
 
               <Field
                   name={'marital_status'}
-                  label={'Marital Status'}
+                  label={'MARTIAL STATUS'}
                   mode='dropdown'
                   component={Formpicker}
               >
@@ -149,7 +154,7 @@ const Registration2 = props => {
 
               <Field
                   name={'current_children'}
-                  label={'Current Number of Children'}
+                  label={'CURRENT NUMBER OF CHILDREN'}
                   mode='dropdown'
                   component={Formpicker}
               >
@@ -182,6 +187,18 @@ const Registration2 = props => {
           </ScrollView>
         </View>
   );
+};
+
+const styles = {
+
+  titleLabelStyle: {
+      padding: 7,
+      paddingLeft: 10,
+      fontSize: 20,
+      color: '#00bbdd',
+      fontFamily: 'Futura-CondensedMedium',
+
+  },
 };
 
 const Registration = reduxForm({
