@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, ImageBackground, View } from 'react-native';
+import { Image, StyleSheet, ImageBackground, View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../Actions';
 import { CardSection, Input, Button, Spinner } from './common';
 
 const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
-const mmlogo = require('../../pictures/mommymonitor-final-logo.png');
+const mmlogo = require('../../pictures/MM_LOGO.png');
 
 // information about prenatal health information
 // on demand, maternal mentors being able to communicate
@@ -69,46 +69,52 @@ class MainScreen extends Component {
         source={backgroundpic}
         style={styles.backgroundImage}
         >
-        <View>
 
-        <View style={styles.imageStyle}>
-          <Image source={mmlogo} />
-        </View>
+          <View style={styles.buttonContainer}>
 
-        <CardSection>
-          <Input
-            label="email"
-            placeholder="JohnSmith@hotmail.com"
-            onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.email}
-          />
-        </CardSection>
+            <Image style={styles.imageStyle} source={mmlogo} />
 
-        <CardSection>
-          <Input
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-            secureTextEntry
-          />
-        </CardSection>
 
-          <CardSection>
-            {this.renderButton()}
-          </CardSection>
+            <CardSection>
+              <Input
+                label="Email"
+                placeholder="JohnSmith@hotmail.com"
+                onChangeText={this.onEmailChange.bind(this)}
+                value={this.props.email}
+              />
+            </CardSection>
 
-          <CardSection>
-            <Button onPress={this.onRegisterPress.bind(this)} >
-              Register
-            </Button>
-          </CardSection>
+            <CardSection style={{ backgroundColor: '#44014C' }}>
+              <Input
+                label="Password"
+                placeholder="password"
+                onChangeText={this.onPasswordChange.bind(this)}
+                value={this.props.password}
+                secureTextEntry
+              />
+            </CardSection>
 
-          <CardSection>
-            <Button onPress={this.onForgotPress.bind(this)} >
-              Forgot Password
-            </Button>
-          </CardSection>
+
+            <View style={styles.subButtonContainer}>
+              {this.renderButton()}
+            </View>
+
+          </View>
+
+          <View style={styles.signupOrForgotContainer}>
+
+            <TouchableOpacity style={styles.forgotButton} onPress={this.onForgotPress.bind(this)}>
+              <Text>
+                Forgot Your Password?
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.forgotButton} onPress={this.onRegisterPress.bind(this)}>
+              <Text>
+                Sign Up Here
+              </Text>
+            </TouchableOpacity>
+
           </View>
 
         </ImageBackground>
@@ -119,19 +125,40 @@ class MainScreen extends Component {
 
   let styles = StyleSheet.create({
       backgroundImage: {
-          flex: 1,
-          alignSelf: 'stretch',
-          width: null,
-          justifyContent: 'center',
+        flex: 1,
+        alignSelf: 'stretch',
+        justifyContent: 'space-around',
+        alignItems: 'center',
       },
       imageStyle: {
-        borderBottomWidth: 1,
-        justifyContent: 'center',
+        width: 250,
+        height: 250,
+        resizeMode: 'contain',
+      },
+      buttonContainer: {
+        backgroundColor: 'transparent',
         alignItems: 'center',
+        alignSelf: 'stretch',
+      },
+
+      subButtonContainer: {
+        backgroundColor: 'transparent',
         padding: 5,
-        paddingBottom: 15,
-        borderColor: '#ddd',
-        position: 'relative'
+        paddingTop: 10,
+        flexDirection: 'row',
+        position: 'relative',
+        width: 150
+
+      },
+      forgotButton: {
+        backgroundColor: 'transparent',
+        paddingLeft: 30,
+        paddingRight: 30,
+      },
+      signupOrForgotContainer: {
+        flexDirection: 'row',
+        marginRight: 10,
+
       }
   });
 
