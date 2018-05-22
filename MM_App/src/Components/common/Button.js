@@ -17,7 +17,7 @@ const styles = {
     alignSelf: 'center',
     color: '#fff',
     fontSize: 16,
-    fontWeight: '900', //boldness
+    fontWeight: '700', //boldness
     paddingTop: 10,
     paddingBottom: 10
 
@@ -27,7 +27,7 @@ const styles = {
     alignSelf: 'stretch',
     backgroundColor: '#852053',
     //r:133,g:32,b89
-    borderRadius: 5,
+    borderRadius: 2,
     borderWidth: 1,
     borderColor: '#852053',
     marginLeft: 5,
@@ -35,6 +35,7 @@ const styles = {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
+    opacity: 0.7
   }
 };
 

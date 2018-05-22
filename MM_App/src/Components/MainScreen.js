@@ -84,7 +84,7 @@ class MainScreen extends Component {
               />
             </CardSection>
 
-            <CardSection style={{ backgroundColor: '#44014C' }}>
+            <CardSection cstyle={{ backgroundColor: '#f7f17e' }}>
               <Input
                 label="Password"
                 placeholder="password"
@@ -103,14 +103,14 @@ class MainScreen extends Component {
 
           <View style={styles.signupOrForgotContainer}>
 
-            <TouchableOpacity style={styles.forgotButton} onPress={this.onForgotPress.bind(this)}>
-              <Text>
+            <TouchableOpacity style={styles.frButton} onPress={this.onForgotPress.bind(this)}>
+              <Text style={{ textDecorationLine: 'underline', color: '#737373' }}>
                 Forgot Your Password?
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.forgotButton} onPress={this.onRegisterPress.bind(this)}>
-              <Text>
+            <TouchableOpacity style={styles.frButton} onPress={this.onRegisterPress.bind(this)}>
+              <Text style={{ textDecorationLine: 'underline', color: '#737373' }}>
                 Sign Up Here
               </Text>
             </TouchableOpacity>
@@ -150,7 +150,7 @@ class MainScreen extends Component {
         width: 150
 
       },
-      forgotButton: {
+      frButton: {
         backgroundColor: 'transparent',
         paddingLeft: 30,
         paddingRight: 30,

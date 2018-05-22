@@ -13,13 +13,12 @@ const styles = StyleSheet.create({
   containerStyle: {
       borderBottomWidth: 1,
       padding: 5,
-      backgroundColor: '#fff',
+      borderRadius: 25,
       justifyContent: 'flex-start',
       flexDirection: 'row',
       borderColor: '#ddd',
       position: 'relative',
   },
 });
-
 
 export default CardSection;
