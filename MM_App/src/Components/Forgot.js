@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Alert } from 'react-native';
+import { View, Alert, StyleSheet, ImageBackground } from 'react-native';
 import { Button, CardSection, Input } from '../Components/common';
 import { emailChangedF, sendForgot } from '../Actions';
+
+const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 
 class IForgot extends React.Component {
     componentDidUpdate() {
@@ -22,27 +24,48 @@ class IForgot extends React.Component {
 
   render() {
     return (
-        <View>
-        <CardSection>
-          <Input
-            onChangeText={this.onEmailChangeF.bind(this)}
-            value={this.props.emailf}
-            label="Email"
-            placeholder="JohnSmith@hotmail.com"
-          />
-        </CardSection>
+        <ImageBackground
+          source={backgroundpic}
+          style={styles.backgroundImage}
+        >
+          <CardSection>
+            <Input
+              onChangeText={this.onEmailChangeF.bind(this)}
+              value={this.props.emailf}
+              label="Email"
+              placeholder="JohnSmith@hotmail.com"
+            />
+          </CardSection>
 
-        <CardSection>
-            <Button onPress={this.submitForgot.bind(this)} >
-              Send Confirmation Email
-            </Button>
-        </CardSection>
+          <View style={styles.buttonContainer}>
+              <Button onPress={this.submitForgot.bind(this)} >
+                Submit
+              </Button>
+          </View>
 
-        </View>
+        </ImageBackground>
 
     );
   }
 }
+
+let styles = StyleSheet.create({
+    backgroundImage: {
+      flex: 1,
+      alignSelf: 'stretch',
+      alignItems: 'center',
+      paddingTop: 10
+    },
+    buttonContainer: {
+      backgroundColor: 'transparent',
+      padding: 5,
+      paddingTop: 10,
+      flexDirection: 'row',
+      position: 'relative',
+      width: 150
+    },
+  }
+);
 
 const mapStateToProps = state => {
  return {

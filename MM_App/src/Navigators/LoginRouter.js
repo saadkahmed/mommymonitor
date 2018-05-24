@@ -22,8 +22,7 @@ export const RootNavigator = StackNavigator({
     navigationOptions: {
         gesturesEnabled: false,
         title: 'Forgot',
-        headerTitle: 'Password Retrieval',
-    },
+        },
   },
   RegisterRouter: {
     screen: RegisterRouter,

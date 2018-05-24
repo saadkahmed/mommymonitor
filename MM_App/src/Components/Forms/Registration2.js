@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { ScrollView, Picker, Platform } from 'react-native';
+import { View, Text, ScrollView, Picker, Platform, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 import Button from '../common/Button';
@@ -8,6 +8,8 @@ import Forminput from '../common/Forminput';
 import Formpicker from '../common/Formpicker';
 import FormNumInput from '../common/FormNumInput';
 import Formdatepicker from '../common/Formdatepicker';
+
+const backgroundpic = require('../../../pictures/BackgroundForPages.jpg');
 
 const OtherFormdatepicker = 'text';
 const NewFormDatePicker = Platform.OS === 'ios' ? Formdatepicker : OtherFormdatepicker;
@@ -28,153 +30,175 @@ const postalcheck = value => (
 const Registration2 = props => {
     const { handleSubmit } = props;
     return (
-        <ScrollView keyboardShouldPersistTaps={'handled'}>
-            <Field
-                name={'first_name'}
-                label={'First Name'}
-                validate={[required]}
-                component={Forminput}
-            />
+      <View style={{ backgroundColor: 'transparent' }}>
+        <View style={{ paddingTop: 10 }}>
+          <Image style={[{ position: 'absolute' }]} source={backgroundpic} />
+        </View>
+        <ScrollView>
+              <Text style={styles.titleLabelStyle}>PERSONAL INFO</Text>
+              <Field
+                  name={'first_name'}
+                  label={'FIRST NAME'}
+                  validate={[required]}
+                  component={Forminput}
+              />
 
-            <Field
-                name={'last_name'}
-                label={'Last Name'}
-                validate={[required]}
-                component={Forminput}
-            />
+              <Field
+                  name={'last_name'}
+                  label={'LAST NAME'}
+                  validate={[required]}
+                  component={Forminput}
+              />
 
-            <Field
-                name={'phone_number'}
-                label={'Phone Number'}
-                validate={[required, phonecheck]}
-                component={FormNumInput}
-            />
+              <Field
+                  name={'phone_number'}
+                  label={'PHONE NUMBER'}
+                  validate={[required, phonecheck]}
+                  component={FormNumInput}
+              />
 
-            <Field
-                name={'postal_code'}
-                label={'Postal Code'}
-                validate={[required, postalcheck]}
-                component={Forminput}
-            />
+              <Field
+                  name={'postal_code'}
+                  label={'POSTAL CODE'}
+                  validate={[required, postalcheck]}
+                  component={Forminput}
+              />
 
-            <Field
-                name={'age'}
-                label={'Age'}
-                validate={[required]}
-                component={Forminput}
-            />
-        {/* no age checking right now*/}
+              <Field
+                  name={'age'}
+                  label={'AGE'}
+                  validate={[required]}
+                  component={Forminput}
+              />
+          {/* no age checking right now*/}
+          <Field
+              name={'ethnicity'}
+              label={'ETHNICITY'}
+              mode='dropdown'
+              component={Formpicker}
+          >
+          {/*validate={[required]}*/}
 
-            <Field
-                name={'trimester'}
-                label={'Trimester'}
-                mode='dropdown'
-                component={Formpicker}
-            >
-            {/*validate={[required]}*/}
+              <Picker.Item
+                  label="Aboriginal (Inuit, Métis, North American Indian)"
+                  value="1"
+              />
+              <Picker.Item
+                  label="Arab/West Asian (e.g., Armenian,
+                         Egyptian,
+                         Iranian,
+                         Lebanese,
+                         Moroccan)" value="2"
+              />
+              <Picker.Item label="Black (e.g., African, Haitian, Jamaican, Somali)" value="3" />
+              <Picker.Item label="Chinese" value="4" />
+              <Picker.Item label="Filipino" value="5" />
+              <Picker.Item label="Japanese" value="6" />
+              <Picker.Item label="Korean" value="7" />
+              <Picker.Item label="Latin American" value="8" />
+              <Picker.Item label="South Asian" value="9" />
+              <Picker.Item label="South East Asian" value="10" />
+              <Picker.Item label="White (Caucasian)" value="11" />
+              <Picker.Item label="Other" value="12" />
+          </Field>
 
-                <Picker.Item label="First Trimester" value="1" />
-                <Picker.Item label="Second Trimester" value="2" />
-                <Picker.Item label="Third Trimester" value="3" />
-            </Field>
+          <Text style={styles.titleLabelStyle}>PREGNANCY</Text>
 
-            <Field
-                name={'ethnicity'}
-                label={'Ethnicity'}
-                mode='dropdown'
-                component={Formpicker}
-            >
-            {/*validate={[required]}*/}
+              <Field
+                  name={'trimester'}
+                  label={'TRIMESTER'}
+                  mode='dropdown'
+                  component={Formpicker}
+              >
+              {/*validate={[required]}*/}
 
-                <Picker.Item
-                    label="Aboriginal (Inuit, Métis, North American Indian)"
-                    value="1"
-                />
-                <Picker.Item
-                    label="Arab/West Asian (e.g., Armenian, Egyptian, Iranian, Lebanese, Moroccan)"
-                    value="2"
-                />
-                <Picker.Item label="Black (e.g., African, Haitian, Jamaican, Somali)" value="3" />
-                <Picker.Item label="Chinese" value="4" />
-                <Picker.Item label="Filipino" value="5" />
-                <Picker.Item label="Japanese" value="6" />
-                <Picker.Item label="Korean" value="7" />
-                <Picker.Item label="Latin American" value="8" />
-                <Picker.Item label="South Asian" value="9" />
-                <Picker.Item label="South East Asian" value="10" />
-                <Picker.Item label="White (Caucasian)" value="11" />
-                <Picker.Item label="Other" value="12" />
-            </Field>
+                  <Picker.Item label="First Trimester" value="1" />
+                  <Picker.Item label="Second Trimester" value="2" />
+                  <Picker.Item label="Third Trimester" value="3" />
+              </Field>
 
-            <Field
-                name={'number_children'}
-                label={'Number of Children'}
-                mode='dropdown'
-                component={Formpicker}
-            >
-                {/*validate={[required]}*/}
+              <Field
+                  name={'number_children'}
+                  label={'NUMBER OF CHILDREN'}
+                  mode='dropdown'
+                  component={Formpicker}
+              >
+                  {/*validate={[required]}*/}
 
-                <Picker.Item label="0" value="0" />
-                <Picker.Item label="1" value="1" />
-                <Picker.Item label="2" value="2" />
-                <Picker.Item label="3" value="3" />
-                <Picker.Item label="4" value="4" />
-                <Picker.Item label="5" value="5" />
-                <Picker.Item label="6" value="6" />
-                <Picker.Item label="7" value="7" />
-                <Picker.Item label="8" value="8" />
-                <Picker.Item label="9" value="9" />
-                <Picker.Item label="10" value="10" />
-                <Picker.Item label="11" value="11" />
-            </Field>
+                  <Picker.Item label="0" value="0" />
+                  <Picker.Item label="1" value="1" />
+                  <Picker.Item label="2" value="2" />
+                  <Picker.Item label="3" value="3" />
+                  <Picker.Item label="4" value="4" />
+                  <Picker.Item label="5" value="5" />
+                  <Picker.Item label="6" value="6" />
+                  <Picker.Item label="7" value="7" />
+                  <Picker.Item label="8" value="8" />
+                  <Picker.Item label="9" value="9" />
+                  <Picker.Item label="10" value="10" />
+                  <Picker.Item label="11" value="11" />
+              </Field>
 
-            <Field
-                name={'marital_status'}
-                label={'Marital Status'}
-                mode='dropdown'
-                component={Formpicker}
-            >
-            {/*validate={[required]}*/}
+              <Field
+                  name={'marital_status'}
+                  label={'MARTIAL STATUS'}
+                  mode='dropdown'
+                  component={Formpicker}
+              >
+              {/*validate={[required]}*/}
 
-                <Picker.Item label="Single" value="1" />
-                <Picker.Item label="Married" value="2" />
-                <Picker.Item label="Divorced" value="3" />
-            </Field>
+                  <Picker.Item label="Single" value="1" />
+                  <Picker.Item label="Married" value="2" />
+                  <Picker.Item label="Divorced" value="3" />
+              </Field>
 
-            <Field
-                name={'current_children'}
-                label={'Current Number of Children'}
-                mode='dropdown'
-                component={Formpicker}
-            >
-            {/*validate={[required]}*/}
+              <Field
+                  name={'current_children'}
+                  label={'CURRENT NUMBER OF CHILDREN'}
+                  mode='dropdown'
+                  component={Formpicker}
+              >
+              {/*validate={[required]}*/}
 
-                <Picker.Item label="0" value="0" />
-                <Picker.Item label="1" value="1" />
-                <Picker.Item label="2" value="2" />
-                <Picker.Item label="3" value="3" />
-                <Picker.Item label="4" value="4" />
-                <Picker.Item label="5" value="5" />
-                <Picker.Item label="6" value="6" />
-                <Picker.Item label="7" value="7" />
-                <Picker.Item label="8" value="8" />
-                <Picker.Item label="9" value="9" />
-                <Picker.Item label="10" value="10" />
-                <Picker.Item label="11" value="11" />
-            </Field>
+                  <Picker.Item label="0" value="0" />
+                  <Picker.Item label="1" value="1" />
+                  <Picker.Item label="2" value="2" />
+                  <Picker.Item label="3" value="3" />
+                  <Picker.Item label="4" value="4" />
+                  <Picker.Item label="5" value="5" />
+                  <Picker.Item label="6" value="6" />
+                  <Picker.Item label="7" value="7" />
+                  <Picker.Item label="8" value="8" />
+                  <Picker.Item label="9" value="9" />
+                  <Picker.Item label="10" value="10" />
+                  <Picker.Item label="11" value="11" />
+              </Field>
 
-            <Field
-                name={'expecting_date'}
-                label={'Expecting Date'}
-                value={new Date()}
-                component={NewFormDatePicker}
-            />
+              <Field
+                  name={'expecting_date'}
+                  label={'Expecting Date'}
+                  value={new Date()}
+                  component={NewFormDatePicker}
+              />
 
-            <Button onPress={handleSubmit}>
-                continue
-            </Button>
-        </ScrollView>
+              <Button onPress={handleSubmit}>
+                  continue
+              </Button>
+          </ScrollView>
+        </View>
   );
+};
+
+const styles = {
+
+  titleLabelStyle: {
+      padding: 7,
+      paddingLeft: 10,
+      fontSize: 20,
+      color: '#00bbdd',
+      fontFamily: 'Futura-CondensedMedium',
+
+  },
 };
 
 const Registration = reduxForm({

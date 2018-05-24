@@ -37,6 +37,7 @@ const styles = {
   },
   labelStyle: {
     fontSize: FONT_BACK_LABEL,
+    backgroundColor: 'transparent',
     paddingLeft: 20,
     flex: 1// 1/3 of the space for the label
   },

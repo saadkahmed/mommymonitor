@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Switch, Text } from 'react-native';
+import { View, Switch, Text, StyleSheet, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 
 import { emailChangedReg,
@@ -10,6 +10,8 @@ import { emailChangedReg,
               } from '../Actions';
 
 import { Button, CardSection, Input } from '../Components/common';
+
+const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 
 class Register extends React.Component {
     componentWillMount() {
@@ -33,7 +35,11 @@ class Register extends React.Component {
 
   render() {
     return (
-        <View>
+      <ImageBackground
+        source={backgroundpic}
+        style={styles.backgroundImage}
+      >
+
         <CardSection>
           <Input
             label="Email"
@@ -63,20 +69,49 @@ class Register extends React.Component {
           />
         </CardSection>
 
-        <CardSection>
+        <View style={styles.contract}>
             <Switch
                 onValueChange={(value) => this.props.switchchange(value)}
                 value={this.props.switchvalue}
             />
-            <Text> Accept Terms and Conditions </Text>
-            <Button onPress={this.onRegisterPress.bind(this)} >
-              Register
-            </Button>
-        </CardSection>
+            <Text style={{ backgroundColor: 'transparent' }}> Accept Terms and Conditions </Text>
+
         </View>
+
+        <View style={styles.buttonContainer}>
+          <Button onPress={this.onRegisterPress.bind(this)} >
+            Register
+          </Button>
+        </View>
+
+      </ImageBackground>
     );
   }
 }
+
+let styles = StyleSheet.create({
+    backgroundImage: {
+      flex: 1,
+      alignSelf: 'stretch',
+      alignItems: 'center',
+      paddingTop: 10
+    },
+    contract: {
+      padding: 15,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    buttonContainer: {
+      backgroundColor: 'transparent',
+      padding: 5,
+      paddingTop: 10,
+      flexDirection: 'row',
+      position: 'relative',
+      width: 150
+    }
+  }
+);
 
 const mapStateToProps = state => {
  return {

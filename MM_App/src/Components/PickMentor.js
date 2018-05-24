@@ -31,7 +31,7 @@ class PickMentor extends Component {
         this.props.MentorFetch();
         console.log('this is the PickMentor screen \n', this.props);
         console.log(
-            firebase.storage().ref('/images/cover.png').getDownloadURL()
+            firebase.storage().ref('/images/cover.png')
         );
     }
 

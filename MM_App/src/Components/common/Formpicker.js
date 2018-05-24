@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
   },
   labelStyle: {
     fontSize: 16,
+    color: '#929292'
   },
   pickerStyle: {
     paddingLeft: 30,

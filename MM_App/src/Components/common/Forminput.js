@@ -8,10 +8,9 @@ export default function MyTextInput(props) {
   return (
     <View style={styles.containerStyle}>
 
-      <Text style={styles.labelStyle}>{label}</Text>
-
       <View style={styles.inputContainerStyle}>
         <TextInput
+          placeholder={label}
           style={styles.inputStyle}
           {...inputProps}
           onChangeText={input.onChange}
@@ -34,30 +33,26 @@ const styles = {
   containerStyle: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     alignItems: 'flex-start',
     padding: 5,
-    marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 20,
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
   },
 
   inputContainerStyle: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    borderColor: '#ddd',
-    borderBottomWidth: 1,
     flex: 2 / 3
-  },
-
-  labelStyle: {
-    fontSize: 16,
-    paddingLeft: 5,
-    flex: 1 / 3// 1/4 of the space for the label
   },
 
   inputStyle: {
     color: '#000',
-    fontSize: 16,
-    lineHeight: 25, //space between each line of text
+    fontSize: 18,
+    lineHeight: 28, //space between each line of text
     flex: 1
   },
 };

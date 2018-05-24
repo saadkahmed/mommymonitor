@@ -39,7 +39,7 @@ const RegisterRouter = StackNavigator({
         navigationOptions: {
             title: 'Choose Your Mentor',
             gesturesEnabled: true
-        }
+        },
     }
 },
 {
