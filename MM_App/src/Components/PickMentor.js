@@ -31,7 +31,7 @@ class PickMentor extends Component {
         this.props.MentorFetch();
         console.log('this is the PickMentor screen \n', this.props);
         console.log(
-            //firebase.storage().ref('gs://mommymonitorapp.appspot.com/images/cover.png').getDownloadURL()
+            firebase.storage().ref('/images/cover.png').getDownloadURL()
         );
     }
 
@@ -43,7 +43,8 @@ class PickMentor extends Component {
                   <CardItem>
                       <Image
                           style={{ width: 100, height: 100, resizeMode: 'contain' }}
-                          source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/mommymonitorapp.appspot.com/o/images%2Fcover.png?alt=media&token=b9a8fd70-90ab-43f8-bf56-8000a745d0c1' }}
+                          source={{
+                              uri: item.pic }}
                       />
                   </CardItem>
                   <CardItem>

@@ -29,6 +29,7 @@ export const RootNavigator = StackNavigator({
     screen: RegisterRouter,
     navigationOptions: {
         gesturesEnabled: false,
+        header: null
         },
   },
   LoggedInRouter: {
@@ -36,8 +37,6 @@ export const RootNavigator = StackNavigator({
     navigationOptions: {
     },
   },
-{
-initialRouteName: MainScreen,
 }
 );
 
