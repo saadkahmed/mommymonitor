@@ -11,7 +11,8 @@
 #
 MM_App/.DS_Store
 
-
+#
+./APPLICATIONS \ USED
 # Xcode
 #
 build/
