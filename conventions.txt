@@ -1,6 +1,7 @@
 filenames should be all lowercase and no spacing use '_' for example this_is_a_good_file_name.txt
 
 but components should be capital "LoginForm.Js is a component.
+//** editing cannot be done in Atom IDE**//
 
 directory names / path names also be lowercase and be in camel case notation. try to make them meaningful
 lets not have the same path names in different folders
