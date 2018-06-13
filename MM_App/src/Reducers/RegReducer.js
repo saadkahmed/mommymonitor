@@ -33,9 +33,9 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case REGISTER_COMPLETE: { //register user complete
-        return INITIAL_STATE;
+        return INITIAL_STATE; // why wipe the state now
     }
-    
+
     case SWITCH_VALUE_CHANGED: {
         return { ...state, switchvalue: action.payload };
     }

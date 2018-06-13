@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import firebase from 'firebase';
-import { FlatList, Text, Image } from 'react-native';
+import { FlatList, Text, View, Image, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Card, CardItem, } from 'native-base';
 
@@ -38,16 +38,17 @@ class PickMentor extends Component {
     keyExtractor = (item) => item.id;
 
     renderItem = ({ item }) => (
-          <Container>
-              <Card>
-                  <CardItem>
-                      <Image
-                          style={{ width: 100, height: 100, resizeMode: 'contain' }}
+          <View style={styles.MainContainer}>
+            <View style={styles.SubContainer}>
+                  <View>
+                    <Image
+                          style={{ width: 100, height: 100, resizeMode: 'contain', margin: 3 }}
                           source={{
                               uri: item.pic }}
-                      />
-                  </CardItem>
-                  <CardItem>
+                    />
+                  </View>
+
+                    <View>
                       <Text>
                           Name: {item.name}
                           {'\n'}
@@ -61,16 +62,19 @@ class PickMentor extends Component {
                           {'\n'}
                           Phone Number: {item.phonenumber}
                           {'\n'}
-                          Prefered mode of communication: {item.pref}
+                          Contact: {item.pref}
                       </Text>
-                  </CardItem>
-                  <CardItem>
+
+                    </View>
+
+                  </View>
+
+                  <View>
                        <Button onPress={() => this.props.AssignMentor(item)} >
                            {item.name}
                        </Button>
-                  </CardItem>
-            </Card>
-          </Container>
+                  </View>
+          </View>
     );
     render() {
         return (
@@ -82,6 +86,17 @@ class PickMentor extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+  MainContainer: {
+    padding: 5,
+  },
+  SubContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 5
+  }
+});
 //cant scrooll all the way down?
 const mapStateToProps = state => {
     const mentors = _.map(state.PickMentor, (val, id) => {

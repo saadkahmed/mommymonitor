@@ -5,6 +5,7 @@ import Register from '../Components/Register';
 import PersonalInfo from '../Components/PersonalInfo';
 import PickPackage from '../Components/PickPackage';
 import PickMentor from '../Components/PickMentor';
+import RegistrationComplete from '../Components/RegistrationComplete';
 
 const RegisterRouter = StackNavigator({
     Register: {
@@ -40,6 +41,13 @@ const RegisterRouter = StackNavigator({
             title: 'Choose Your Mentor',
             gesturesEnabled: true
         },
+    RegistrationComplete: {
+      screen: RegistrationComplete,
+      navigationOptions: {
+          title: 'Choose Your Mentor',
+          gesturesEnabled: true
+        }
+      }
     }
 },
 {

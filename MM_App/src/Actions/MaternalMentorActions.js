@@ -34,7 +34,6 @@ export const AssignMentor = (mentor) => {
         firebase.database().ref(`/users/${currentUser.uid}/MaternalMentor/`)
             .set(mentor)
             .then(() => {
-                console.log('got here');
                 dispatch(navToLogin);
             })
             .catch((err) => {
