@@ -6,6 +6,9 @@
 ./MM_APP/.expo/
 
 #
+.expo/
+
+#
 ./MM_APP/App.js
 
 #
