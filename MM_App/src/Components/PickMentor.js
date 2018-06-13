@@ -3,7 +3,6 @@ import _ from 'lodash';
 import firebase from 'firebase';
 import { FlatList, Text, View, Image, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { Container, Card, CardItem, } from 'native-base';
 
 import {
     MentorChange,
@@ -30,11 +29,13 @@ class PickMentor extends Component {
     componentWillMount() {
         this.props.MentorFetch();
         console.log('this is the PickMentor screen \n', this.props);
-        console.log(
-             firebase.storage().ref('/images')
-         );
+        // Create a reference with an initial file path and name
+        firebase.storage().ref('images/cover.png').getDownloadURL()
+        .then((url) => {
+            console.log('this is the first url', url);
+        });
     }
-
+    
     keyExtractor = (item) => item.id;
 
     renderItem = ({ item }) => (
