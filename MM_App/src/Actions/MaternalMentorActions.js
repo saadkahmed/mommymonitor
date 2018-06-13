@@ -23,16 +23,18 @@ export const MentorFetch = () => {
     };
 };
 // using set because again i dont think we need a unqiue id for a persons MaternalMentor
+
+// this is where you would be the navigate to registration complete.
 export const AssignMentor = (mentor) => {
     const { currentUser } = firebase.auth();
-    const navToRegComplete = NavigationActions.navigate({
-             routeName: 'RegistrationComplete'
+    const navToLogin = NavigationActions.navigate({
+             routeName: 'MainScreen'
          });
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/MaternalMentor/`)
             .set(mentor)
             .then(() => {
-                dispatch(navToRegComplete);
+                dispatch(navToLogin);
             })
             .catch((err) => {
                 console.log(err);
