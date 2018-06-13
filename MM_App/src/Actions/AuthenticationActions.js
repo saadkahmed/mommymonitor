@@ -33,7 +33,7 @@ export const loginUser = ({ email, password }) => {
         routeName: 'PersonalInfo'
     });
     return (dispatch) => {
-        if (email === '' || password === '') {
+        if (email.trim() === '' || password.trim() === '') {
             err = 'Fields Left Blank';
         }
         dispatch({ type: LOGIN_USER });
