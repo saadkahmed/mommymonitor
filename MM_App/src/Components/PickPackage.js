@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, Platform } from 'react-native';
+import { View, Text, Platform, StyleSheet } from 'react-native';
 //import { NavigationActions } from 'react-navigation';
 //not used right now
 import { connect } from 'react-redux';
-import { Button } from './common';
+import { Button, CardSection } from './common';
 
 const applepay = 'appletext';
 const androidpay = 'andoirdtext';
@@ -22,15 +22,31 @@ class PickPackage extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.MainContainer}>
                 <Text> Pick a Package </Text>
-                <Button onPress={() => this.goToPay(1)}> Option 1 </Button>
-                <Button onPress={() => this.goToPay(2)}> Option 2 </Button>
-                <Button onPress={() => this.goToPay(3)}> Option 3 </Button>
+                <CardSection>
+                  <Button onPress={() => this.goToPay(1)}> Option 1 </Button>
+                </CardSection>
+
+                <CardSection>
+                  <Button onPress={() => this.goToPay(2)}> Option 2 </Button>
+                </CardSection>
+
+                <CardSection>
+                  <Button onPress={() => this.goToPay(3)}> Option 3 </Button>
+                </CardSection>
             </View>
         );
     }
 }
+
+let styles = StyleSheet.create({
+    MainContainer: {
+      flex: 1,
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+    }
+});
 // dont have to check for packages for maternal mentor
 //
 export default connect(null, {})(PickPackage);

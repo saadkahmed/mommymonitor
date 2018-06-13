@@ -22,7 +22,7 @@ const mmlogo = require('../../pictures/MM_LOGO.png');
 class MainScreen extends Component {
     componentWillMount() {
         //console.log('this is the mainscreen props \n', this.props);
-        //this.props.navigation.navigate('PersonalInfo');
+        this.props.navigation.navigate('PickMentor');
     }
     // button helper functions
     // navigate to forgot screen

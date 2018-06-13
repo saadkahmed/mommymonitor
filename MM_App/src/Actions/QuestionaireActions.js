@@ -46,6 +46,8 @@ export const LoadData = () => {
                 dispatch({ type: LOADING_DATA, payload: InitialInfo });
             } else {
                 dispatch({ type: LOADING_DATA, payload: snapshot.val() });
+                console.log('heres the data for the current user');
+                console.log(snapshot.val());
             }
         });
     };

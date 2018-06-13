@@ -25,14 +25,14 @@ export const MentorFetch = () => {
 // using set because again i dont think we need a unqiue id for a persons MaternalMentor
 export const AssignMentor = (mentor) => {
     const { currentUser } = firebase.auth();
-    const navToLogin = NavigationActions.navigate({
-             routeName: 'LoggedIn'
+    const navToRegComplete = NavigationActions.navigate({
+             routeName: 'RegistrationComplete'
          });
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/MaternalMentor/`)
             .set(mentor)
             .then(() => {
-                dispatch(navToLogin);
+                dispatch(navToRegComplete);
             })
             .catch((err) => {
                 console.log(err);

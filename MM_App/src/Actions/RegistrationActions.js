@@ -53,14 +53,14 @@ export const registerUser = ({ email, password, confirmPassword, switchvalue }) 
    if (err) {
        Alert.alert(err);
    } else {
-        dispatch({ type: REGISTER_USER });
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        dispatch({ type: REGISTER_USER }); // sets a loading flag
+        firebase.auth().createUserWithEmailAndPassword(email, password) //
         .then((user) => {
-            firebase.database().ref(`/users/${user.uid}/registration`)
-            .set({ complete: false });
-            console.log(user.uid);
-            dispatch(navToQuestionaire);
-            dispatch({ type: REGISTER_COMPLETE });
+            firebase.database().ref(`/users/${user.uid}/registration`) // get a reference to the user's database location
+            .set({ complete: false }); // creating the completion flag in the RT database
+            console.log(user.uid); // console log uid for reference
+            dispatch(navToQuestionaire); // move onto the next part of the questionnaire
+            dispatch({ type: REGISTER_COMPLETE }); // returns initial state ** dont know why
         }).catch((e) => {
             Alert.alert(e.message);
         });
