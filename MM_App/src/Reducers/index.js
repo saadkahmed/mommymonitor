@@ -6,6 +6,7 @@ import reg from './RegReducer';
 import forg from './ForgotReducer';
 import personalInfo from './PersonalInfoReducer';
 import PickMentor from './PickMentorReducer.js';
+import Questionnaire from './QuestionnaireReducer.js';
 
 export default combineReducers({
   auth,
@@ -14,5 +15,6 @@ export default combineReducers({
   forg,
   personalInfo,
   PickMentor,
+  Questionnaire,
   form: formReducer //redux form connection to store
 });
