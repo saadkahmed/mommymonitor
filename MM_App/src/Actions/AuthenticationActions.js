@@ -67,18 +67,20 @@ export const loginUser = ({ email, password }) => {
 };
 
 export const logoutUser = () => {
-  firebase
-    .auth()
-    .signOut()
-    .then(() => {
-      const { currentUser } = firebase.auth();
-      console.log(currentUser.uid);
-      const Logout = NavigationActions.navigate({
-        routeName: 'Main'
-      });
-      return dispatch => {
+  const navToMain = NavigationActions.navigate({
+    routeName: 'MainScreen'
+  });
+
+  return dispatch => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch(navToMain);
         dispatch({ type: LOGOUT_USER });
-        dispatch(Logout);
-      };
-    });
+      })
+      .catch(e => {
+          Alert.alert(e.message);
+      });
+  };
 };
