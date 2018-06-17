@@ -71,6 +71,7 @@ class Register extends React.Component {
 
         <View style={styles.contract}>
             <Switch
+                onTintColor='#852053'
                 onValueChange={(value) => this.props.switchchange(value)}
                 value={this.props.switchvalue}
             />
