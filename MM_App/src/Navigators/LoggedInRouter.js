@@ -2,7 +2,6 @@ import { DrawerNavigator } from 'react-navigation';
 
 import ProfileAnalytics from '../Components/ProfileAnalytics';
 import SettingsPage from '../Components/Settings';
-import Questionnaire from '../Components/Forms/Questionnaire';
 
 const LoggedInNavigator = DrawerNavigator(
   {
@@ -16,16 +15,9 @@ const LoggedInNavigator = DrawerNavigator(
       gesturesEnabled: true
     }
   },
-  Questionnaire: {
-    screen: Questionnaire,
-    navigationOptions: {
-      title: 'Questionnaire',
-      gesturesEnabled: true
-    }
-  }
 },
 {
-  initialRouteName: 'Questionnaire',
+  initialRouteName: 'Profile',
   drawerPosition: 'left',
 }
 

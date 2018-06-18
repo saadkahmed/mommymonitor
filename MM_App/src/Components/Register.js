@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Switch, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Switch, Text, StyleSheet, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 
 import { emailChangedReg,
@@ -39,25 +39,6 @@ class Register extends React.Component {
         source={backgroundpic}
         style={styles.backgroundImage}
       >
-<<<<<<< HEAD
-        <View style={{ justifyContent: 'flex-start', alignItems: 'center' }}>
-          <CardSection>
-            <Input
-              label="Email"
-              placeholder="JohnSmith@hotmail.com"
-              onChangeText={this.onEmailChange.bind(this)}
-              value={this.props.email}
-            />
-          </CardSection>
-
-          <CardSection>
-            <Input
-              onChangeText={this.onPasswordChange.bind(this)}
-              value={this.props.password}
-              label="Password"
-              placeholder="password"
-              secureTextEntry
-=======
 
         <CardSection>
           <Input
@@ -90,45 +71,18 @@ class Register extends React.Component {
 
         <View style={styles.contract}>
             <Switch
-                onTintColor='#852053'
                 onValueChange={(value) => this.props.switchchange(value)}
                 value={this.props.switchvalue}
->>>>>>> a5e6ceab1f932f885ff199f6596832e559091e8f
             />
-          </CardSection>
-
-          <CardSection>
-            <Input
-              onChangeText={this.onPasswordConfirmChange.bind(this)}
-              value={this.props.confirmPassword}
-              label="Confirm password"
-              placeholder="password"
-              secureTextEntry
-            />
-          </CardSection>
-
-          <View style={styles.contract}>
-              <Switch
-                  onValueChange={(value) => this.props.switchchange(value)}
-                  value={this.props.switchvalue}
-              />
-              <Text style={{ backgroundColor: 'transparent' }}> Accept Terms and Conditions </Text>
-
-          </View>
-
-          <View style={styles.buttonContainer}>
-            <Button onPress={this.onRegisterPress.bind(this)} >
-              Register
-            </Button>
-          </View>
+            <Text style={{ backgroundColor: 'transparent' }}> Accept Terms and Conditions </Text>
 
         </View>
 
-          <TouchableOpacity style={{ padding: 10, backgroundColor: 'transparent' }}>
-            <Text>
-              Are you a Maternal-Mentor?
-            </Text>
-          </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <Button onPress={this.onRegisterPress.bind(this)} >
+            Register
+          </Button>
+        </View>
 
       </ImageBackground>
     );
@@ -138,7 +92,7 @@ class Register extends React.Component {
 let styles = StyleSheet.create({
     backgroundImage: {
       flex: 1,
-      justifyContent: 'space-between',
+      alignSelf: 'stretch',
       alignItems: 'center',
       paddingTop: 10
     },

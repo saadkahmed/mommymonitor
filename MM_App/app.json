@@ -3,8 +3,8 @@
     "splash":{
       "image": "./pictures/MainScreen.png",
       "resizeMode": "cover"
-    },
-    "sdkVersion": "22.0.0",
-    "orientation": "portrait"
+            },
+
+    "sdkVersion": "22.0.0"
   }
 }

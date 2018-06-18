@@ -37,8 +37,3 @@ export const FORGOT_RESET = 'forgot_reset'; //never used
 //navigation types
 export const LOGIN = 'login';
 export const LOGOUT = 'logout';
-
-//questionnaire types
-export const QUESTIONNAIRE_FETCH_SUCCESS = 'questionnaire_fetch_success';
-export const QUESTIONNAIRE_FETCH_FAIL = 'questionnaire_fetch_fail';
-export const ANSWER_TEXT_CHANGED = 'answer_text_changed';
