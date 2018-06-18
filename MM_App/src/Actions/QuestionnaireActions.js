@@ -1,5 +1,8 @@
 import firebase from 'firebase';
-import { QUESTIONNAIRE_FETCH_SUCCESS, QUESTIONNAIRE_FETCH_FAIL,
+import {
+  QUESTIONNAIRE_FETCH_SUCCESS,
+  QUESTIONNAIRE_FETCH_FAIL,
+  ANSWER_TEXT_CHANGED
 } from './types';
 
 export const QuestionnaireFetch = () => {
@@ -13,5 +16,12 @@ export const QuestionnaireFetch = () => {
     } else {
       dispatch({ type: QUESTIONNAIRE_FETCH_FAIL });
     }
+  };
+};
+
+export const answerTextChanged = (id, answer) => {
+  return {
+    type: ANSWER_TEXT_CHANGED,
+    payload: { id, answer }
   };
 };
