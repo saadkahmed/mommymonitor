@@ -2,25 +2,39 @@ import React from 'react';
 import _ from 'lodash';
 import { FlatList, Text, TextInput, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-
-import { QuestionnaireFetch } from '../../Actions';
+import { QuestionnaireFetch, answerTextChanged } from '../../Actions';
 import { Button } from '../common';
+import { Ionicons } from '@expo/vector-icons';
+
+const UNCHECKED_ICON = 'ios-checkmark-circle-outline';
+const CHECKED_ICON = 'ios-checkmark-circle';
 
 class Questionnaire extends React.Component {
   componentWillMount() {
-    console.log(this.props);
     this.props.QuestionnaireFetch();
+  }
+
+  onAnswerTextChanged(id, answer) {
+    this.props.answerTextChanged(id, answer);
+  }
+
+  getIconName(id) {
+    if (this.props.answers[id] && this.props.answers[id].length !== 0) {
+      return CHECKED_ICON;
+    }
+    return UNCHECKED_ICON;
   }
 
   keyExtractor = (item) => item.id;
 
-  // TODO: Add check mark when user enters input
   renderItem = ({ item }) => (
         <View style={styles.itemContainer}>
+          <Ionicons name={this.getIconName(item.id)} size={32} color="#852053" />
           <View style={styles.itemSubContainer}>
             <Text style={styles.questionTextStyle}>{item.text}</Text>
             <TextInput
               style={styles.inputStyle}
+              onChangeText={(text) => this.onAnswerTextChanged(item.id, text)}
             />
           </View>
         </View>
@@ -54,10 +68,11 @@ class Questionnaire extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const questions = _.map(state.Questionnaire, (val, id) => {
+  const questions = _.map(state.Questionnaire.questions, (val, id) => {
     return { ...val, id };
   });
-  return { questions };
+  const answers = state.Questionnaire.answers;
+  return { questions, answers };
 };
 
 const styles = StyleSheet.create({
@@ -79,7 +94,8 @@ const styles = StyleSheet.create({
   },
   itemSubContainer: {
     paddingLeft: 8,
-    width: '100%'
+    flex: 1,
+    alignSelf: 'stretch'
   },
   buttonRow: {
     flexDirection: 'row',
@@ -99,4 +115,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps, { QuestionnaireFetch })(Questionnaire);
+export default connect(mapStateToProps, { QuestionnaireFetch, answerTextChanged })(Questionnaire);

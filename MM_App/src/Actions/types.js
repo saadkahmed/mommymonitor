@@ -41,3 +41,4 @@ export const LOGOUT = 'logout';
 //questionnaire types
 export const QUESTIONNAIRE_FETCH_SUCCESS = 'questionnaire_fetch_success';
 export const QUESTIONNAIRE_FETCH_FAIL = 'questionnaire_fetch_fail';
+export const ANSWER_TEXT_CHANGED = 'answer_text_changed';
