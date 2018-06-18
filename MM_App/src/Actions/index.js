@@ -1,5 +1,6 @@
 export * from './AuthenticationActions';
 export * from './RegistrationActions';
 export * from './ForgotPasswordActions';
-export * from './QuestionaireActions';
+export * from './PersonalInfoActions';
 export * from './MaternalMentorActions';
+export * from './QuestionnaireActions';
