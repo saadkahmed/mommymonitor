@@ -3,7 +3,10 @@
 .DS_Store
 
 #
-./MM_App/.expo/packager-info.json
+./MM_APP/.expo/
+
+#
+.expo/
 
 #
 ./MM_APP/App.js
