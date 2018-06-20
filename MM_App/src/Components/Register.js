@@ -39,26 +39,6 @@ class Register extends React.Component {
         source={backgroundpic}
         style={styles.backgroundImage}
       >
-<<<<<<< HEAD
-        <View style={{ justifyContent: 'flex-start', alignItems: 'center' }}>
-          <CardSection>
-            <Input
-              label="Email"
-              placeholder="JohnSmith@hotmail.com"
-              onChangeText={this.onEmailChange.bind(this)}
-              value={this.props.email}
-            />
-          </CardSection>
-
-          <CardSection>
-            <Input
-              onChangeText={this.onPasswordChange.bind(this)}
-              value={this.props.password}
-              label="Password"
-              placeholder="password"
-              secureTextEntry
-=======
-
         <CardSection>
           <Input
             label="Email"
@@ -87,26 +67,6 @@ class Register extends React.Component {
             secureTextEntry
           />
         </CardSection>
-
-        <View style={styles.contract}>
-            <Switch
-                onTintColor='#852053'
-                onValueChange={(value) => this.props.switchchange(value)}
-                value={this.props.switchvalue}
->>>>>>> a5e6ceab1f932f885ff199f6596832e559091e8f
-            />
-          </CardSection>
-
-          <CardSection>
-            <Input
-              onChangeText={this.onPasswordConfirmChange.bind(this)}
-              value={this.props.confirmPassword}
-              label="Confirm password"
-              placeholder="password"
-              secureTextEntry
-            />
-          </CardSection>
-
           <View style={styles.contract}>
               <Switch
                   onValueChange={(value) => this.props.switchchange(value)}
@@ -121,8 +81,6 @@ class Register extends React.Component {
               Register
             </Button>
           </View>
-
-        </View>
 
           <TouchableOpacity style={{ padding: 10, backgroundColor: 'transparent' }}>
             <Text>
