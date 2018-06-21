@@ -1,5 +1,7 @@
-import { CONVERSATION_FETCH_SUCCESS, CONVERSATION_FETCH_FAIL }
-from '../Actions/types';
+import {
+  CONVERSATION_FETCH_SUCCESS,
+  CONVERSATION_FETCH_FAIL
+} from '../Actions/types';
 
 const INITIAL_STATE = {};
 
