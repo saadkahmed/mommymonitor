@@ -6,29 +6,28 @@ import Questionnaire from '../Components/Forms/Questionnaire';
 
 const LoggedInNavigator = DrawerNavigator(
   {
-  Profile: {
-    screen: ProfileAnalytics,
-  },
-  Settings: {
-    screen: SettingsPage,
-    navigationOptions: {
-      title: 'Settings',
-      gesturesEnabled: true
+    Profile: {
+      screen: ProfileAnalytics
+    },
+    Settings: {
+      screen: SettingsPage,
+      navigationOptions: {
+        title: 'Settings',
+        gesturesEnabled: true
+      }
+    },
+    Questionnaire: {
+      screen: Questionnaire,
+      navigationOptions: {
+        title: 'Questionnaire',
+        gesturesEnabled: true
+      }
     }
   },
-  Questionnaire: {
-    screen: Questionnaire,
-    navigationOptions: {
-      title: 'Questionnaire',
-      gesturesEnabled: true
-    }
+  {
+    initialRouteName: 'Profile',
+    drawerPosition: 'left'
   }
-},
-{
-  initialRouteName: 'Questionnaire',
-  drawerPosition: 'left',
-}
-
 );
 
 export default LoggedInNavigator;
