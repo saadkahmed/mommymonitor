@@ -3,6 +3,7 @@ import { DrawerNavigator } from 'react-navigation';
 import ProfileAnalytics from '../Components/ProfileAnalytics';
 import SettingsPage from '../Components/Settings';
 import Questionnaire from '../Components/Forms/Questionnaire';
+import ConversationView from '../Components/Chat/ConversationView';
 
 const LoggedInNavigator = DrawerNavigator(
   {
@@ -22,10 +23,17 @@ const LoggedInNavigator = DrawerNavigator(
       title: 'Questionnaire',
       gesturesEnabled: true
     }
+  },
+  Chat: {
+    screen: ConversationView,
+    navigationOptions: {
+      title: 'Chat',
+      gesturesEnabled: true
+    }
   }
 },
 {
-  initialRouteName: 'Questionnaire',
+  initialRouteName: 'Chat',
   drawerPosition: 'left',
 }
 

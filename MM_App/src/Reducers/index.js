@@ -7,6 +7,7 @@ import forg from './ForgotReducer';
 import personalInfo from './PersonalInfoReducer';
 import PickMentor from './PickMentorReducer.js';
 import Questionnaire from './QuestionnaireReducer.js';
+import Chat from './ChatReducer.js';
 
 export default combineReducers({
   auth,
@@ -16,5 +17,6 @@ export default combineReducers({
   personalInfo,
   PickMentor,
   Questionnaire,
+  Chat,
   form: formReducer //redux form connection to store
 });
