@@ -1,21 +1,24 @@
 import React from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { FlatList } from 'react-native';
 
 import { MessageView } from './MessageView';
-import { conversationFetch } from '../../Actions';
+import { conversationFetch, messageFetch } from '../../Actions';
+
 
 class ConversationView extends React.Component {
   componentWillMount() {
     console.log('componentWillMount');
     console.log(this.props);
     this.props.conversationFetch();
+    this.props.messageFetch('convo_1');
   }
 
   keyExtractor = (item) => item.id;
 
   renderItem = ({ item }) => (
-    <MessageView text={item.text} />
+    <MessageView text={item.message} />
   );
 
   render() {
@@ -30,9 +33,11 @@ class ConversationView extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const messages = [{ text: 'Hello World!', id: 0 }, { text: 'Hi there!', id: 1 }];
+  const messages = _.map(state.Chat.messages, (val, id) => {
+    return { ...val, id };
+  });
   const conversationId = state.Chat.conversationId;
   return { messages, conversationId };
 };
 
-export default connect(mapStateToProps, { conversationFetch })(ConversationView);
+export default connect(mapStateToProps, { conversationFetch, messageFetch })(ConversationView);

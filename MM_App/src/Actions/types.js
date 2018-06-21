@@ -46,3 +46,5 @@ export const ANSWER_TEXT_CHANGED = 'answer_text_changed';
 //chat types
 export const CONVERSATION_FETCH_SUCCESS = 'conversation_fetch_success';
 export const CONVERSATION_FETCH_FAIL = 'conversation_fetch_fail';
+export const MESSAGE_FETCH_SUCCESS = 'message_fetch_success';
+export const MESSAGE_FETCH_FAIL = 'message_fetch_fail';
