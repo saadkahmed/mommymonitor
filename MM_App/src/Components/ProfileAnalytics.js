@@ -109,7 +109,7 @@ let styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    backgroundColor: '#FFEFF9'
+    backgroundColor: '#a32c80'
   },
   Profileheaderstyle: {
     flex: 0.3,
@@ -133,10 +133,12 @@ let styles = StyleSheet.create({
     height: 100
   },
   Profilenametextstyle: {
-    fontSize: 18
+    fontSize: 18,
+    color: 'white'
   },
   Profileexpectingtextstyle: {
-    fontSize: 12
+    fontSize: 12,
+    color: 'white'
   },
   Pseudoliststyle: {
     backgroundColor: '#F5F5F5',
