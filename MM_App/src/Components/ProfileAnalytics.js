@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { BarChart, Grid, XAxis } from 'react-native-svg-charts';
+import ChartView from 'react-native-highcharts';
 import { FetchQuestions } from '../Actions/ProfileAnalyticsActions';
 
 const profilePic = require('../../pictures/ProfilePic.png');
@@ -16,7 +16,8 @@ class ProfileAnalytics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      sleep: [],
+      stress: [],
       dates: []
     };
   }
@@ -30,7 +31,48 @@ class ProfileAnalytics extends React.Component {
   }
 
   render() {
-    const fill = 'rgb(134, 65, 244)';
+    const conf = {
+      chart: {
+        type: 'column'
+        //animation: Highcharts.svg, // don't animate in old IE
+        //marginRight: 10,
+      },
+      title: {
+        text: 'Stress & Sleep'
+      },
+      xAxis: {
+        type: 'datetime',
+        categories: this.state.dates
+      },
+      yAxis: {
+        title: {
+          text: 'Levels'
+        }
+      },
+      exporting: {
+        enabled: false
+      },
+      series: [
+        {
+          name: 'Stress',
+          data: this.state.stress
+        },
+        {
+          name: 'Sleep',
+          data: this.state.sleep
+        }
+      ]
+    };
+
+    const options = {
+      global: {
+        useUTC: false
+      },
+      lang: {
+        decimalPoint: ',',
+        thousandsSep: '.'
+      }
+    };
 
     return (
       <View style={styles.Mainviewstyle}>
@@ -46,18 +88,12 @@ class ProfileAnalytics extends React.Component {
         </View>
 
         <View style={styles.Pseudoliststyle}>
-          {this.state.data.length > 0 && (
+          {this.state.dates.length > 0 && (
             <View>
-              <BarChart
-                data={this.state.data}
-                svg={{ fill: 'black' }}
-                contentInset={{ top: 30, bottom: 30 }}
-              >
-                <Grid />
-              </BarChart>
+              <ChartView style={{ height: 300 }} config={conf} options={options} />
             </View>
           )}
-          {this.state.data.length == 0 && (
+          {this.state.dates.length == 0 && (
             <View>
               <Text> You Have No Stress Data </Text>
             </View>
@@ -102,7 +138,11 @@ let styles = StyleSheet.create({
   Profileexpectingtextstyle: {
     fontSize: 12
   },
-  Pseudoliststyle: { height: 200, padding: 20 }
+  Pseudoliststyle: {
+    backgroundColor: '#F5F5F5',
+    flex: 1.7,
+    height: 100
+  }
 });
 
 const mapStateToProps = state => {

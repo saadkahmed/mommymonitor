@@ -32,6 +32,8 @@
     "node-pre-gyp": "^0.10.0",
     "react": "^16.0.0-beta.5",
     "react-native": "0.49.5",
+    "react-native-highcharts": "^1.0.2",
+    "react-native-svg": "^6.3.1",
     "react-navigation": "^1.1.2",
     "react-navigation-redux-helpers": "^1.0.3",
     "react-redux": "^5.0.7",

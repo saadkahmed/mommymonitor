@@ -17,7 +17,8 @@ export const FetchQuestions = () => {
           temp.push(obj[key]);
         });
         data = temp.map(ele => {
-          return ele.one;
+          const { one, three } = ele;
+          return { one, three };
         });
         dispatch({ type: FETCH_QUESTIONS_SUCCESS, payload: { data, keys } });
       });

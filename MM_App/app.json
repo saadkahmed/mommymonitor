@@ -1,6 +1,6 @@
 {
   "expo": {
-    "splash":{
+    "splash": {
       "image": "./pictures/MainScreen.png",
       "resizeMode": "cover"
     },

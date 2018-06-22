@@ -2,13 +2,16 @@ import { FETCH_QUESTIONS_SUCCESS, FETCH_QUESTIONS_FAIL } from '../Actions/types'
 
 const INITIAL_STATE = {
   dates: [],
-  data: []
+  stress: [],
+  sleep: []
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_QUESTIONS_SUCCESS: {
-      return { ...state, data: action.payload.data, dates: action.payload.keys };
+      const stress = action.payload.data.map(data => data.one);
+      const sleep = action.payload.data.map(data => data.three);
+      return { ...state, stress, sleep, dates: action.payload.keys };
     }
     case FETCH_QUESTIONS_FAIL: {
       return INITIAL_STATE;
