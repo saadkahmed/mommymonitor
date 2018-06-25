@@ -8,7 +8,7 @@ const profilePic = require('../../pictures/ProfilePic.png');
 
 class ProfileAnalytics extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Profile',
+    title: 'YOUR ANALYSIS',
     gesturesEnabled: true,
     headerLeft: <Text onPress={() => navigation.navigate('DrawerOpen')}>Menu</Text>
   });
@@ -82,8 +82,8 @@ class ProfileAnalytics extends React.Component {
           </View>
 
           <View style={styles.Profiletextviewstyle}>
-            <Text style={styles.Profilenametextstyle}>Username: Bobby Green</Text>
-            <Text style={styles.Profileexpectingtextstyle}>Expecting Date: 4 months</Text>
+            <Text style={styles.Profilenametextstyle}>Bobby Green</Text>
+            <Text style={styles.Profileexpectingtextstyle}>Expecting Date in 4 months</Text>
           </View>
         </View>
 
