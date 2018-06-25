@@ -12,7 +12,13 @@ class ConversationView extends React.Component {
     console.log('componentWillMount');
     console.log(this.props);
     this.props.conversationFetch();
-    this.props.messageFetch('convo_1');
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log('componentDidUpdate');
+    if (this.props.conversationId !== prevProps.conversationId) {
+      this.props.messageFetch(this.props.conversationId);
+    }
   }
 
   keyExtractor = (item) => item.id;
