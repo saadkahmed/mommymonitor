@@ -1,7 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { FlatList, TextInput, View, StyleSheet, TouchableHighlight } from 'react-native';
+import { FlatList, TextInput, View, StyleSheet, TouchableHighlight, ImageBackground
+} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 import { MessageView } from './MessageView';
@@ -12,6 +13,8 @@ import {
   sendMessage,
   currentUserFetch
 } from '../../Actions';
+
+const backgroundpic = require('../../../pictures/BackgroundForPages.jpg');
 
 const SEND_MESSAGE_ENABLED = 'send';
 const SEND_MESSAGE_DISABLED = 'send-o';
@@ -51,14 +54,19 @@ class ConversationView extends React.Component {
   keyExtractor = (item) => item.id;
 
   renderItem = ({ item }) => (
-    <View style={this.getMessageStyle(item)}>
-      <MessageView text={item.message} />
+    <View style={styles.messageContainer}>
+      <View style={this.getMessageStyle(item)}>
+          <MessageView text={item.message} />
+      </View>
     </View>
   );
 
   render() {
     return (
-      <View style={styles.mainContainer}>
+      <ImageBackground
+        source={backgroundpic}
+        style={styles.backgroundImage}
+      >
         <FlatList
           style={styles.conversationList}
           data={this.props.messages}
@@ -72,12 +80,13 @@ class ConversationView extends React.Component {
             placeholder='Write Message'
             onChangeText={(text) => this.onMessageTextChanged(text)}
           />
-          <TouchableHighlight onPress={this.onSendPressed}>
-            <FontAwesome name={this.getIconName()} size={32} color="#852053" />
-          </TouchableHighlight>
+          <View style={styles.iconContainer}>
+            <TouchableHighlight onPress={this.onSendPressed}>
+              <FontAwesome name={this.getIconName()} size={24} color="#852053" />
+            </TouchableHighlight>
+          </View>
         </View>
-
-      </View>
+      </ImageBackground>
     );
   }
 }
@@ -93,38 +102,60 @@ const mapStateToProps = state => {
 };
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    justifyContent: 'flex-end',
+  backgroundImage: {
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'space-around',
+    //alignItems: 'center',
     flexDirection: 'column',
-    //backgroundColor: 'yellow',
     height: '100%'
   },
   inputContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    padding: 8
   },
   messageContainer: {
     width: '100%',
-    backgroundColor: 'yellow',
+    padding: 8
   },
   conversationList: {
-
+    padding: 8,
   },
   inputStyle: {
     height: 30,
     fontSize: 14,
     borderColor: '#bcbcbc',
-    borderWidth: 1,
-    width: '90%'
+    backgroundColor: '#FFFFFF',
+    borderWidth: 2,
+    width: '90%',
+    borderRadius: 10,
+    paddingLeft: 8,
+    paddingRight: 8
+  },
+  iconContainer: {
+    paddingTop: 4,
+    paddingLeft: 8
   },
   selfMessage: {
-    backgroundColor: 'green',
+    backgroundColor: '#e5c9d6',
     alignSelf: 'flex-end',
+    borderRadius: 10,
+    marginRight: 8,
+    marginLeft: 16,
+    minHeight: 30,
+    justifyContent: 'center',
+    padding: 8
   },
   otherMessage: {
-    backgroundColor: 'grey',
+    backgroundColor: '#dbdbdb',
     alignSelf: 'flex-start',
+    borderRadius: 10,
+    marginLeft: 8,
+    marginRight: 16,
+    minHeight: 30,
+    justifyContent: 'center',
+    padding: 8
   }
-
 });
 
 export default connect(mapStateToProps, { conversationFetch, messageFetch, onMessageTextChanged, sendMessage, currentUserFetch })(ConversationView);

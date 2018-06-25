@@ -27,7 +27,7 @@ const LoggedInNavigator = DrawerNavigator(
   Chat: {
     screen: ConversationView,
     navigationOptions: {
-      title: 'Chat',
+      title: 'Messages',
       gesturesEnabled: true
     }
   }
