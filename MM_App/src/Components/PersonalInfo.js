@@ -4,13 +4,9 @@ import { connect } from 'react-redux';
 
 import { UpdateInfo, LoadData } from '../Actions';
 import Registration from './Forms/Registration2';
-//expecting date not being sent properly in values and saved
-//check for error
+
 class RegisterInfo extends Component {
   componentWillMount() {
-    //console.log('this is the PersonalInfo screen \n', this.props);
-    //load previous data into form
-    //should we have unique keys for user info? is this really needed?
     this.props.LoadData();
   }
   Registration2Submit(values) {
