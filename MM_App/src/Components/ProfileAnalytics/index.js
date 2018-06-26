@@ -43,7 +43,7 @@ class ProfileAnalytics extends React.Component {
         series: { ...config.plotOptions.series, borderColor: '#3ad2ea', color: '#3ad2ea' }
       },
       xAxis: { ...config.xAxis, categories: this.state.dates },
-      series: [{ data: this.state.sleep }]
+      series: [{ data: this.state.sleep, name: 'Sleep' }]
     };
 
     const conf2 = {
@@ -55,7 +55,7 @@ class ProfileAnalytics extends React.Component {
         series: { ...config.plotOptions.series, borderColor: '#9d7bea', color: '#9d7bea' }
       },
       xAxis: { ...config.xAxis, categories: this.state.dates },
-      series: [{ data: this.state.stress }]
+      series: [{ data: this.state.stress, name: 'Stress' }]
     };
 
     const options = {
