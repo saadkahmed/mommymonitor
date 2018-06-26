@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import Button from './common/Button';
 import ChartView from 'react-native-highcharts';
 import { FetchQuestions } from '../Actions/ProfileAnalyticsActions';
 
@@ -31,46 +32,110 @@ class ProfileAnalytics extends React.Component {
   }
 
   render() {
-    const conf = {
+    const conf1 = {
       chart: {
-        type: 'column'
-        //animation: Highcharts.svg, // don't animate in old IE
-        //marginRight: 10,
+        type: 'column',
+        backgroundColor: '#24c4dc',
+        borderRadius: 4
       },
       title: {
-        text: 'Stress & Sleep'
+        text: 'Sleep',
+        floating: true,
+        align: 'left',
+        x: 0,
+        y: 10,
+        style: {
+          color: 'white',
+          fontWeight: 'bold',
+          fontSize: 20
+        }
+      },
+      plotOptions: {
+        series: {
+          borderColor: '#3ad2ea',
+          color: '#3ad2ea'
+        }
       },
       xAxis: {
         type: 'datetime',
-        categories: this.state.dates
+        categories: this.state.dates,
+        labels: {
+          style: {
+            color: 'white'
+          }
+        }
       },
       yAxis: {
-        title: {
-          text: 'Levels'
-        }
+        visible: false
       },
       exporting: {
         enabled: false
       },
+      legend: {
+        enabled: false
+      },
       series: [
         {
-          name: 'Stress',
-          data: this.state.stress
-        },
-        {
-          name: 'Sleep',
           data: this.state.sleep
         }
       ]
     };
 
-    const options = {
-      global: {
-        useUTC: false
+    const conf2 = {
+      chart: {
+        type: 'column',
+        backgroundColor: '#8660e9',
+        borderRadius: 4
       },
-      lang: {
-        decimalPoint: ',',
-        thousandsSep: '.'
+      title: {
+        text: 'Stress',
+        floating: true,
+        align: 'left',
+        x: 0,
+        y: 10,
+        style: {
+          color: 'white',
+          fontWeight: 'bold',
+          fontSize: 20
+        }
+      },
+      plotOptions: {
+        series: {
+          borderColor: '#9d7bea',
+          color: '#9d7bea'
+        }
+      },
+      xAxis: {
+        type: 'datetime',
+        categories: this.state.dates,
+        labels: {
+          style: {
+            color: 'white'
+          }
+        }
+      },
+      yAxis: {
+        visible: false
+      },
+      exporting: {
+        enabled: false
+      },
+      legend: {
+        enabled: false
+      },
+      series: [
+        {
+          data: this.state.stress
+        }
+      ]
+    };
+
+    const options = {
+      chart: {
+        //backgroundColor: '#8a68e4'
+        title: {
+          enabled: false
+        }
       }
     };
 
@@ -83,14 +148,15 @@ class ProfileAnalytics extends React.Component {
 
           <View style={styles.Profiletextviewstyle}>
             <Text style={styles.Profilenametextstyle}>Bobby Green</Text>
-            <Text style={styles.Profileexpectingtextstyle}>Expecting Date in 4 months</Text>
+            <Text style={styles.Profileexpectingtextstyle}>Expected Date in 4 months</Text>
           </View>
         </View>
 
         <View style={styles.Pseudoliststyle}>
           {this.state.dates.length > 0 && (
-            <View>
-              <ChartView style={{ height: 300 }} config={conf} options={options} />
+            <View style={{ marginLeft: 10, marginRight: 10 }}>
+              <ChartView style={styles.Chartstyle} config={conf1} options={options} />
+              <ChartView style={styles.Chartstyle} config={conf2} options={options} />
             </View>
           )}
           {this.state.dates.length == 0 && (
@@ -98,13 +164,17 @@ class ProfileAnalytics extends React.Component {
               <Text> You Have No Stress Data </Text>
             </View>
           )}
+          <Text style={{ alignSelf: 'center' }}>
+            A care package has been created to assist you with these outcomes.
+          </Text>
+          <Button>CONTACT NOW</Button>
         </View>
       </View>
     );
   }
 }
 
-let styles = StyleSheet.create({
+const styles = StyleSheet.create({
   Mainviewstyle: {
     flex: 1,
     flexDirection: 'column',
@@ -129,12 +199,12 @@ let styles = StyleSheet.create({
     flex: 1.5,
     flexDirection: 'column',
     justifyContent: 'center',
-    marginBottom: 15,
     height: 100
   },
   Profilenametextstyle: {
-    fontSize: 18,
-    color: 'white'
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold'
   },
   Profileexpectingtextstyle: {
     fontSize: 12,
@@ -144,6 +214,11 @@ let styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     flex: 1.7,
     height: 100
+  },
+  Chartstyle: {
+    marginTop: 5,
+    height: 200,
+    borderRadius: 2
   }
 });
 
