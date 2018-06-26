@@ -164,10 +164,12 @@ class ProfileAnalytics extends React.Component {
               <Text> You Have No Stress Data </Text>
             </View>
           )}
-          <Text style={{ alignSelf: 'center' }}>
-            A care package has been created to assist you with these outcomes.
-          </Text>
-          <Button>CONTACT NOW</Button>
+          <View style={{ alignSelf: 'center', width: 250, margin: 10 }}>
+            <Text>A care package has been created to assist you with these outcomes.</Text>
+          </View>
+          <View style={{ alignSelf: 'center', height: 45, width: 300 }}>
+            <Button>CONTACT NOW</Button>
+          </View>
         </View>
       </View>
     );
@@ -217,8 +219,7 @@ const styles = StyleSheet.create({
   },
   Chartstyle: {
     marginTop: 5,
-    height: 200,
-    borderRadius: 2
+    height: 200
   }
 });
 
