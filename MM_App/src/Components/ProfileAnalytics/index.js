@@ -74,7 +74,7 @@ class ProfileAnalytics extends React.Component {
           </View>
 
           <View style={styles.Profiletextviewstyle}>
-            <Text style={styles.Profilenametextstyle}>Bobby Green 2</Text>
+            <Text style={styles.Profilenametextstyle}>Bobby Green</Text>
             <Text style={styles.Profileexpectingtextstyle}>Expected Date in 4 months</Text>
           </View>
         </View>
