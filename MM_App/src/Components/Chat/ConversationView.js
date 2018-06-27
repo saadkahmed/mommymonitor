@@ -35,10 +35,14 @@ class ConversationView extends React.Component {
 
   onMessageTextChanged = (text) => this.props.onMessageTextChanged(text);
 
-  onSendPressed = () => this.props.sendMessage(this.props.conversationId, this.props.newMessage);
+  onSendPressed = () => {
+    if (this.props.newMessage && this.props.newMessage.length !== 0) {
+      this.props.sendMessage(this.props.conversationId, this.props.newMessage);
+    }
+  }
 
   getIconName() {
-    if (this.props.newMessage !== undefined && this.props.newMessage.length !== 0) {
+    if (this.props.newMessage && this.props.newMessage.length !== 0) {
       return SEND_MESSAGE_ENABLED;
     }
     return SEND_MESSAGE_DISABLED;
