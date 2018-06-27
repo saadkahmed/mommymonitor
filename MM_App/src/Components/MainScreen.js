@@ -21,9 +21,7 @@ const mmlogo = require('../../pictures/MM_LOGO.png');
 // dont allow landscape mode
 class MainScreen extends Component {
     componentWillMount() {
-      //ama testing
-      //this.props.loginUser({ email: 'Test2@test.ca', password: '123456' });
-      //console.log('this is the mainscreen props \n', this.props);
+      console.log('this is the mainscreen props \n', this.props);
     }
     // button helper functions
     // navigate to forgot screen
@@ -39,9 +37,6 @@ class MainScreen extends Component {
 
     //attempt to log user in
     onLoginPress() {
-      //ama testing
-      //this.props.loginUser({ email: 'Test3@test.ca', password: '123456' });
-
       const { email, password } = this.props; // destructuring email and pass for login verification
       this.props.loginUser({ email, password }); //loginUser is expecting an object
       }

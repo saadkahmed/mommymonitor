@@ -106,7 +106,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'stretch',
     justifyContent: 'space-around',
-    //alignItems: 'center',
     flexDirection: 'column',
     height: '100%'
   },
