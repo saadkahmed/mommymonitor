@@ -23,7 +23,9 @@ export const phonecheck = value =>
     : undefined);
 
 const postalcheck = value =>
-  (value && !/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/.test(value) ? 'Invalid Postal Code' : undefined);
+  (value && !/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/.test(value)
+  ? 
+  'Invalid Postal Code' : undefined);
 
 const Registration2 = props => {
   const { handleSubmit } = props;
