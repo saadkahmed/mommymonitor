@@ -1,7 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { FlatList, TextInput, View, StyleSheet, TouchableHighlight, ImageBackground
+import {
+  FlatList,
+  TextInput,
+  View,
+  StyleSheet,
+  TouchableHighlight,
+  ImageBackground
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -41,6 +47,10 @@ class ConversationView extends React.Component {
     }
   }
 
+  onContentSizeChange = (contentWidth, contentHeight) => {
+    this.refs.flatList.scrollToEnd({ animated: true });
+  }
+
   getIconName() {
     if (this.props.newMessage && this.props.newMessage.length !== 0) {
       return SEND_MESSAGE_ENABLED;
@@ -65,18 +75,22 @@ class ConversationView extends React.Component {
     </View>
   );
 
+
   render() {
     return (
       <ImageBackground
         source={backgroundpic}
         style={styles.backgroundImage}
       >
-        <FlatList
-          style={styles.conversationList}
-          data={this.props.messages}
-          renderItem={this.renderItem}
-          keyExtractor={this.keyExtractor}
-        />
+        <View style={{ flex: 1 }}>
+          <FlatList
+            onContentSizeChange={this.onContentSizeChange}
+            ref='flatList'
+            style={styles.conversationList}
+            data={this.props.messages}
+            keyExtractor={this.keyExtractor}
+          />
+        </View>
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputStyle}
@@ -161,4 +175,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps, { conversationFetch, messageFetch, onMessageTextChanged, sendMessage, currentUserFetch })(ConversationView);
+export default connect(mapStateToProps, {
+  conversationFetch,
+  messageFetch,
+  onMessageTextChanged,
+  sendMessage,
+  currentUserFetch
+})(ConversationView);
