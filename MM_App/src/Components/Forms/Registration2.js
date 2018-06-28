@@ -157,7 +157,7 @@ const Registration2 = props => {
           component={NewFormDatePicker}
         />
 
-        <Button onPress={handleSubmit}>continue</Button>
+        <Button onPress={handleSubmit}>Continue</Button>
       </ScrollView>
     </View>
   );
