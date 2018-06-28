@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 
 import { UpdateInfo, LoadData } from '../Actions';
-import Registration from './Forms/Registration2';
+import ProfileRegistration from './Forms/ProfileRegistration';
 
 class RegisterInfo extends Component {
   componentWillMount() {
@@ -16,7 +16,7 @@ class RegisterInfo extends Component {
   render() {
     return (
       <View>
-        <Registration onSubmit={values => this.Registration2Submit(values)} />
+        <ProfileRegistration onSubmit={values => this.Registration2Submit(values)} />
       </View>
     );
   }

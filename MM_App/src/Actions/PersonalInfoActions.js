@@ -3,7 +3,7 @@ import { NavigationActions } from 'react-navigation';
 import { MAININFORMATIONUPDATE, LOADING_DATA } from './types';
 
 const InitialInfo = {
-  age: '20',
+  age: '18',
   current_children: '0',
   ethnicity: '1',
   expecting_date: new Date(),
@@ -38,7 +38,7 @@ export const UpdateInfo = Obj => {
 
 export const LoadData = () => {
   const { currentUser } = firebase.auth();
-  //pull the infor and pass it to payload
+  //pull the info and pass it to payload
   return dispatch => {
     firebase
       .database()
@@ -48,8 +48,6 @@ export const LoadData = () => {
           dispatch({ type: LOADING_DATA, payload: InitialInfo });
         } else {
           dispatch({ type: LOADING_DATA, payload: snapshot.val() });
-          console.log('heres the data for the current user');
-          console.log(snapshot.val());
         }
       });
   };
