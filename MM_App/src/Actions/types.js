@@ -42,3 +42,12 @@ export const LOGOUT = 'logout';
 export const QUESTIONNAIRE_FETCH_SUCCESS = 'questionnaire_fetch_success';
 export const QUESTIONNAIRE_FETCH_FAIL = 'questionnaire_fetch_fail';
 export const ANSWER_TEXT_CHANGED = 'answer_text_changed';
+
+//chat types
+export const CONVERSATION_FETCH_SUCCESS = 'conversation_fetch_success';
+export const CONVERSATION_FETCH_FAIL = 'conversation_fetch_fail';
+export const MESSAGE_FETCH_SUCCESS = 'message_fetch_success';
+export const MESSAGE_FETCH_FAIL = 'message_fetch_fail';
+export const MESSAGE_TEXT_CHANGED = 'message_text_changed';
+export const MESSAGE_SEND_SUCCESS = 'message_send_success';
+export const USER_FETCH_SUCCESS = 'user_fetch_success';
