@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import {
   mentorNameChanged,
   mentorEmailChanged,
-  mentorPhoneChanged
+  mentorPhoneChanged,
+  sendMentorRequest
 } from '../Actions';
 
 import { Button, CardSection, Input } from '../Components/common';
@@ -23,7 +24,10 @@ class MentorRegister extends React.Component {
     this.props.mentorPhoneChanged(text);
   }
   onRegisterPress() {
-    console.log('onRegisterPress');
+    const name = this.props.name;
+    const email = this.props.email;
+    const phone = this.props.phone;
+    this.props.sendMentorRequest({ name, email, phone });
   }
 
   render() {
@@ -105,4 +109,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   mentorNameChanged,
   mentorEmailChanged,
-  mentorPhoneChanged })(MentorRegister);
+  mentorPhoneChanged,
+  sendMentorRequest
+})(MentorRegister);

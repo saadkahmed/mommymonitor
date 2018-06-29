@@ -22,6 +22,7 @@ export const SWITCH_VALUE_CHANGED = 'switch_value_changed';
 export const MENTOR_NAME_CHANGED = 'mentor_name_changed';
 export const MENTOR_EMAIL_CHANGED = 'mentor_email_changed';
 export const MENTOR_PHONE_CHANGED = 'mentor_phone_changed';
+export const MENTOR_REQUEST_SUCCESS = 'mentor_request_success';
 
 export const LOADING_DATA = 'loading_data';
 //MaternalMentors types
