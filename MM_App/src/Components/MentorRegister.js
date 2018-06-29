@@ -2,11 +2,26 @@ import React from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 
+import {
+  mentorNameChanged,
+  mentorEmailChanged,
+  mentorPhoneChanged
+} from '../Actions';
+
 import { Button, CardSection, Input } from '../Components/common';
 
 const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 
 class MentorRegister extends React.Component {
+  onNameChange = (text) => {
+    this.props.mentorNameChanged(text);
+  }
+  onEmailChange = (text) => {
+    this.props.mentorEmailChanged(text);
+  }
+  onPhoneChange = (text) => {
+    this.props.mentorPhoneChanged(text);
+  }
   onRegisterPress() {
     console.log('onRegisterPress');
   }
@@ -22,18 +37,24 @@ class MentorRegister extends React.Component {
             <Input
               label="Name"
               placeholder="John Smith"
+              onChangeText={this.onNameChange}
+              value={this.props.name}
             />
           </CardSection>
           <CardSection>
             <Input
               label="Email"
               placeholder="JohnSmith@hotmail.com"
+              onChangeText={this.onEmailChange}
+              value={this.props.email}
             />
           </CardSection>
           <CardSection>
             <Input
               label="Phone"
               placeholder="(647)-123-4567"
+              onChangeText={this.onPhoneChange}
+              value={this.props.phone}
             />
           </CardSection>
           <View style={styles.buttonContainer}>
@@ -75,7 +96,13 @@ let styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
+    name: state.MentorRegister.name,
+    email: state.MentorRegister.email,
+    phone: state.MentorRegister.phone
   };
 };
 
-export default connect(mapStateToProps, {})(MentorRegister);
+export default connect(mapStateToProps, {
+  mentorNameChanged,
+  mentorEmailChanged,
+  mentorPhoneChanged })(MentorRegister);
