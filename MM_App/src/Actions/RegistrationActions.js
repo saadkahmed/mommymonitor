@@ -76,4 +76,12 @@ export const registerUser = ({ email, password, confirmPassword, switchvalue }) 
   };
 };
 
+export const mentorRegister = () => {
+  return dispatch => {
+    dispatch(NavigationActions.navigate({
+      routeName: 'MentorRegister'
+    }));
+  };
+};
+
 // right now we are navigating straight to maternal mentor selection change this latter
