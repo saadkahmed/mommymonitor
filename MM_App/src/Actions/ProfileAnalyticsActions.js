@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import _ from 'lodash';
 import { FETCH_QUESTIONS_SUCCESS, FETCH_QUESTIONS_FAIL } from './types';
 
 export const FetchQuestions = () => {
@@ -13,10 +14,10 @@ export const FetchQuestions = () => {
         const keys = Object.keys(obj);
         const temp = [];
         let data = [];
-        keys.forEach(key => {
+        _.forEach(keys, key => {
           temp.push(obj[key]);
         });
-        data = temp.map(ele => {
+        data = _.map(temp, ele => {
           const { one, three } = ele;
           return { one, three };
         });
