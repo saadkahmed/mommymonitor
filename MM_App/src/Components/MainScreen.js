@@ -31,7 +31,7 @@ class MainScreen extends Component {
 
     // navigate to register screen
     onRegisterPress() {
-      this.props.navigation.navigate('Register');
+      this.props.navigation.navigate('RegisterRouter');
     }
 
     //attempt to log user in
