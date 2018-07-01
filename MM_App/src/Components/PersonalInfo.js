@@ -40,7 +40,7 @@ class PersonalInfo extends Component {
           firebase
             .database()
             .ref(`/users/${currentUser.uid}/userinfo`)
-            .update({ ...values, expecting_date: values.expecting_date.toString() })
+            .update({ ...values })
             .then(() => {
                 this.props.navigation.navigate('PregnancyInfo');
             })
