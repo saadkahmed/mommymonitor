@@ -18,10 +18,9 @@ const mmlogo = require('../../pictures/MM_LOGO.png');
 // how do we compensate the user????
 // -elise we will have customer service number/email
 
-// dont allow landscape mode
 class MainScreen extends Component {
     componentWillMount() {
-        //console.log('this is the mainscreen props \n', this.props);
+      console.log('this is the mainscreen props \n', this.props);
     }
     // button helper functions
     // navigate to forgot screen

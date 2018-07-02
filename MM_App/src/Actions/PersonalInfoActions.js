@@ -2,21 +2,12 @@ import firebase from 'firebase';
 import { NavigationActions } from 'react-navigation';
 import { MAININFORMATIONUPDATE, LOADING_DATA } from './types';
 
-const InitialInfo = {
-  age: '20',
-  current_children: '0',
-  ethnicity: '1',
-  expecting_date: new Date(),
-  first_name: 'first',
-  last_name: 'last',
-  marital_status: '1',
-  number_children: '0',
-  phone_number: '',
-  postal_code: '',
-  trimester: '0'
+export const UpdateInfo = Obj => {
+    console.log(Obj);
+  return { type: MAININFORMATIONUPDATE, payload: Obj };
 };
 
-export const UpdateInfo = Obj => {
+export const SendInfo = Obj => {
   const { currentUser } = firebase.auth();
   const navToLogin = NavigationActions.navigate({
     routeName: 'PickPackage'
@@ -38,18 +29,16 @@ export const UpdateInfo = Obj => {
 
 export const LoadData = () => {
   const { currentUser } = firebase.auth();
-  //pull the infor and pass it to payload
+  //pull the info and pass it to payload
   return dispatch => {
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/userinfo`)
       .on('value', snapshot => {
         if (snapshot.val() === null) {
-          dispatch({ type: LOADING_DATA, payload: InitialInfo });
+          dispatch({ type: LOADING_DATA });
         } else {
           dispatch({ type: LOADING_DATA, payload: snapshot.val() });
-          console.log('heres the data for the current user');
-          console.log(snapshot.val());
         }
       });
   };

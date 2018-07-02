@@ -1,10 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
+import { Ionicons } from '@expo/vector-icons';
 import { FlatList, Text, TextInput, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { QuestionnaireFetch, answerTextChanged } from '../../Actions';
 import { Button } from '../common';
-import { Ionicons } from '@expo/vector-icons';
 
 const UNCHECKED_ICON = 'ios-checkmark-circle-outline';
 const CHECKED_ICON = 'ios-checkmark-circle';
