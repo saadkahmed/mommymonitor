@@ -65,7 +65,6 @@ export const registerUser = ({ email, password, confirmPassword, switchvalue }) 
             .ref(`/users/${user.uid}/registration`)
             // get a reference to the user's database location
             .set({ complete: false }); // creating the completion flag in the RT database
-          console.log(user.uid); // console log uid for reference
           dispatch(navToPersonalInfo); // move onto the next part of the questionnaire
           dispatch({ type: REGISTER_COMPLETE }); // returns initial state ** dont know why
         })
@@ -75,5 +74,3 @@ export const registerUser = ({ email, password, confirmPassword, switchvalue }) 
     }
   };
 };
-
-// right now we are navigating straight to maternal mentor selection change this latter

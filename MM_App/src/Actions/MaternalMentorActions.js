@@ -1,6 +1,7 @@
 import firebase from 'firebase';
-import { NavigationActions } from 'react-navigation';
+//import { NavigationActions } from 'react-navigation';
 import { MENTOR_FETCH_SUCCESS, MENTOR_FETCH_FAILED } from './types';
+import { logoutUser } from '../Actions';
 
 export const MentorChange = Obj => {
     console.log(Obj);
@@ -27,16 +28,20 @@ export const MentorFetch = () => {
 // this is where you would be the navigate to registration complete.
 export const AssignMentor = mentor => {
     const { currentUser } = firebase.auth();
-    const navToLogin = NavigationActions.navigate({
-        routeName: 'MainScreen'
-    });
+    // const navToLogin = NavigationActions.navigate({
+    //     routeName: 'MainScreen'
+    // }); we can just use logout user at this point
     return dispatch => {
         firebase
             .database()
             .ref(`/users/${currentUser.uid}/MaternalMentor/`)
             .set(mentor)
             .then(() => {
-                dispatch(navToLogin);
+                firebase
+                .database()
+                .ref(`/users/${currentUser.uid}/registration`)
+                .set({ complete: true });
+                dispatch(logoutUser);
             })
             .catch(err => {
                 console.log(err);

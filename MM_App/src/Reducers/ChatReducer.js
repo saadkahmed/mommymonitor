@@ -11,7 +11,6 @@ import {
 const INITIAL_STATE = {};
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(`ChatReducer: ${action.type}`);
   switch (action.type) {
     case CONVERSATION_FETCH_SUCCESS: {
       return { ...state, conversationId: action.payload.conversation_id };

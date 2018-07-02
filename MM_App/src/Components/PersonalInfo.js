@@ -1,12 +1,10 @@
 import firebase from 'firebase';
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Picker, Image, } from 'react-native';
-
 import ExTextInput from './common/ExTextInput';
 import Button from './common/Button';
 
 const backgroundpic = require('./../../pictures/BackgroundForPages.jpg');
-
 // need to add input checking
 
 class PersonalInfo extends Component {
@@ -199,7 +197,6 @@ const styles = {
     paddingLeft: 10,
     fontSize: 20,
     color: '#00bbdd',
-    fontFamily: 'Futura-CondensedMedium'
     },
     pickerStyle: {
       paddingLeft: 30,

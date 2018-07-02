@@ -1,11 +1,18 @@
 import firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Picker, Image, Platform, DatePickerIOS } from 'react-native';
+import {
+    View,
+    Text,
+    ScrollView,
+    Picker,
+    Image,
+    Platform,
+    DatePickerIOS,
+    } from 'react-native';
 import Button from './common/Button';
 
 const backgroundpic = require('./../../pictures/BackgroundForPages.jpg');
 
-const OtherFormdatepicker = null;
 // try {
 //   const {action, year, month, day} = await DatePickerAndroid.open({
 //     // Use `new Date()` for current date.
@@ -18,7 +25,7 @@ const OtherFormdatepicker = null;
 // } catch ({code, message}) {
 //   console.warn('Cannot open date picker', message);
 // };
-const NewFormDatePicker = Platform.OS === 'ios' ? DatePickerIOS : OtherFormdatepicker;
+const NewFormDatePicker = Platform.OS === 'ios' ? DatePickerIOS : DatePickerAndroid;
 //****************USE THIS FOR ANDROID OR IOS DEV***********************************
 
 // need to add input checking
@@ -79,9 +86,9 @@ class PregnancyInfo extends Component {
                         this.setState({ trimester: value });
                      }}
                 >
-                <Picker.Item label="First Trimester" value="0" />
-                <Picker.Item label="Second Trimester" value="1" />
-                <Picker.Item label="Third Trimester" value="2" />
+                    <Picker.Item label="First Trimester" value="0" />
+                    <Picker.Item label="Second Trimester" value="1" />
+                    <Picker.Item label="Third Trimester" value="2" />
                 </Picker>
 
                 <Picker
@@ -90,13 +97,13 @@ class PregnancyInfo extends Component {
                         this.setState({ number_children: value });
                      }}
                 >
-                <Picker.Item label="0" value="0" />
-                <Picker.Item label="1" value="1" />
-                <Picker.Item label="2" value="2" />
-                <Picker.Item label="3" value="3" />
-                <Picker.Item label="4" value="4" />
-                <Picker.Item label="5" value="5" />
-                <Picker.Item label="6" value="6" />
+                    <Picker.Item label="0" value="0" />
+                    <Picker.Item label="1" value="1" />
+                    <Picker.Item label="2" value="2" />
+                    <Picker.Item label="3" value="3" />
+                    <Picker.Item label="4" value="4" />
+                    <Picker.Item label="5" value="5" />
+                    <Picker.Item label="6" value="6" />
                 </Picker>
 
                 <Picker
@@ -105,13 +112,13 @@ class PregnancyInfo extends Component {
                         this.setState({ current_children: value });
                      }}
                 >
-                <Picker.Item label="0" value="0" />
-                <Picker.Item label="1" value="1" />
-                <Picker.Item label="2" value="2" />
-                <Picker.Item label="3" value="3" />
-                <Picker.Item label="4" value="4" />
-                <Picker.Item label="5" value="5" />
-                <Picker.Item label="6" value="6" />
+                    <Picker.Item label="0" value="0" />
+                    <Picker.Item label="1" value="1" />
+                    <Picker.Item label="2" value="2" />
+                    <Picker.Item label="3" value="3" />
+                    <Picker.Item label="4" value="4" />
+                    <Picker.Item label="5" value="5" />
+                    <Picker.Item label="6" value="6" />
                 </Picker>
 
                 <NewFormDatePicker
@@ -126,7 +133,6 @@ class PregnancyInfo extends Component {
                 >
                     Submit and Continue
                 </Button>
-
             </ScrollView>
         </View>
     );
@@ -139,7 +145,6 @@ const styles = {
     paddingLeft: 10,
     fontSize: 20,
     color: '#00bbdd',
-    fontFamily: 'Futura-CondensedMedium'
     },
     pickerStyle: {
       paddingLeft: 30,
