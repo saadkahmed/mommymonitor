@@ -31,7 +31,7 @@ export const CHOSENMATERNALMENTOR = 'chosen_maternal_mentor';
 export const EMAIL_CHANGEDF = 'email_changedF';
 export const SEND_FORGOT_REQUEST = 'send_forgot_request';
 export const FORGOT_REQUEST_SUCCESS = 'forgot_request_success';
-export const SENT_FORGOT_REQUEST = 'sent_forgot_request';// never used
+export const SENT_FORGOT_REQUEST = 'sent_forgot_request'; // never used
 export const FORGOT_RESET = 'forgot_reset'; //never used
 
 //navigation types
@@ -43,6 +43,9 @@ export const QUESTIONNAIRE_FETCH_SUCCESS = 'questionnaire_fetch_success';
 export const QUESTIONNAIRE_FETCH_FAIL = 'questionnaire_fetch_fail';
 export const ANSWER_TEXT_CHANGED = 'answer_text_changed';
 
+//personalanalytics types
+export const FETCH_QUESTIONS_SUCCESS = 'profile_ana_fetch_success';
+export const FETCH_QUESTIONS_FAIL = 'profile_ana_fetch_fail';
 //chat types
 export const CONVERSATION_FETCH_SUCCESS = 'conversation_fetch_success';
 export const CONVERSATION_FETCH_FAIL = 'conversation_fetch_fail';

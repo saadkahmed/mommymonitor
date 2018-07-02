@@ -7,12 +7,15 @@ import {
 
 export const QuestionnaireFetch = () => {
   const { currentUser } = firebase.auth();
-  return (dispatch) => {
+  return dispatch => {
+    console.log('inside dispatch for quesionaire');
     if (currentUser != null) {
-      firebase.database().ref('/questions')
-      .on('value', snapshot => {
-        dispatch({ type: QUESTIONNAIRE_FETCH_SUCCESS, payload: snapshot.val() });
-      });
+      firebase
+        .database()
+        .ref('/questions')
+        .on('value', snapshot => {
+          dispatch({ type: QUESTIONNAIRE_FETCH_SUCCESS, payload: snapshot.val() });
+        });
     } else {
       dispatch({ type: QUESTIONNAIRE_FETCH_FAIL });
     }
