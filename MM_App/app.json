@@ -1,10 +1,10 @@
 {
   "expo": {
-    "splash":{
+    "splash": {
       "image": "./pictures/MainScreen.png",
       "resizeMode": "cover"
     },
-    "sdkVersion": "22.0.0",
+    "sdkVersion": "27.0.0",
     "orientation": "portrait"
   }
 }

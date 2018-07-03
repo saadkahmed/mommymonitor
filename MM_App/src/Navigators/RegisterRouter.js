@@ -7,6 +7,7 @@ import PickPackage from '../Components/PickPackage';
 import PickMentor from '../Components/PickMentor';
 import RegistrationComplete from '../Components/RegistrationComplete';
 import MentorRegister from '../Components/MentorRegister';
+import PregnancyInfo from '../Components/PregnancyInfo';
 
 const RegisterRouter = StackNavigator({
     Register: {
@@ -24,6 +25,13 @@ const RegisterRouter = StackNavigator({
     },
     PersonalInfo: {
         screen: PersonalInfo,
+        navigationOptions: {
+            headerTitle: 'About you',
+            gesturesEnabled: false
+        }
+    },
+    PregnancyInfo: {
+        screen: PregnancyInfo,
         navigationOptions: {
             headerTitle: 'About you',
             gesturesEnabled: false

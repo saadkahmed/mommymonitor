@@ -4,7 +4,6 @@ import { TextInput, View, Text } from 'react-native';
 export default function MyTextInput(props) {
   const { input, ...inputProps } = props;
   const { label } = props;
-  const { touched, error, warning } = props.meta;
   return (
     <View style={styles.containerStyle}>
 

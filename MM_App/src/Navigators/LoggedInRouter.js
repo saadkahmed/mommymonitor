@@ -7,14 +7,22 @@ import ConversationView from '../Components/Chat/ConversationView';
 
 const LoggedInNavigator = DrawerNavigator(
   {
-  Profile: {
-    screen: ProfileAnalytics,
-  },
-  Settings: {
-    screen: SettingsPage,
-    navigationOptions: {
-      title: 'Settings',
-      gesturesEnabled: true
+    Profile: {
+      screen: ProfileAnalytics
+    },
+    Settings: {
+      screen: SettingsPage,
+      navigationOptions: {
+        title: 'Settings',
+        gesturesEnabled: true
+      }
+    },
+    Questionnaire: {
+      screen: Questionnaire,
+      navigationOptions: {
+        title: 'Questionnaire',
+        gesturesEnabled: true
+      }
     }
   },
   Questionnaire: {
@@ -33,10 +41,9 @@ const LoggedInNavigator = DrawerNavigator(
   }
 },
 {
-  initialRouteName: 'Chat',
-  drawerPosition: 'left',
+  initialRouteName: 'Profile',
+  drawerPosition: 'left'
 }
-
 );
 
 export default LoggedInNavigator;
