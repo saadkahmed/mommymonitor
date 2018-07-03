@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import _ from 'lodash';
-import { FETCH_QUESTIONS_SUCCESS, FETCH_QUESTIONS_FAIL } from './types';
-
+import { FETCH_QUESTIONS_SUCCESS } from './types';
+// FETCH_QUESTIONS_FAIL called but never used
 export const FetchQuestions = () => {
   const { currentUser } = firebase.auth();
   const { uid } = currentUser;

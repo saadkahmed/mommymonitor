@@ -1,11 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { View, Text, StyleSheet, Image } from 'react-native';
-import Button from '../common/Button';
 import ChartView from 'react-native-highcharts';
+import { connect } from 'react-redux';
+import { View, Text, Image } from 'react-native';
+import Button from '../common/Button';
 import { FetchQuestions } from '../../Actions/ProfileAnalyticsActions';
 import styles from './styles';
-import { config, options } from './config';
+import { config } from './config';
 
 const profilePic = require('../../../pictures/ProfilePic.png');
 
@@ -86,7 +86,7 @@ class ProfileAnalytics extends React.Component {
               <ChartView style={styles.Chartstyle} config={conf2} options={options} />
             </View>
           )}
-          {this.state.dates.length == 0 && (
+          {this.state.dates.length === 0 && (
             <View>
               <Text> You Have No Stress Data </Text>
             </View>

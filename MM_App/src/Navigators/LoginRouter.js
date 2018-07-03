@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
 import forgot from '../Components/Forgot';
-import LoggedInRouter from './LoggedInRouter.js';
+import LoggedInRouter from './LoggedInRouter';
 import RegisterRouter from './RegisterRouter';
 import MainScreen from '../Components/MainScreen';
 import { addListener } from '../utils/redux';
