@@ -23,27 +23,19 @@ const LoggedInNavigator = DrawerNavigator(
         title: 'Questionnaire',
         gesturesEnabled: true
       }
+    },
+    Chat: {
+      screen: ConversationView,
+      navigationOptions: {
+        title: 'Messages',
+        gesturesEnabled: true
+      }
     }
   },
-  Questionnaire: {
-    screen: Questionnaire,
-    navigationOptions: {
-      title: 'Questionnaire',
-      gesturesEnabled: true
-    }
-  },
-  Chat: {
-    screen: ConversationView,
-    navigationOptions: {
-      title: 'Messages',
-      gesturesEnabled: true
-    }
+  {
+    initialRouteName: 'Profile',
+    drawerPosition: 'left'
   }
-},
-{
-  initialRouteName: 'Profile',
-  drawerPosition: 'left'
-}
 );
 
 export default LoggedInNavigator;
