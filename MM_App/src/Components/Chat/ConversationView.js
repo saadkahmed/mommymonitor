@@ -88,6 +88,7 @@ class ConversationView extends React.Component {
             ref='flatList'
             style={styles.conversationList}
             data={this.props.messages}
+            renderItem={this.renderItem}
             keyExtractor={this.keyExtractor}
           />
         </View>
