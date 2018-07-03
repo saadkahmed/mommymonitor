@@ -17,7 +17,7 @@ const APP_NAME = 'Mommy Monitor';
 
 exports.sendMentorInfoEmail = functions.database.ref('/mentorrequests/{userid}').onWrite((snapshot, context) => {
   const user = snapshot.after.val();
-  console.log(`exports.sendMentorInfoEmail: ${user.name}`);
+  //console.log(`exports.sendMentorInfoEmail: ${user.name}`);
   const name = user.name;
   const email = user.email;
   const phone = user.phone;
