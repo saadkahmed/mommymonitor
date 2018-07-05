@@ -6,7 +6,8 @@ import { emailChangedReg,
          passwordChangedReg,
          passwordChangedConfirm,
          registerUser,
-         switchchange
+         switchchange,
+         mentorRegister
               } from '../Actions';
 
 import { Button, CardSection, Input } from '../Components/common';
@@ -30,6 +31,11 @@ class Register extends React.Component {
     onRegisterPress() {
       const { email, password, confirmPassword, switchvalue } = this.props;
       this.props.registerUser({ email, password, confirmPassword, switchvalue });
+    }
+
+    onMentorRequestPress = () => {
+      console.log(this.props);
+      this.props.mentorRegister();
     }
 
 
@@ -82,7 +88,10 @@ class Register extends React.Component {
             </Button>
           </View>
 
-          <TouchableOpacity style={{ padding: 10, backgroundColor: 'transparent' }}>
+          <TouchableOpacity
+            onPress={this.onMentorRequestPress}
+            style={{ padding: 10, backgroundColor: 'transparent' }}
+          >
             <Text>
               Are you a Maternal-Mentor?
             </Text>
@@ -130,5 +139,6 @@ export default connect(mapStateToProps, { emailChangedReg,
                                           passwordChangedReg,
                                           passwordChangedConfirm,
                                           registerUser,
-                                          switchchange
+                                          switchchange,
+                                          mentorRegister
                                           })(Register);

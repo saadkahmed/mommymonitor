@@ -18,6 +18,12 @@ export const REGISTER_COMPLETE = 'register_complete';
 export const REGISTER_RESET = 'regiser_reset'; //never used
 export const SWITCH_VALUE_CHANGED = 'switch_value_changed';
 
+//maternal mentor registration types
+export const MENTOR_NAME_CHANGED = 'mentor_name_changed';
+export const MENTOR_EMAIL_CHANGED = 'mentor_email_changed';
+export const MENTOR_PHONE_CHANGED = 'mentor_phone_changed';
+export const MENTOR_REQUEST_SUCCESS = 'mentor_request_success';
+
 export const LOADING_DATA = 'loading_data';
 //MaternalMentors types
 export const MENTOR_FETCH_SUCCESS = 'mentor_fetch_success';

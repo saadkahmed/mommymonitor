@@ -27,8 +27,8 @@ const SEND_MESSAGE_DISABLED = 'send-o';
 
 class ConversationView extends React.Component {
   componentWillMount() {
-    console.log('componentWillMount');
-    console.log(this.props);
+    //console.log('componentWillMount');
+    //console.log(this.props);
     this.props.conversationFetch();
     this.props.currentUserFetch();
   }
@@ -89,6 +89,7 @@ class ConversationView extends React.Component {
             ref='flatList'
             style={styles.conversationList}
             data={this.props.messages}
+            renderItem={this.renderItem}
             keyExtractor={this.keyExtractor}
           />
         </View>
