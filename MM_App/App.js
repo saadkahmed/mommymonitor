@@ -1,5 +1,6 @@
 import React from 'react';
 import { AppRegistry } from 'react-native';
+import { Font } from 'expo';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
@@ -18,6 +19,12 @@ class Application extends React.Component {
       messagingSenderId: '189527696222',
     };
       firebase.initializeApp(config);
+  }
+
+  componentDidMount() {
+    Font.loadAsync({
+      'fjalla-one': require('./assets/fonts/FjallaOne-Regular.ttf'),
+    });
   }
 
     render() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, StyleSheet } from 'react-native';
+import { View, Text, Platform, StyleSheet, Image } from 'react-native';
 //import { NavigationActions } from 'react-navigation';
 //not used right now
 import { connect } from 'react-redux';
@@ -10,6 +10,7 @@ const androidpay = 'andoirdtext';
 const newpay = Platform.OS === 'ios' ? applepay : androidpay;
 //****************USE THIS FOR ANDROID OR IOS DEV***********************************
 
+const backgroundpic = require('./../../pictures/BackgroundForPages.jpg');
 
 class PickPackage extends Component {
     componentWillMount() {
@@ -22,8 +23,12 @@ class PickPackage extends Component {
 
     render() {
         return (
+
             <View style={styles.MainContainer}>
-                <Text> Pick a Package </Text>
+              <View style={{ paddingTop: 10 }}>
+                  <Image style={[{ position: 'absolute' }]} source={backgroundpic} />
+              </View>
+                <Text style={styles.titleLabelStyle}>PICK A PACKAGE</Text>
                 <CardSection>
                   <Button onPress={() => this.goToPay(1)}> Option 1 </Button>
                 </CardSection>
@@ -43,8 +48,15 @@ class PickPackage extends Component {
 let styles = StyleSheet.create({
     MainContainer: {
       flex: 1,
-      justifyContent: 'flex-start',
-      alignItems: 'center',
+      justifyContent: 'flex-start'
+    },
+    titleLabelStyle: {
+      padding: 8,
+      paddingLeft: 16,
+      marginBottom: 8,
+      fontSize: 20,
+      color: '#00bbdd',
+      fontFamily: 'fjalla-one'
     }
 });
 // dont have to check for packages for maternal mentor
