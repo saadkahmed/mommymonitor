@@ -3720,15 +3720,9 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
-<<<<<<< HEAD
-firebase-tools@^3.19.1:
-  version "3.19.1"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-3.19.1.tgz#70800d1590db7082419798069103ead275440791"
-=======
-firebase-tools@^3.17.7:
-  version "3.19.2"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-3.19.2.tgz#a8f42b7674ca5799f1f5b14ebb020f16e81e3eba"
->>>>>>> 47ae6853462dc1227c1a199cef61ac4d9f235fbc
+firebase-tools@^3.19.3:
+  version "3.19.3"
+  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-3.19.3.tgz#5833e107a7ddd16a0e38776458752f0a3c4a62ea"
   dependencies:
     JSONStream "^1.2.1"
     archiver "^2.1.1"
@@ -7183,6 +7177,12 @@ react-native-scripts@^1.14.1:
     rimraf "^2.6.1"
     xdl "^50.0.0"
 
+react-native-segmented-control-tab@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-segmented-control-tab/-/react-native-segmented-control-tab-3.2.2.tgz#251ce94acdc655e04063b9813bb1ef595bf11f2d"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-svg@6.2.2:
   version "6.2.2"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-6.2.2.tgz#5803cddce374a542b4468c38a2474fca32080685"
@@ -8546,14 +8546,7 @@ topo@2.x.x:
   dependencies:
     hoek "4.x.x"
 
-tough-cookie@>=2.3.3:
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.4.3.tgz#53f36da3f47783b0925afa06ff9f3b165280f781"
-  dependencies:
-    psl "^1.1.24"
-    punycode "^1.4.1"
-
-tough-cookie@^2.3.2:
+tough-cookie@>=2.3.3, tough-cookie@^2.3.2:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.4.3.tgz#53f36da3f47783b0925afa06ff9f3b165280f781"
   dependencies:
@@ -8817,11 +8810,7 @@ uuid@^2.0.1:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
 
-<<<<<<< HEAD
-uuid@^3.2.1:
-=======
-uuid@^3.0.0, uuid@^3.0.1, uuid@^3.1.0:
->>>>>>> 47ae6853462dc1227c1a199cef61ac4d9f235fbc
+uuid@^3.0.0, uuid@^3.0.1, uuid@^3.1.0, uuid@^3.2.1:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
 
