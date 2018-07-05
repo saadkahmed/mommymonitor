@@ -47,7 +47,8 @@ class ConversationView extends React.Component {
     }
   }
 
-  onContentSizeChange = (contentWidth, contentHeight) => {
+  //onContentSizeChange = (contentWidth, contentHeight) => {
+  onContentSizeChange = () => {
     this.refs.flatList.scrollToEnd({ animated: true });
   }
 

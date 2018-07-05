@@ -16,7 +16,19 @@ export const MentorFetch = () => {
                 .database()
                 .ref('/MaternalMentors')
                 .on('value', snapshot => {
-                    dispatch({ type: MENTOR_FETCH_SUCCESS, payload: snapshot.val() });
+                    console.log('this is the snapshot');
+                        // firebase
+                        //     .storage()
+                        //     .ref(`images/${snapshot.val().name}.jpg`)
+                        //     .getDownloadURL()
+                        //     .then(pic => {
+                        //         console.log('got here too');
+                        //         console.log(pic);
+                        //     })
+                        //     .catch(err => {
+                        //         console.log(err);
+                        //     });
+                        dispatch({ type: MENTOR_FETCH_SUCCESS, payload: snapshot.val() });
                 });
         } else {
             dispatch({ type: MENTOR_FETCH_FAILED });

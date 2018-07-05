@@ -42,7 +42,7 @@ export const loginUser = ({ email, password }) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(user => {
-        console.log(user.uid);
+        //console.log(user.uid);
         firebase
           .database()
           .ref(`/users/${user.uid}/registration`)

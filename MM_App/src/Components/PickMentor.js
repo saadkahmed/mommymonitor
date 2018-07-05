@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import firebase from 'firebase';
 import { FlatList, Text, View, Image, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -24,22 +23,17 @@ import { Button } from './common';
 
 // have a meeting time for when mentors and users wanna meet
 // have maternal mentors log on when and how they meet
-
 class PickMentor extends Component {
     componentWillMount() {
         this.props.MentorFetch();
-        console.log('this is the PickMentor screen \n', this.props);
+        //console.log('this is the PickMentor screen \n', this.props);
         // Create a reference with an initial file path and name
-        firebase
-            .storage()
-            .ref('images/cover.png')
-            .getDownloadURL()
-            .then(url => {
-                console.log('this is the first url', url);
-            });
+    }
+    componentWillRecieveProps(props) {
+        console.log(props);
     }
 
-    keyExtractor = item => item.id;
+    keyExtractor = item => item.id.toString();
 
     renderItem = ({ item }) => (
         <View style={styles.MainContainer}>
@@ -47,9 +41,7 @@ class PickMentor extends Component {
                 <View>
                     <Image
                         style={{ width: 100, height: 100, resizeMode: 'contain', margin: 3 }}
-                        source={{
-                            uri: item.pic
-                        }}
+                        source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/mommymonitorapp.appspot.com/o/images%2FAlexa.jpg?alt=media&token=79e15a31-7d5e-46f5-8e1b-f7986099ca8b' }}
                     />
                 </View>
 

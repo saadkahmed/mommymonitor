@@ -5,7 +5,7 @@ import { View, Text, Platform, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, CardSection } from './common';
 
-const applepay = 'appletext';
+const applepay = 'apple text for payment';
 const androidpay = 'andoirdtext';
 const newpay = Platform.OS === 'ios' ? applepay : androidpay;
 //****************USE THIS FOR ANDROID OR IOS DEV***********************************
