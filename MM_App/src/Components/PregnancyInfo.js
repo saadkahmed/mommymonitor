@@ -1,15 +1,23 @@
 import firebase from 'firebase';
+import SegmentedControlTab from 'react-native-segmented-control-tab';
 import React, { Component } from 'react';
 import {
     View,
     Text,
     ScrollView,
-    Picker,
     Image,
     Platform,
     DatePickerIOS,
+    PixelRatio,
+    TextInput
     } from 'react-native';
 import Button from './common/Button';
+
+let FONT_BACK_LABEL = 18;
+
+if (PixelRatio.get() <= 2) {
+  FONT_BACK_LABEL = 14;
+}
 
 const backgroundpic = require('./../../pictures/BackgroundForPages.jpg');
 
@@ -34,10 +42,10 @@ class PregnancyInfo extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        current_children: '0',
+        current_children: '',
         expecting_date: new Date(),
-        number_children: '0',
-        trimester: '0'
+        number_children: '',
+        trimester: 0
       };
   }
 
@@ -77,62 +85,59 @@ class PregnancyInfo extends Component {
             <View style={{ paddingTop: 10 }}>
                 <Image style={[{ position: 'absolute' }]} source={backgroundpic} />
             </View>
+
             <ScrollView>
                 <Text style={styles.titleLabelStyle}>PREGNANCY</Text>
 
-                <Picker
-                    selectedValue={this.state.trimester}
-                    onValueChange={(value) => {
-                        this.setState({ trimester: value });
-                     }}
-                >
-                    <Picker.Item label="First Trimester" value="0" />
-                    <Picker.Item label="Second Trimester" value="1" />
-                    <Picker.Item label="Third Trimester" value="2" />
-                </Picker>
-
-                <Picker
-                    selectedValue={this.state.number_children}
-                    onValueChange={(value) => {
-                        this.setState({ number_children: value });
-                     }}
-                >
-                    <Picker.Item label="0" value="0" />
-                    <Picker.Item label="1" value="1" />
-                    <Picker.Item label="2" value="2" />
-                    <Picker.Item label="3" value="3" />
-                    <Picker.Item label="4" value="4" />
-                    <Picker.Item label="5" value="5" />
-                    <Picker.Item label="6" value="6" />
-                </Picker>
-
-                <Picker
-                    selectedValue={this.state.current_children}
-                    onValueChange={(value) => {
-                        this.setState({ current_children: value });
-                     }}
-                >
-                    <Picker.Item label="0" value="0" />
-                    <Picker.Item label="1" value="1" />
-                    <Picker.Item label="2" value="2" />
-                    <Picker.Item label="3" value="3" />
-                    <Picker.Item label="4" value="4" />
-                    <Picker.Item label="5" value="5" />
-                    <Picker.Item label="6" value="6" />
-                </Picker>
-
-                <NewFormDatePicker
-                    style={styles.pickerStyle}
-                    date={new Date(this.state.expecting_date)}
-                    onDateChange={(value) => this.setState({ expecting_date: value })}
-                    mode='date'
+                <TextInput
+                    style={styles.inputStyle}
+                    onChangeText={(text) => {
+                        this.setState({ current_children: text });
+                      }}
+                    keyboard='numeric'
+                    value={this.state.current_children}
+                    placeholder='NUMBER OF CURRENT CHILDREN'
                 />
 
-                <Button
-                    onPress={() => { this.Registration2Submit(this.state); }}
-                >
-                    Submit and Continue
-                </Button>
+                <TextInput
+                    style={styles.inputStyle}
+                    onChangeText={(text) => {
+                        this.setState({ number_children: text });
+                      }}
+                    keyboard='numeric'
+                    value={this.state.number_children}
+                    placeholder='EXPECTING NUMBER OF CHILDREN'
+                />
+
+                <View style={styles.itemContainer}>
+                  <Text style={styles.subTitleStyle}>TRIMESTER</Text>
+                  <SegmentedControlTab
+                    activeTabStyle={styles.activeTabStyle}
+                    tabStyle={styles.tabStyle}
+                    tabTextStyle={styles.tabTextStyle}
+                    values={['First', 'Second', 'Third']}
+                    selectedIndex={this.state.trimester}
+                    onTabPress={(value) => {
+                        this.setState({ trimester: value });
+                     }}
+                  />
+                </View>
+
+                <View style={styles.itemContainer}>
+                  <Text style={styles.subTitleStyle}> EXPECTING DATE </Text>
+                    <NewFormDatePicker
+                        date={new Date(this.state.expecting_date)}
+                        onDateChange={(value) => this.setState({ expecting_date: value })}
+                        mode='date'
+                    />
+                </View>
+                <View style={styles.buttonContainer}>
+                  <Button
+                      onPress={() => { this.Registration2Submit(this.state); }}
+                  >
+                      Submit and Continue
+                  </Button>
+                </View>
             </ScrollView>
         </View>
     );
@@ -141,15 +146,61 @@ class PregnancyInfo extends Component {
 
 const styles = {
   titleLabelStyle: {
-    padding: 7,
-    paddingLeft: 10,
+    padding: 8,
+    paddingLeft: 16,
+    marginBottom: 8,
     fontSize: 20,
     color: '#00bbdd',
-    },
-    pickerStyle: {
-      paddingLeft: 30,
-      paddingRight: 30,
-    }
+    fontFamily: 'fjalla-one',
+  },
+  inputStyle: {
+    paddingRight: 16,
+    paddingBottom: 8,
+    marginLeft: 32,
+    marginRight: 32,
+    marginBottom: 24,
+    color: '#000',
+    fontSize: FONT_BACK_LABEL,
+    fontFamily: 'fjalla-one',
+    lineHeight: 16,
+    borderBottomWidth: 2,
+    borderBottomColor: '#ddd'
+  },
+  itemContainer: {
+    marginLeft: 32,
+    marginRight: 32,
+    marginTop: 16,
+    marginBottom: 16,
+  },
+  datePickerContainer: {
+    marginTop: 16,
+    marginLeft: 32,
+    marginRight: 32
+  },
+  activeTabStyle: {
+    backgroundColor: '#852053',
+    opacity: 0.7
+  },
+  tabStyle: {
+    borderColor: '#852053',
+    backgroundColor: 'transparent',
+    opacity: 0.7,
+  },
+  tabTextStyle: {
+    color: 'grey',
+    fontFamily: 'fjalla-one'
+  },
+  subTitleStyle: {
+    paddingBottom: 8,
+    fontSize: FONT_BACK_LABEL,
+    fontFamily: 'fjalla-one',
+    opacity: 0.8
+  },
+  buttonContainer: {
+    marginLeft: 32,
+    marginRight: 32,
+    marginBottom: 32
+  }
 };
 
 export default PregnancyInfo;
