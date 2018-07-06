@@ -1,3 +1,8 @@
+/* This component is for users to select a mentor.
+** The mentors are pulled from the database and fed into this component
+** then mentor pictures are recieved and downloaded
+** the user then selects a mentor
+*/
 import React, { Component } from 'react';
 import _ from 'lodash';
 import firebase from 'firebase';
@@ -18,7 +23,6 @@ import { Button } from './common';
 // stack over flow type of thing for mid wives.
 // do mentors have to be private
 
-// remove age, and phone number
 // find a secure email and phone communicaton
 
 // try to make seperate login for matnernal mentors
@@ -51,15 +55,11 @@ class PickMentor extends Component {
                     <Text>
                         Name: {item.name}
                         {'\n'}
-                        Age: {item.age}
-                        {'\n'}
                         Number Of Children: {item.children}
                         {'\n'}
                         Languages Spoken: {item.languages}
                         {'\n'}
                         Ethnicity: {item.ethnicity}
-                        {'\n'}
-                        Phone Number: {item.phonenumber}
                         {'\n'}
                         Contact: {item.pref}
                     </Text>
@@ -100,6 +100,7 @@ const mapStateToProps = state => {
         //then each time a new object is read we pull the download url
         //and add it to the object as a key value pair of
         //picurl = the address for the picture
+        //have to redefine val i dont know why but it doesnt work otherwise
         let arr = {};
         arr = val;
         firebase
