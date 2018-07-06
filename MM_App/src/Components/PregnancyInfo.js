@@ -116,7 +116,7 @@ class PregnancyInfo extends Component {
                     tabStyle={styles.tabStyle}
                     tabTextStyle={styles.tabTextStyle}
                     values={['First', 'Second', 'Third']}
-                    selectedIndex={this.state.trimester}
+                    selectedIndex={parseInt(this.state.trimester, 10)}
                     onTabPress={(value) => {
                         this.setState({ trimester: value });
                      }}

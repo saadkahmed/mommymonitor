@@ -29,7 +29,7 @@ class PickMentor extends Component {
         //console.log('this is the PickMentor screen \n', this.props);
         // Create a reference with an initial file path and name
     }
-    componentWillRecieveProps(props) {
+    componentWillReceiveProps(props) {
         console.log(props);
     }
 

@@ -134,7 +134,7 @@ class PersonalInfo extends Component {
                     tabStyle={styles.tabStyle}
                     tabTextStyle={styles.tabTextStyle}
                     values={['Single', 'Married', 'Divorced']}
-                    selectedIndex={this.state.marital_status}
+                    selectedIndex={parseInt(this.state.marital_status, 10)}
                     onTabPress={(value) => {
                         this.setState({ marital_status: value });
                      }}

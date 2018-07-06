@@ -12,29 +12,29 @@ export const MentorFetch = () => {
     //make sure to check package here!!!!!!!!!!!!!!
     return dispatch => {
         if (currentUser != null) {
+            console.log('this is the snapshot');
             firebase
                 .database()
                 .ref('/MaternalMentors')
                 .on('value', snapshot => {
-                    console.log('this is the snapshot');
-                        // firebase
-                        //     .storage()
-                        //     .ref(`images/${snapshot.val().name}.jpg`)
-                        //     .getDownloadURL()
-                        //     .then(pic => {
-                        //         console.log('got here too');
-                        //         console.log(pic);
-                        //     })
-                        //     .catch(err => {
-                        //         console.log(err);
-                        //     });
-                        dispatch({ type: MENTOR_FETCH_SUCCESS, payload: snapshot.val() });
-                });
-        } else {
-            dispatch({ type: MENTOR_FETCH_FAILED });
-        }
-    };
-};
+                    dispatch({ type: MENTOR_FETCH_SUCCESS, payload: snapshot.val() });
+                    // firebase
+                    //     .storage()
+                    //     .ref(`images/${snapshot.val().name}.jpg`)
+                    //     .getDownloadURL()
+                    //     .then(pic => {
+                    //         console.log('got here too');
+                    //         console.log(pic);
+                    //     })
+                    //     .catch(err => {
+                    //         console.log(err);
+                    //     });
+                    });
+                } else {
+                    dispatch({ type: MENTOR_FETCH_FAILED });
+                }
+            };
+        };
 // using set because again i dont think we need a unqiue id for a persons MaternalMentor
 
 // this is where you would be the navigate to registration complete.
