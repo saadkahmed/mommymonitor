@@ -12,23 +12,12 @@ export const MentorFetch = () => {
     //make sure to check package here!!!!!!!!!!!!!!
     return dispatch => {
         if (currentUser != null) {
-            console.log('this is the snapshot');
             firebase
                 .database()
                 .ref('/MaternalMentors')
                 .on('value', snapshot => {
+                    console.log('this is the snapshot', snapshot.val());
                     dispatch({ type: MENTOR_FETCH_SUCCESS, payload: snapshot.val() });
-                    // firebase
-                    //     .storage()
-                    //     .ref(`images/${snapshot.val().name}.jpg`)
-                    //     .getDownloadURL()
-                    //     .then(pic => {
-                    //         console.log('got here too');
-                    //         console.log(pic);
-                    //     })
-                    //     .catch(err => {
-                    //         console.log(err);
-                    //     });
                     });
                 } else {
                     dispatch({ type: MENTOR_FETCH_FAILED });

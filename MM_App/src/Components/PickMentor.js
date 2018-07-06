@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import firebase from 'firebase';
+
 import { FlatList, Text, View, Image, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -30,7 +32,7 @@ class PickMentor extends Component {
         // Create a reference with an initial file path and name
     }
     componentWillReceiveProps(props) {
-        console.log(props);
+        console.log('these are the props', props);
     }
 
     keyExtractor = item => item.id.toString();
@@ -41,7 +43,7 @@ class PickMentor extends Component {
                 <View>
                     <Image
                         style={{ width: 100, height: 100, resizeMode: 'contain', margin: 3 }}
-                        source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/mommymonitorapp.appspot.com/o/images%2FAlexa.jpg?alt=media&token=79e15a31-7d5e-46f5-8e1b-f7986099ca8b' }}
+                        source={{ uri: item.picurl }}
                     />
                 </View>
 
@@ -93,7 +95,24 @@ const styles = StyleSheet.create({
 //cant scrooll all the way down?
 const mapStateToProps = state => {
     const mentors = _.map(state.PickMentor, (val, id) => {
-        return { ...val, id };
+        //lodash (_) takes the array and makes it an object so here we
+        //reassign that array to a variable so that we can manipulate it
+        //then each time a new object is read we pull the download url
+        //and add it to the object as a key value pair of
+        //picurl = the address for the picture
+        let arr = {};
+        arr = val;
+        firebase
+        .storage()
+        .ref(`images/${arr.name}.jpg`)
+        .getDownloadURL()
+        .then(pic => {
+            arr.picurl = pic;
+        })
+        .catch(err => {
+        console.log(err);
+        });
+        return { ...arr, id };
     });
     return { mentors };
 };
