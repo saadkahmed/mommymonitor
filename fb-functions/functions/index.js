@@ -23,10 +23,7 @@ exports.sendMentorInfoEmail = functions.database
     const user = snapshot.after.val();
     //console.log(`exports.sendMentorInfoEmail: ${user.name}`);
     const { name, email, phone } = user;
-    console.log('sending mentor info email');
     sendMentorInfoEmail(name, email, phone);
-    console.log('sent mentor info email');
-
     return 0;
   });
 
@@ -58,15 +55,50 @@ exports.avgStressLevels = functions.database
   .onWrite((snapshot, context) => {
     const data = snapshot.after.val();
     let avg = 0;
+    let stdDev = 0;
     const stressLevels = Object.keys(data)
       .map(key => data[key])
       .filter(ele => ele.one !== undefined)
       .map(ele => ele.one);
-    console.log('stressLevels ', stressLevels);
     if (stressLevels.length > 0) {
       avg = (
         stressLevels.reduce((acc, val) => acc + val) / stressLevels.length
       ).toFixed(2);
+      let variance =
+        stressLevels
+          .map(val => Math.pow(val - avg, 2))
+          .reduce((acc, val) => acc + val) /
+        (stressLevels.length - 1);
+      stdDev = Math.sqrt(variance).toFixed(2);
     }
-    return snapshot.after.ref.parent.child('StressAverage').set(avg);
+    return snapshot.after.ref.parent
+      .child('Stats/')
+      .update({ StressAverage: Number(avg), StressStdDev: Number(stdDev) });
+  });
+
+//get average sleep levels
+exports.avgSleepLevels = functions.database
+  .ref('/users/{userid}/Questions')
+  .onWrite((snapshot, context) => {
+    const data = snapshot.after.val();
+    let avg = 0;
+    let stdDev = 0;
+    const sleepLevels = Object.keys(data)
+      .map(key => data[key])
+      .filter(ele => ele.three !== undefined)
+      .map(ele => ele.three);
+    if (sleepLevels.length > 0) {
+      avg = (
+        sleepLevels.reduce((acc, val) => acc + val) / sleepLevels.length
+      ).toFixed(2);
+      let variance =
+        sleepLevels
+          .map(val => Math.pow(val - avg, 2))
+          .reduce((acc, val) => acc + val) /
+        (sleepLevels.length - 1);
+      stdDev = Math.sqrt(variance).toFixed(2);
+    }
+    return snapshot.after.ref.parent
+      .child('Stats/')
+      .update({ SleepAverage: Number(avg), SleepStdDev: Number(stdDev) });
   });
