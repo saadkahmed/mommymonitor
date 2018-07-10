@@ -27,9 +27,13 @@ const SEND_MESSAGE_DISABLED = 'send-o';
 
 class ConversationView extends React.Component {
   componentWillMount() {
-    //console.log('componentWillMount');
-    //console.log(this.props);
-    this.props.conversationFetch();
+    // console.log('componentWillMount');
+    // console.log(this.props);
+    if (this.props.conversationId) {
+      this.props.messageFetch(this.props.conversationId);
+    } else {
+      this.props.conversationFetch();
+    }
     this.props.currentUserFetch();
   }
 
