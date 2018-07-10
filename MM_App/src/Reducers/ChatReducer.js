@@ -13,7 +13,9 @@ const INITIAL_STATE = {};
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CONVERSATION_FETCH_SUCCESS: {
-      return { ...state, conversationId: action.payload.conversation_id };
+      const keys = Object.keys(action.payload);
+      const conversationId = keys[0];
+      return { ...state, conversationId };
     }
     case CONVERSATION_FETCH_FAIL: {
       return INITIAL_STATE;
