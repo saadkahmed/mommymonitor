@@ -52,6 +52,7 @@ export const ANSWER_TEXT_CHANGED = 'answer_text_changed';
 //personalanalytics types
 export const FETCH_QUESTIONS_SUCCESS = 'profile_ana_fetch_success';
 export const FETCH_QUESTIONS_FAIL = 'profile_ana_fetch_fail';
+
 //chat types
 export const CONVERSATION_FETCH_SUCCESS = 'conversation_fetch_success';
 export const CONVERSATION_FETCH_FAIL = 'conversation_fetch_fail';
@@ -60,3 +61,5 @@ export const MESSAGE_FETCH_FAIL = 'message_fetch_fail';
 export const MESSAGE_TEXT_CHANGED = 'message_text_changed';
 export const MESSAGE_SEND_SUCCESS = 'message_send_success';
 export const USER_FETCH_SUCCESS = 'user_fetch_success';
+export const CONVERSATION_LIST_FETCH_SUCCESS = 'conversation_list_fetch_success';
+export const CONVERSATION_LIST_FETCH_FAIL = 'conversation_list_fetch_fail';
