@@ -5,7 +5,8 @@ import {
   View,
   FlatList,
   ImageBackground,
-  StyleSheet
+  StyleSheet,
+  TouchableHighlight
 } from 'react-native';
 
 import { ConversationListItem } from './ConversationListItem';
@@ -24,10 +25,19 @@ class ConversationListView extends React.Component {
   keyExtractor = (item) => String(item.id);
 
   renderItem = ({ item }) => (
-    <ConversationListItem
-      conversationId={item.conversationId}
-      userId={item.userId}
-    />
+    <TouchableHighlight
+      onPress={() => {
+        this.props.navigation.navigate('Chat', {
+          conversationId: item.conversationId
+        });
+      }}
+    >
+      <ConversationListItem
+        conversationId={item.conversationId}
+        userId={item.userId}
+      />
+    </TouchableHighlight>
+
   )
 
   render() {
