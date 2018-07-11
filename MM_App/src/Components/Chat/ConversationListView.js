@@ -38,6 +38,7 @@ class ConversationListView extends React.Component {
       >
         <View style={{ flex: 1 }}>
           <FlatList
+            style={styles.conversationItemList}
             data={this.props.conversations}
             renderItem={this.renderItem}
             keyExtractor={this.keyExtractor}
@@ -65,6 +66,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     flexDirection: 'column',
     height: '100%'
+  },
+  conversationItemList: {
+    paddingLeft: 8,
+    paddingRight: 8,
+    width: '100%'
   }
 });
 
