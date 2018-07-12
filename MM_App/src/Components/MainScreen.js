@@ -120,7 +120,6 @@ class MainScreen extends Component {
   }
 }
 
-
   let styles = StyleSheet.create({
       backgroundImage: {
         flex: 1,
@@ -138,25 +137,21 @@ class MainScreen extends Component {
         alignItems: 'center',
         alignSelf: 'stretch',
       },
-
       subButtonContainer: {
         backgroundColor: 'transparent',
-        padding: 5,
-        paddingTop: 10,
+        padding: 8,
+        paddingTop: 64,
         flexDirection: 'row',
         position: 'relative',
         width: 150
-
       },
       frButton: {
         backgroundColor: 'transparent',
-        paddingLeft: 30,
-        paddingRight: 30,
+        marginLeft: 25,
+        marginRight: 25
       },
       signupOrForgotContainer: {
-        flexDirection: 'row',
-        marginRight: 10,
-
+        flexDirection: 'row'
       }
   });
 
