@@ -35,7 +35,7 @@ const LoggedInNavigator = DrawerNavigator(
     MentorChatList: {
       screen: ConversationListView,
       navigationOptions: {
-        title: 'Messages',
+        title: 'Mentor Chat List',
         gesturesEnabled: true
       }
     }
