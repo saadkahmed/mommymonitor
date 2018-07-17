@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { Ionicons } from '@expo/vector-icons';
 import { FlatList, Text, TextInput, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { QuestionnaireFetch, answerTextChanged } from './../Actions';
+import { QuestionnaireFetch, answerTextChanged, sendAnswers } from './../Actions';
 import { Button } from './common';
 
 const UNCHECKED_ICON = 'ios-checkmark-circle-outline';
@@ -18,6 +18,10 @@ class Questionnaire extends React.Component {
     this.props.answerTextChanged(id, answer);
   }
 
+  onSubmitPressed = () => {
+    this.props.sendAnswers(this.props.answers);
+  }
+
   getIconName(id) {
     if (this.props.answers[id] && this.props.answers[id].length !== 0) {
       return CHECKED_ICON;
@@ -25,7 +29,7 @@ class Questionnaire extends React.Component {
     return UNCHECKED_ICON;
   }
 
-  keyExtractor = (item) => item.id;
+  keyExtractor = (item) => String(item.id);
 
   renderItem = ({ item }) => (
         <View style={styles.itemContainer}>
@@ -49,15 +53,14 @@ class Questionnaire extends React.Component {
                   </Text>
                   {/* TODO: Randomize Questions */}
                   <FlatList
-                      data={this.props.questions.slice(0, 3)}
+                      data={this.props.questions}
                       keyExtractor={this.keyExtractor}
                       renderItem={this.renderItem}
                   />
                 </View>
                 <View style={styles.buttonRow}>
                   <View style={styles.buttonContainer}>
-                    {/* TODO: Save answers in firebase when pressed */}
-                    <Button style={styles.button}> Submit </Button>
+                    <Button style={styles.button} onPress={this.onSubmitPressed}> Submit </Button>
                   </View>
                 </View>
 
@@ -68,9 +71,7 @@ class Questionnaire extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const questions = _.map(state.Questionnaire.questions, (val, id) => {
-    return { ...val, id };
-  });
+  const questions = state.Questionnaire.questions;
   const answers = state.Questionnaire.answers;
   return { questions, answers };
 };
@@ -115,4 +116,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps, { QuestionnaireFetch, answerTextChanged })(Questionnaire);
+export default connect(mapStateToProps, {
+  QuestionnaireFetch,
+  answerTextChanged,
+  sendAnswers
+})(Questionnaire);
