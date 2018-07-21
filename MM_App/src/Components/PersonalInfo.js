@@ -80,7 +80,9 @@ class PersonalInfo extends Component {
                 <Image style={[{ position: 'absolute' }]} source={backgroundpic} />
             </View>
             <ScrollView>
-                <Text style={styles.titleLabelStyle}>PERSONAL INFO</Text>
+                <Text style={styles.titleLabelStyle}>
+                'Personal Info'.toUpperCase()
+                </Text>
 
                 <ExTextInput
                     textStyle={styles.inputStyle}

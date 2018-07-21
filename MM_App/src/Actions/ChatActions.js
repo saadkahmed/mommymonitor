@@ -6,7 +6,9 @@ import {
   MESSAGE_FETCH_FAIL,
   MESSAGE_TEXT_CHANGED,
   MESSAGE_SEND_SUCCESS,
-  USER_FETCH_SUCCESS
+  USER_FETCH_SUCCESS,
+  CONVERSATION_LIST_FETCH_SUCCESS,
+  CONVERSATION_LIST_FETCH_FAIL
 } from './types';
 
 export const conversationFetch = () => {
@@ -24,6 +26,20 @@ export const conversationFetch = () => {
   };
 };
 
+export const conversationListFetch = () => {
+  const { currentUser } = firebase.auth();
+  return (dispatch) => {
+    if (currentUser != null) {
+      firebase.database().ref(`/chat/users/${currentUser.uid}`)
+        .once('value', snapshot => {
+          dispatch({ type: CONVERSATION_LIST_FETCH_SUCCESS,
+          payload: snapshot.val() });
+        });
+    } else {
+      dispatch({ type: CONVERSATION_LIST_FETCH_FAIL });
+    }
+  };
+};
 
 export const messageFetch = (conversationId) => {
   const { currentUser } = firebase.auth();

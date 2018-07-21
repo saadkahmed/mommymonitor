@@ -116,7 +116,9 @@ renderone = () => {
             </View>
 
             <ScrollView>
-                <Text style={styles.titleLabelStyle}>PREGNANCY</Text>
+                <Text style={styles.titleLabelStyle}>
+                {'Pregnancy'.toUpperCase()}
+                </Text>
 
                 <ExTextInput
                     textStyle={styles.inputStyle}
