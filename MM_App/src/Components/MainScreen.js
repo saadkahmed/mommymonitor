@@ -72,7 +72,6 @@ class MainScreen extends Component {
 
             <Image style={styles.imageStyle} source={mmlogo} />
 
-
             <CardSection>
               <Input
                 label="Email"

@@ -1,3 +1,9 @@
+/** this is the Pregnancy info forum
+** i use my own text input class so dont change anything inside
+** the ExTextInput jsx. this also uses a async function to display
+** time and date on android. both datepickers are fixed and working.
+**
+**/
 import firebase from 'firebase';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import React, { Component } from 'react';
@@ -9,35 +15,19 @@ import {
     Platform,
     DatePickerIOS,
     PixelRatio,
-    TextInput
+    DatePickerAndroid
     } from 'react-native';
 import Button from './common/Button';
+import ExTextInput from './common/ExTextInput';
 
 let FONT_BACK_LABEL = 18;
 
 if (PixelRatio.get() <= 2) {
   FONT_BACK_LABEL = 14;
 }
-
 const backgroundpic = require('./../../pictures/BackgroundForPages.jpg');
 
-// try {
-//   const {action, year, month, day} = await DatePickerAndroid.open({
-//     // Use `new Date()` for current date.
-//     // May 25 2020. Month 0 is January.
-//     date: new Date(2020, 4, 25)
-//   });
-//   if (action !== DatePickerAndroid.dismissedAction) {
-//     // Selected year, month (0-11), day
-//   }
-// } catch ({code, message}) {
-//   console.warn('Cannot open date picker', message);
-// };
-const NewFormDatePicker = Platform.OS === 'ios' ? DatePickerIOS : DatePickerAndroid;
-//****************USE THIS FOR ANDROID OR IOS DEV***********************************
-
 // need to add input checking
-
 class PregnancyInfo extends Component {
     constructor(props) {
       super(props);
@@ -76,6 +66,45 @@ class PregnancyInfo extends Component {
         });
     }
 
+    async exDatePickerAndroid() {
+      //const { action, year, month, day } = await DatePickerAndroid.open({
+      const { action } = await DatePickerAndroid.open({
+        // Use `new Date()` for current date.
+        // May 25 2020. Month 0 is January.
+        date: new Date()
+      });
+      if (action !== DatePickerAndroid.dismissedAction) {
+        console.log(action);
+      }
+    } catch({ code, message }) {
+      console.warn('Cannot open date picker', message);
+      console.log(code);
+    }
+
+renderone = () => {
+    if (Platform.OS === 'ios') {
+        return (
+        <View style={styles.itemContainer}>
+         <Text style={styles.subTitleStyle}> EXPECTING DATE </Text>
+           <DatePickerIOS
+               date={new Date(this.state.expecting_date)}
+               onDateChange={(value) => this.setState({ expecting_date: value })}
+               mode='date'
+           />
+        </View>
+        );
+    }
+        return (
+            <View Style={styles.itemContainer}>
+                <Text style={styles.subTitleStyle}> EXPECTING DATE </Text>
+                <Button
+                    onPress={() => { this.exDatePickerAndroid(); }}
+                >
+                    {this.state.expecting_date}
+                </Button>
+            </View>
+        );
+}
 
   render() {
     return (
@@ -89,24 +118,24 @@ class PregnancyInfo extends Component {
             <ScrollView>
                 <Text style={styles.titleLabelStyle}>PREGNANCY</Text>
 
-                <TextInput
-                    style={styles.inputStyle}
-                    onChangeText={(text) => {
+                <ExTextInput
+                    textStyle={styles.inputStyle}
+                    textChange={(text) => {
                         this.setState({ current_children: text });
                       }}
                     keyboard='numeric'
                     value={this.state.current_children}
-                    placeholder='NUMBER OF CURRENT CHILDREN'
+                    holder='NUMBER OF CURRENT CHILDREN'
                 />
 
-                <TextInput
-                    style={styles.inputStyle}
-                    onChangeText={(text) => {
+                <ExTextInput
+                    textStyle={styles.inputStyle}
+                    textChange={(text) => {
                         this.setState({ number_children: text });
                       }}
                     keyboard='numeric'
                     value={this.state.number_children}
-                    placeholder='EXPECTING NUMBER OF CHILDREN'
+                    holder='EXPECTING NUMBER OF CHILDREN'
                 />
 
                 <View style={styles.itemContainer}>
@@ -123,14 +152,8 @@ class PregnancyInfo extends Component {
                   />
                 </View>
 
-                <View style={styles.itemContainer}>
-                  <Text style={styles.subTitleStyle}> EXPECTING DATE </Text>
-                    <NewFormDatePicker
-                        date={new Date(this.state.expecting_date)}
-                        onDateChange={(value) => this.setState({ expecting_date: value })}
-                        mode='date'
-                    />
-                </View>
+                {this.renderone()}
+
                 <View style={styles.buttonContainer}>
                   <Button
                       onPress={() => { this.Registration2Submit(this.state); }}
@@ -164,7 +187,8 @@ const styles = {
     fontFamily: 'fjalla-one',
     lineHeight: 16,
     borderBottomWidth: 2,
-    borderBottomColor: '#ddd'
+    borderBottomColor: '#ddd',
+    flex: 0.9,
   },
   itemContainer: {
     marginLeft: 32,

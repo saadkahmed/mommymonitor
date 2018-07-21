@@ -34,6 +34,8 @@ class PickMentor extends Component {
         this.props.MentorFetch();
         //console.log('this is the PickMentor screen \n', this.props);
         // Create a reference with an initial file path and name
+
+        //need to make a spinner until mentor images are downloaded
     }
     componentWillReceiveProps(props) {
         console.log('these are the props', props);
