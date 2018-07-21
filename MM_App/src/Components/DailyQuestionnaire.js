@@ -10,7 +10,7 @@ import {
   StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
-import { QuestionnaireFetch, answerTextChanged } from './../Actions';
+import { QuestionnaireFetch, answerTextChanged, sendAnswers } from './../Actions';
 import { Button } from './common';
 
 const backgroundpic = require('./../../pictures/BackgroundForPages.jpg');
@@ -27,6 +27,10 @@ class Questionnaire extends React.Component {
     this.props.answerTextChanged(id, answer);
   }
 
+  onSubmitPressed = () => {
+    this.props.sendAnswers(this.props.answers);
+  }
+
   getIconName(id) {
     if (this.props.answers[id] && this.props.answers[id].length !== 0) {
       return CHECKED_ICON;
@@ -34,7 +38,7 @@ class Questionnaire extends React.Component {
     return UNCHECKED_ICON;
   }
 
-  keyExtractor = (item) => item.id;
+  keyExtractor = (item) => String(item.id);
 
   renderItem = ({ item }) => (
         <View style={styles.itemContainer}>
@@ -51,15 +55,23 @@ class Questionnaire extends React.Component {
 
   render() {
       return (
-        <View style={{ backgroundColor: 'transparent' }}>
-          <View style={{ paddingTop: 10 }}>
-              <Image style={[{ position: 'absolute' }]} source={backgroundpic} />
-          </View>
-          <View>
-            <View>
-              <Text style={styles.titleLabelStyle}>
-              {'Some quick questions to help us set up your profile'.toUpperCase()}
-              </Text>
+              <View>
+                <View>
+                  <Text style={styles.titleStyle}>
+                  {'Some quick questions to help us set up your profile'.toUpperCase()}
+                  </Text>
+                  {/* TODO: Randomize Questions */}
+                  <FlatList
+                      data={this.props.questions}
+                      keyExtractor={this.keyExtractor}
+                      renderItem={this.renderItem}
+                  />
+                </View>
+                <View style={styles.buttonRow}>
+                  <View style={styles.buttonContainer}>
+                    <Button style={styles.button} onPress={this.onSubmitPressed}> Submit </Button>
+                  </View>
+                </View>
 
               {/* TODO: Randomize Questions */}
               <FlatList
@@ -82,9 +94,7 @@ class Questionnaire extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const questions = _.map(state.Questionnaire.questions, (val, id) => {
-    return { ...val, id };
-  });
+  const questions = state.Questionnaire.questions;
   const answers = state.Questionnaire.answers;
   return { questions, answers };
 };
@@ -131,4 +141,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps, { QuestionnaireFetch, answerTextChanged })(Questionnaire);
+export default connect(mapStateToProps, {
+  QuestionnaireFetch,
+  answerTextChanged,
+  sendAnswers
+})(Questionnaire);
