@@ -1,33 +1,7 @@
 import firebase from 'firebase';
 import { Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import {
-  MENTOR_NAME_CHANGED,
-  MENTOR_EMAIL_CHANGED,
-  MENTOR_PHONE_CHANGED,
-  MENTOR_REQUEST_SUCCESS
-} from './types';
-
-export const mentorNameChanged = text => {
-  return {
-    type: MENTOR_NAME_CHANGED,
-    payload: text
-  };
-};
-
-export const mentorEmailChanged = text => {
-  return {
-    type: MENTOR_EMAIL_CHANGED,
-    payload: text
-  };
-};
-
-export const mentorPhoneChanged = text => {
-  return {
-    type: MENTOR_PHONE_CHANGED,
-    payload: text
-  };
-};
+import { MENTOR_REQUEST_SUCCESS } from './types';
 
 export const sendMentorRequest = ({ name, email, phone }) => {
   let err;
@@ -35,7 +9,7 @@ export const sendMentorRequest = ({ name, email, phone }) => {
     routeName: 'MainScreen'
   });
   return dispatch => {
-    if (name === '' || email === '' || phone === '') {
+    if (name.trim() === '' || email.trim() === '' || phone.trim() === '') {
       err = 'Fields left blank';
     }
     if (err) {
@@ -43,16 +17,18 @@ export const sendMentorRequest = ({ name, email, phone }) => {
     } else {
       const mentorRequestsRef = firebase.database().ref('/mentorrequests');
       const newMentorRequestRef = mentorRequestsRef.push();
-      newMentorRequestRef.set({
-        name,
-        email,
-        phone,
-        timestamp: firebase.database.ServerValue.TIMESTAMP
-      }).then(() => {
-        Alert.alert('Mentor Request Sent!');
-        dispatch(navToMainScreen);
-        dispatch({ type: MENTOR_REQUEST_SUCCESS });
-      });
+      newMentorRequestRef
+        .set({
+          name,
+          email,
+          phone,
+          timestamp: firebase.database.ServerValue.TIMESTAMP
+        })
+        .then(() => {
+          Alert.alert('Mentor Request Sent!');
+          dispatch(navToMainScreen);
+          dispatch({ type: MENTOR_REQUEST_SUCCESS });
+        });
     }
   };
 };
