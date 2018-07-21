@@ -90,9 +90,9 @@ class Register extends React.Component {
 
           <TouchableOpacity
             onPress={this.onMentorRequestPress}
-            style={{ padding: 10, backgroundColor: 'transparent' }}
+            style={styles.frButton}
           >
-            <Text>
+            <Text style={{ textDecorationLine: 'underline', color: '#737373' }}>
               Are you a Maternal-Mentor?
             </Text>
           </TouchableOpacity>
@@ -122,6 +122,10 @@ let styles = StyleSheet.create({
       flexDirection: 'row',
       position: 'relative',
       width: 150
+    },
+    frButton: {
+      backgroundColor: 'transparent',
+      margin: 25
     }
   }
 );
