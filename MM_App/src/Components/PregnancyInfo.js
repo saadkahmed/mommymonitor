@@ -87,7 +87,9 @@ class PregnancyInfo extends Component {
             </View>
 
             <ScrollView>
-                <Text style={styles.titleLabelStyle}>PREGNANCY</Text>
+                <Text style={styles.titleLabelStyle}>
+                {'Pregnancy'.toUpperCase()}
+                </Text>
 
                 <TextInput
                     style={styles.inputStyle}

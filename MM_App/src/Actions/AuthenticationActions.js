@@ -10,21 +10,6 @@ import {
   LOGIN_USER_SUCCESS
 } from './types';
 
-//for login/logout
-export const emailChanged = text => {
-  return {
-    type: EMAIL_CHANGED,
-    payload: text
-  };
-};
-
-export const passwordChanged = text => {
-  return {
-    type: PASSWORD_CHANGED,
-    payload: text
-  };
-};
-
 export const loginUser = ({ email, password }) => {
   let err;
   const navToLogin = NavigationActions.navigate({
@@ -80,7 +65,7 @@ export const logoutUser = () => {
         dispatch({ type: LOGOUT_USER });
       })
       .catch(e => {
-          Alert.alert(e.message);
+        Alert.alert(e.message);
       });
   };
 };
