@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import { Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
+import { Analytics } from 'aws-amplify';
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
@@ -53,6 +54,11 @@ export const loginUser = ({ email, password }) => {
               dispatch(navToLogin);
             }
             dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
+            //Analytics.updateEndpoint({ UserId: user.uid });
+            Analytics.record({
+              name: '_userauth.sign_in',
+              userId: user.uid
+            });
           });
       })
       .catch(e => {
@@ -80,7 +86,7 @@ export const logoutUser = () => {
         dispatch({ type: LOGOUT_USER });
       })
       .catch(e => {
-          Alert.alert(e.message);
+        Alert.alert(e.message);
       });
   };
 };
