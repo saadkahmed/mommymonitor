@@ -2,14 +2,14 @@ import React from 'react';
 import { View, Text, TextInput } from 'react-native';
 
 export default function ExTextInput(props) {
-    const { value, textChange, capital, correct, name, keyboard, holder } = props;
+    const { value, textChange, capital, correct, name, keyboard, holder, textStyle } = props;
 return (
 <View style={{ flexDirection: 'row' }} >
-    <Text style={{ flex: 0.3 }}>
+    <Text>
         {name}
     </Text>
     <TextInput
-        style={{ flex: 0.7 }}
+        style={textStyle}
         value={value}
         onChangeText={textChange}
         autoCapitalize={capital}

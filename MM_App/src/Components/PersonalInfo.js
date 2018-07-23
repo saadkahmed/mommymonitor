@@ -1,3 +1,9 @@
+/** this is the personal info forum
+** i use my own text input class so dont change anything inside 
+** the ExTextInput jsx.
+**
+**
+**/
 import firebase from 'firebase';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import React, { Component } from 'react';
@@ -7,11 +13,11 @@ import {
   ScrollView,
   Picker,
   Image,
-  PixelRatio,
-  TextInput
+  PixelRatio
 } from 'react-native';
 
 import Button from './common/Button';
+import ExTextInput from './common/ExTextInput';
 
 let FONT_BACK_LABEL = 18;
 
@@ -21,7 +27,7 @@ if (PixelRatio.get() <= 2) {
 
 const backgroundpic = require('./../../pictures/BackgroundForPages.jpg');
 // need to add input checking
-
+// age and name etc are not being saved?
 class PersonalInfo extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +55,8 @@ class PersonalInfo extends Component {
           });
   }
 
-  Registration2Submit(values) {
+  Registration2Submit = (values) => {
+    console.log(values);
     const { currentUser } = firebase.auth();
       firebase
         .database()
@@ -73,58 +80,59 @@ class PersonalInfo extends Component {
                 <Image style={[{ position: 'absolute' }]} source={backgroundpic} />
             </View>
             <ScrollView>
-                <Text style={styles.titleLabelStyle}>PERSONAL INFO</Text>
+                <Text style={styles.titleLabelStyle}>
+                'Personal Info'.toUpperCase()
+                </Text>
 
-                <TextInput
-                    style={styles.inputStyle}
-                    onChangeText={(text) => {
+                <ExTextInput
+                    textStyle={styles.inputStyle}
+                    textChange={(text) => {
                         this.setState({ first_name: text });
                       }}
-                    autoCapitalize='words'
+                    capital='words'
                     value={this.state.first_name}
-                    placeholder='FIRST NAME'
+                    holder='FIRST NAME'
                 />
 
-                <TextInput
-                    style={styles.inputStyle}
-                    name='Last Name'
-                    onChangeText={(text) => {
+                <ExTextInput
+                    textStyle={styles.inputStyle}
+                    textChange={(text) => {
                         this.setState({ last_name: text });
                       }}
-                    autoCapitalize='words'
+                    capital='words'
                     value={this.state.last_name}
-                    placeholder='LAST NAME'
+                    holder='LAST NAME'
                 />
 
-                <TextInput
-                    style={styles.inputStyle}
-                    onChangeText={(text) => {
+                <ExTextInput
+                    textStyle={styles.inputStyle}
+                    textChange={(text) => {
                         this.setState({ phone_number: text });
                       }}
                     value={this.state.phone_number}
                     keyboard='phone-pad'
-                    autoCapitalize='words'
-                    placeholder='PHONE NUMBER'
+                    capital='words'
+                    holder='PHONE NUMBER'
                 />
 
-                <TextInput
-                    style={styles.inputStyle}
-                    onChangeText={(text) => {
+                <ExTextInput
+                    textStyle={styles.inputStyle}
+                    textChange={(text) => {
                         this.setState({ postal_code: text });
                       }}
-                    autoCapitalize='characters'
+                    capital='characters'
                     value={this.state.postal_code}
-                    placeholder='POSTAL CODE'
+                    holder='POSTAL CODE'
                 />
 
-                <TextInput
-                    style={styles.inputStyle}
-                    onChangeText={(text) => {
+                <ExTextInput
+                    textStyle={styles.inputStyle}
+                    textChange={(text) => {
                         this.setState({ age: text });
                       }}
                     value={this.state.age}
                     keyboard='numeric'
-                    placeholder='AGE'
+                    holder='AGE'
                 />
 
                 <View style={styles.itemContainer}>
@@ -238,7 +246,8 @@ const styles = {
     fontFamily: 'fjalla-one',
     lineHeight: 16,
     borderBottomWidth: 2,
-    borderBottomColor: '#ddd'
+    borderBottomColor: '#ddd',
+    flex: 0.9,
   },
   itemContainer: {
     marginLeft: 32,

@@ -3,28 +3,11 @@ import { Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { Analytics } from 'aws-amplify';
 import {
-  EMAIL_CHANGED,
-  PASSWORD_CHANGED,
   LOGIN_USER,
   LOGOUT_USER,
   LOGIN_USER_FAIL,
   LOGIN_USER_SUCCESS
 } from './types';
-
-//for login/logout
-export const emailChanged = text => {
-  return {
-    type: EMAIL_CHANGED,
-    payload: text
-  };
-};
-
-export const passwordChanged = text => {
-  return {
-    type: PASSWORD_CHANGED,
-    payload: text
-  };
-};
 
 export const loginUser = ({ email, password }) => {
   let err;
