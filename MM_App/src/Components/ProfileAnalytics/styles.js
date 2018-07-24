@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   Chartstyle: {
     marginTop: 5,
     height: 200
-  }
+  },
 });
 
 export default styles;

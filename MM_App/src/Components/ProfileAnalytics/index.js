@@ -1,11 +1,12 @@
 import React from 'react';
 import ChartView from 'react-native-highcharts';
 import { connect } from 'react-redux';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Modal, TouchableOpacity } from 'react-native';
 import Button from '../common/Button';
 import { FetchQuestions } from '../../Actions/ProfileAnalyticsActions';
 import styles from './styles';
 import { config } from './config';
+import DailyQuestionnaire from '../DailyQuestionnaire';
 
 const profilePic = require('../../../pictures/ProfilePic.png');
 
@@ -21,7 +22,8 @@ class ProfileAnalytics extends React.Component {
     this.state = {
       sleep: [],
       stress: [],
-      dates: []
+      dates: [],
+      showQuestionnaire: true
     };
   }
 
@@ -68,6 +70,14 @@ class ProfileAnalytics extends React.Component {
 
     return (
       <View style={styles.Mainviewstyle}>
+        <Modal
+          animationType="slide"
+          transparent
+          visible={this.state.showQuestionnaire}
+        >
+          <DailyQuestionnaire onSubmit={() => this.setState({ showQuestionnaire: false })} />
+        </Modal>
+
         <View style={styles.Profileheaderstyle}>
           <View style={styles.Profilepicviewstyle}>
             <Image source={profilePic} style={styles.Profileimagestyle} />
