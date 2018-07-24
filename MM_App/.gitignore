@@ -67,3 +67,11 @@ buck-out/
 */fastlane/screenshots
 
 package-lock.json
+
+#awsmobilejs
+appsync-info.json
+aws-info.json
+project-info.json
+awsmobilejs/.awsmobile/backend-build
+awsmobilejs/\#current-backend-info
+~awsmobilejs-*/

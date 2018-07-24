@@ -80,12 +80,13 @@ class ProfileAnalytics extends React.Component {
         </View>
 
         <View style={styles.Pseudoliststyle}>
-          {(this.state.stress.length > 0 && this.state.sleep.length > 0) && (
-            <View style={{ marginLeft: 10, marginRight: 10 }}>
-              <ChartView style={styles.Chartstyle} config={conf1} options={options} />
-              <ChartView style={styles.Chartstyle} config={conf2} options={options} />
-            </View>
-          )}
+          {this.state.stress.length > 0 &&
+            this.state.sleep.length > 0 && (
+              <View style={{ marginLeft: 10, marginRight: 10 }}>
+                <ChartView style={styles.Chartstyle} config={conf1} options={options} />
+                <ChartView style={styles.Chartstyle} config={conf2} options={options} />
+              </View>
+            )}
           {this.state.dates.length === 0 && (
             <View>
               <Text> You Have No Stress Data </Text>

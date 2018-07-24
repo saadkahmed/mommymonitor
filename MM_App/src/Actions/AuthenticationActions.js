@@ -1,9 +1,7 @@
 import firebase from 'firebase';
 import { Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-// import {
-//   EMAIL_CHANGED,
-//   PASSWORD_CHANGED, removed from global state
+import { Analytics } from 'aws-amplify';
 import {
   LOGIN_USER,
   LOGOUT_USER,
@@ -39,6 +37,11 @@ export const loginUser = ({ email, password }) => {
               dispatch(navToLogin);
             }
             dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
+            //Analytics.updateEndpoint({ UserId: user.uid });
+            Analytics.record({
+              name: '_userauth.sign_in',
+              userId: user.uid
+            });
           });
       })
       .catch(e => {
