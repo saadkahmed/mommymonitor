@@ -113,10 +113,8 @@ let styles = StyleSheet.create({
   }
 });
 
-export default connect(
-  {},
-  {
-    registerUser,
-    mentorRegister
-  }
-)(Register);
+const mapStateToProps = () => {
+    return {};
+};
+
+export default connect(mapStateToProps, { registerUser, mentorRegister })(Register);
