@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-const mommyProfileImage = require('../../../pictures/MommyProfileImage.jpg');
-//import {} from '../Actions';
+import { Entypo } from '@expo/vector-icons';
 import { CardSection, Input, Button, Spinner } from '../common';
+//import {} from '../Actions';
+const mommyProfileImage = require('../../../pictures/MommyProfileImage.jpg');
 
 class AnswerItemView extends Component {
   constructor(props) {
@@ -19,7 +20,8 @@ class AnswerItemView extends Component {
           <Text style={styles.userName}>{this.answer.userName}</Text>
           <Text style={styles.date}>{this.answer.date}</Text>
         </View>
-        <View>
+        <View style={{ flexDirection: 'row' }}>
+          <Entypo name="thumbs-up" style={styles.up} size={30} color="blue" />
           <Text style={styles.body}>{this.answer.text}</Text>
         </View>
       </View>
@@ -29,8 +31,6 @@ class AnswerItemView extends Component {
 
 const styles = StyleSheet.create({
   answer: {
-    borderColor: 'grey',
-    borderWidth: 1,
     margin: 5,
     flex: 1
   },
@@ -44,8 +44,11 @@ const styles = StyleSheet.create({
     marginLeft: 30
   },
   votes: { marginLeft: 2 },
-  body: { marginLeft: 50 },
-  userName: { fontSize: 20, marginLeft: 10 }
+  body: { marginLeft: 25, width: 290, color: '#2f2f2f' },
+  userName: { fontSize: 20, marginLeft: 10 },
+  up: {
+    marginLeft: 25
+  }
 });
 
 export default AnswerItemView;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native';
+import _ from 'lodash';
 //import {} from '../Actions';
 import moment from 'moment';
 import { connect } from 'react-redux';
@@ -9,11 +10,11 @@ import { CardSection, Input, Button, Spinner } from '../common';
 class AnswerListView extends Component {
   state = {};
   componentWillMount() {
-    // get answers for a specific question ID
+    // get answers for a specific question ID OR get answers passed as prop
   }
   render() {
     //dummy data
-    const answers = [
+    let answers = [
       {
         date: moment().format('MMM-DD-YYYY @ h:mma'),
         text:
@@ -43,6 +44,7 @@ class AnswerListView extends Component {
         votes: 2
       }
     ];
+    answers = _.orderBy(answers, 'votes', 'desc');
     return (
       <ScrollView>
         {answers.map((answer, index) => {
