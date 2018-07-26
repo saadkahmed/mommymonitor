@@ -1,0 +1,106 @@
+{
+	"name": "MommyMonitor",
+	"projectId": "230fb217-88af-458c-ac74-b0c91e54c1af",
+	"region": "us-east-2",
+	"state": "NORMAL",
+	"createdDate": "2018-07-17T19:37:44.100Z",
+	"lastUpdatedDate": "2018-07-17T19:37:48.918Z",
+	"consoleUrl": "https://console.aws.amazon.com/mobilehub/home#/230fb217-88af-458c-ac74-b0c91e54c1af/build",
+	"resources": [
+		{
+			"type": "AWS::Pinpoint::AnalyticsApplication",
+			"name": "mommymonitor_MobileHub",
+			"arn": "a37d31e6fb5d4cb2905defdf513e1bd3",
+			"feature": "analytics",
+			"attributes": {
+				"lastUpdateRequestID": "296b1e2b-01e6-49c2-8bcb-6c68f8839b50"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "mommymonitor_mobileanalytics_MOBILEHUB_470597825",
+			"arn": null,
+			"feature": "analytics",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "296b1e2b-01e6-49c2-8bcb-6c68f8839b50",
+				"role": "mommymonitor_unauth_MOBILEHUB_470597825"
+			}
+		},
+		{
+			"type": "AWS::Cognito::IdentityPool",
+			"name": "mommymonitor_MOBILEHUB_470597825",
+			"arn": "us-east-2:42fb2ebf-6bd7-4d54-bc45-f4c8bed24f4c",
+			"feature": "user-signin",
+			"attributes": {
+				"lastUpdateRequestID": "296b1e2b-01e6-49c2-8bcb-6c68f8839b50",
+				"poolid": "us-east-2:42fb2ebf-6bd7-4d54-bc45-f4c8bed24f4c",
+				"roleARNs": "arn:aws:iam::221116399245:role/mommymonitor_unauth_MOBILEHUB_470597825"
+			}
+		},
+		{
+			"type": "AWS::IAM::Role",
+			"name": "mommymonitor_unauth_MOBILEHUB_470597825",
+			"arn": "arn:aws:iam::221116399245:role/mommymonitor_unauth_MOBILEHUB_470597825",
+			"feature": "user-signin",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "296b1e2b-01e6-49c2-8bcb-6c68f8839b50"
+			}
+		},
+		{
+			"type": "AWS::S3::Bucket",
+			"name": "mommymonitor-hosting-mobilehub-470597825",
+			"arn": null,
+			"feature": "hosting",
+			"attributes": {
+				"lastUpdateRequestID": "296b1e2b-01e6-49c2-8bcb-6c68f8839b50",
+				"region": "us-east-2",
+				"s3-bucket-console-url": "https://s3.console.aws.amazon.com/s3/buckets/mommymonitor-hosting-mobilehub-470597825",
+				"s3-bucket-website-url": "https://s3.amazonaws.com/mommymonitor-hosting-mobilehub-470597825"
+			}
+		},
+		{
+			"type": "AWS::CloudFront::Distribution",
+			"name": "d10ds450cz0zjw.cloudfront.net",
+			"arn": null,
+			"feature": "hosting",
+			"attributes": {
+				"id": "E26U5BATUIJKZY",
+				"lastUpdateRequestID": "296b1e2b-01e6-49c2-8bcb-6c68f8839b50"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "mommymonitor_hosting_MOBILEHUB_470597825",
+			"arn": null,
+			"feature": "hosting",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "296b1e2b-01e6-49c2-8bcb-6c68f8839b50",
+				"role": "mommymonitor_unauth_MOBILEHUB_470597825"
+			}
+		},
+		{
+			"type": "AWS::S3::Bucket",
+			"name": "mommymonitor-deployments-mobilehub-470597825",
+			"arn": null,
+			"feature": "common",
+			"attributes": {
+				"region": "us-east-2",
+				"s3-bucket-console-url": "https://s3.console.aws.amazon.com/s3/buckets/mommymonitor-deployments-mobilehub-470597825"
+			}
+		},
+		{
+			"type": "AWS::CloudFormation::Stack",
+			"name": "Development",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"primary": "true",
+				"region": "us-east-2",
+				"stateSummary": "NOT_YET_DEPLOYED"
+			}
+		}
+	]
+}
