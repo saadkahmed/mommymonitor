@@ -54,5 +54,6 @@ export const USER_FETCH_SUCCESS = 'user_fetch_success';
 export const CONVERSATION_LIST_FETCH_SUCCESS = 'conversation_list_fetch_success';
 export const CONVERSATION_LIST_FETCH_FAIL = 'conversation_list_fetch_fail';
 
-//form answer types
+//form types
 export const ANSWERS_FETCH_SUCCESS = 'answers_fetch_success';
+export const QUESTION_FETCH_SUCCESS = 'question_fetch_success';

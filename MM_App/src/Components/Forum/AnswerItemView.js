@@ -22,7 +22,9 @@ class AnswerItemView extends Component {
         </View>
         <View style={{ flexDirection: 'row' }}>
           <Entypo name="thumbs-up" style={styles.up} size={30} color="blue" />
-          <Text style={styles.body}>{this.answer.text}</Text>
+          <CardSection>
+            <Text style={styles.body}>{this.answer.text}</Text>
+          </CardSection>
         </View>
       </View>
     );
@@ -41,10 +43,10 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   date: {
-    marginLeft: 30
+    marginLeft: 25
   },
   votes: { marginLeft: 2 },
-  body: { marginLeft: 25, width: 290, color: '#2f2f2f' },
+  body: { marginLeft: 15, width: 260, color: '#2f2f2f' },
   userName: { fontSize: 20, marginLeft: 10 },
   up: {
     marginLeft: 25

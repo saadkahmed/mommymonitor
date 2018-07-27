@@ -10,6 +10,7 @@ import Questionnaire from './QuestionnaireReducer.js';
 import ProfileAnalytics from './ProfileAnalyticsReducer';
 import Chat from './ChatReducer.js';
 import MentorRegister from './MentorRegisterReducer.js';
+import forum from './ForumReducer.js';
 
 export default combineReducers({
   auth,
@@ -22,5 +23,6 @@ export default combineReducers({
   ProfileAnalytics,
   Chat,
   MentorRegister,
+  forum,
   form: formReducer //redux form connection to store
 });
