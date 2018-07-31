@@ -7,3 +7,4 @@ export * from './QuestionnaireActions';
 export * from './ProfileAnalyticsActions';
 export * from './ChatActions';
 export * from './MentorRegisterActions';
+export * from './ForumQuestionActions';

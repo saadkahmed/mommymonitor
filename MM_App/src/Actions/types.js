@@ -53,3 +53,7 @@ export const MESSAGE_SEND_SUCCESS = 'message_send_success';
 export const USER_FETCH_SUCCESS = 'user_fetch_success';
 export const CONVERSATION_LIST_FETCH_SUCCESS = 'conversation_list_fetch_success';
 export const CONVERSATION_LIST_FETCH_FAIL = 'conversation_list_fetch_fail';
+
+//forum question types
+export const FORUM_QUESTION_LIST_FETCH_SUCCESS = 'forum_question_list_fetch_success';
+export const FORUM_QUESTION_LIST_FETCH_FAIL = 'forum_question_list_fetch_fail';
