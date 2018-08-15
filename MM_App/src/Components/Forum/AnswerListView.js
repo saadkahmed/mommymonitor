@@ -11,7 +11,7 @@ class AnswerListView extends Component {
       return b.votes - a.votes;
     });
     return (
-      <ScrollView>
+      <ScrollView style={{ marginTop: 10 }}>
         {answers.map((answer, index) => {
           return <AnswerItemView key={index} answer={answer} />;
         })}
