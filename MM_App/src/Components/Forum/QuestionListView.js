@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
-import AnswerItemView from './AnswerItemView';
+import QuestionItemView from './QuestionItemView';
+import { fetchAllQuestions } from '../../Actions';
 import { CardSection, Input, Button, Spinner } from '../common';
 
 class QuestionListView extends Component {
+  componentWillMount() {
+    this.props.fetchAllQuestions();
+  }
   render() {
-    //dummy data
-    let questions = [
-      {
-        date: moment().format('MMM-DD-YYYY @ h:mma'),
-        title: "What is water?"
-        text:"Like is it a solid, liquid or a gas?"
-        userName: 'dooodledoo',
-        votes: 0
-      },
-
-    ];
-    questions = answers.sort((a, b) => {
-      return b.votes - a.votes;
-    });
+    const questions = Object.keys(this.props.forumQuestions)
+      .map(key => {
+        return this.props.forumQuestions[key];
+      })
+      .sort((a, b) => {
+        return b.votes - a.votes;
+      });
     return (
       <ScrollView>
         {questions.map((question, index) => {
@@ -30,4 +28,12 @@ class QuestionListView extends Component {
   }
 }
 
-export default QuestionListView;
+const mapStateToProps = state => {
+  const { forumQuestions } = state.forum;
+  return { forumQuestions };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchAllQuestions }
+)(QuestionListView);
