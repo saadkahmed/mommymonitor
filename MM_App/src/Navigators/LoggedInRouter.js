@@ -5,6 +5,8 @@ import SettingsPage from '../Components/Settings';
 import Questionnaire from '../Components/DailyQuestionnaire';
 import ConversationView from '../Components/Chat/ConversationView';
 import ConversationListView from '../Components/Chat/ConversationListView';
+import QuestionListView from '../Components/Forum/QuestionListView';
+import QuestionView from '../Components/Forum/QuestionView';
 
 const LoggedInNavigator = DrawerNavigator(
   {
@@ -38,10 +40,24 @@ const LoggedInNavigator = DrawerNavigator(
         title: 'Mentor Chat List',
         gesturesEnabled: true
       }
+    },
+    QuestionListView: {
+      screen: QuestionListView,
+      navigationOptions: {
+        title: 'Question List View',
+        gesturesEnabled: true
+      }
+    },
+    QuestionView: {
+      screen: QuestionView,
+      navigationOptions: {
+        title: 'Question View',
+        gesturesEnabled: true
+      }
     }
   },
   {
-    initialRouteName: 'Profile',
+    initialRouteName: 'QuestionListView',
     drawerPosition: 'left'
   }
 );

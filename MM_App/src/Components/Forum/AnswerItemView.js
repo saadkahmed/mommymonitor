@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
   date: {
     marginLeft: 25
   },
-  votes: { marginLeft: 2 },
-  body: { marginLeft: 15, width: 260, color: '#2f2f2f' },
+  votes: { marginLeft: 1 },
+  body: { marginLeft: 15, width: 260, color: '#2f2f2f', fontSize: 15 },
   userName: { fontSize: 20, marginLeft: 10 },
   vote: {
     marginLeft: 25

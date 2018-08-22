@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import QuestionItemView from './QuestionItemView';
 import { fetchAllQuestions } from '../../Actions';
@@ -19,13 +19,26 @@ class QuestionListView extends Component {
         return b.votes - a.votes;
       });
     return (
-      <ScrollView>
-        {questions.map((question, index) => {
-          return (
-            <QuestionItemView key={index} question={question} navigation={this.props.navigation} />
-          );
-        })}
-      </ScrollView>
+      <View>
+        <TouchableOpacity
+          onPress={() => {
+            console.log('pop up create question view');
+          }}
+        >
+          <Text style={{ textAlign: 'right', marginRight: 2 }}>Create Question</Text>
+        </TouchableOpacity>
+        <ScrollView>
+          {questions.map((question, index) => {
+            return (
+              <QuestionItemView
+                key={index}
+                question={question}
+                navigation={this.props.navigation}
+              />
+            );
+          })}
+        </ScrollView>
+      </View>
     );
   }
 }

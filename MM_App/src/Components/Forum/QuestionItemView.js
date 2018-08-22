@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 class QuestionItemView extends Component {
@@ -21,7 +21,6 @@ class QuestionItemView extends Component {
           <TouchableOpacity
             onPress={() => {
               // transition to question view with this question as a param
-              console.log(id);
               this.props.navigation.navigate('QuestionView', this.question);
             }}
           >
