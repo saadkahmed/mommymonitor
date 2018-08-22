@@ -17,7 +17,7 @@ class AnswerItemView extends Component {
         <View style={{ flexDirection: 'row' }}>
           <Text style={styles.votes}>{this.answer.votes}</Text>
           <Image style={styles.mommyImageStyle} source={mommyProfileImage} />
-          <Text style={styles.userName}>{this.answer.user.name}</Text>
+          <Text style={styles.userName}>{this.answer.user_name}</Text>
           <Text style={styles.date}>{this.answer.date}</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>

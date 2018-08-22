@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text } from 'react-native';
 import moment from 'moment';
-import { fetchQuestion } from './../../Actions';
+import { fetchQuestionAnswers } from './../../Actions';
 import AnswerListView from './AnswerListView';
 import { CardSection, Input, Button, Spinner } from '../common';
 
 class QuestionView extends Component {
-  componentWillMount() {
-    this.props.fetchQuestion();
+  constructor(props) {
+    super(props);
+    this.question = this.props.navigation.state.params;
   }
-
+  componentWillMount() {
+    const { id } = this.question;
+    this.props.fetchQuestionAnswers(id);
+  }
   render() {
-    const { title, text, answers, votes, owner } = this.props.question;
-    const ans = answers ? Object.keys(answers).map(key => answers[key]) : [];
-    const user_name = owner ? owner.user_name : '';
+    const { votes, title, text, user_name } = this.question;
+    const { questionAnswers } = this.props;
+    const ans = questionAnswers
+      ? Object.keys(questionAnswers).map(key => questionAnswers[key])
+      : [];
     return (
       <View>
         <View style={{ flexDirection: 'row' }}>
@@ -51,11 +57,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { question } = state.forum;
-  return { question };
+  const { questionAnswers } = state.forum;
+  return { questionAnswers };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchQuestion }
+  { fetchQuestionAnswers }
 )(QuestionView);

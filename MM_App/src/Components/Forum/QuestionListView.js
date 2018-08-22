@@ -13,7 +13,7 @@ class QuestionListView extends Component {
   render() {
     const questions = Object.keys(this.props.forumQuestions)
       .map(key => {
-        return this.props.forumQuestions[key];
+        return { ...this.props.forumQuestions[key], id: key };
       })
       .sort((a, b) => {
         return b.votes - a.votes;
@@ -21,7 +21,9 @@ class QuestionListView extends Component {
     return (
       <ScrollView>
         {questions.map((question, index) => {
-          return <QuestionItemView key={index} question={question} />;
+          return (
+            <QuestionItemView key={index} question={question} navigation={this.props.navigation} />
+          );
         })}
       </ScrollView>
     );

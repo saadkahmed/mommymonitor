@@ -9,11 +9,11 @@ class QuestionItemView extends Component {
   }
 
   render() {
-    const { date, owner, votes, title, id } = this.question;
+    const { date, user_name, votes, title, id } = this.question;
     return (
       <View style={styles.question}>
         <View style={styles.side}>
-          <Text style={{ fontSize: 22 }}>{votes}</Text>
+          <Text style={styles.sideText}>{votes}</Text>
           <Entypo name="thumbs-up" size={30} color="blue" />
           <Entypo name="thumbs-down" size={30} color="red" />
         </View>
@@ -22,12 +22,13 @@ class QuestionItemView extends Component {
             onPress={() => {
               // transition to question view with this question as a param
               console.log(id);
+              this.props.navigation.navigate('QuestionView', this.question);
             }}
           >
             <Text style={styles.title}>{title}</Text>
             <View style={styles.subBody}>
-              <Text style={{ color: '#2f2f2f' }}>Created by: {owner.user_name}</Text>
-              <Text style={{ color: '#2f2f2f' }}>Created on: {date}</Text>
+              <Text style={styles.subBodyText}>Created by: {user_name}</Text>
+              <Text style={styles.subBodyText}>Created on: {date}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -51,9 +52,16 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 10
   },
+  sideText: {
+    fontSize: 22
+  },
   subBody: {
     marginTop: 5,
-    marginLeft: 20
+    marginLeft: 15
+  },
+  subBodyText: {
+    color: '#2f2f2f',
+    fontSize: 20
   }
 });
 
