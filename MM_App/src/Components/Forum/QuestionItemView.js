@@ -26,8 +26,8 @@ class QuestionItemView extends Component {
           >
             <Text style={styles.title}>{title}</Text>
             <View style={styles.subBody}>
-              <Text style={styles.subBodyText}>Created by: {user_name}</Text>
-              <Text style={styles.subBodyText}>Created on: {date}</Text>
+              <Text style={styles.subBodyText}>{user_name}</Text>
+              <Text style={styles.subBodyText}>{date}</Text>
             </View>
           </TouchableOpacity>
         </View>

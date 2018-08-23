@@ -3,7 +3,7 @@ import { NavigationActions } from 'react-navigation';
 import { MAININFORMATIONUPDATE, LOADING_DATA } from './types';
 
 export const UpdateInfo = Obj => {
-    console.log(Obj);
+  console.log(Obj);
   return { type: MAININFORMATIONUPDATE, payload: Obj };
 };
 

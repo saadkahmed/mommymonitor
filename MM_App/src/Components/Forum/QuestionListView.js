@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import { Modal, StyleSheet, ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import QuestionItemView from './QuestionItemView';
 import { fetchAllQuestions } from '../../Actions';
 import { CardSection, Input, Button, Spinner } from '../common';
+import CreateQuestionView from './CreateQuestionView';
 
 class QuestionListView extends Component {
   componentWillMount() {
     this.props.fetchAllQuestions();
   }
+
+  state = {
+    showCreateQuestion: false
+  };
   render() {
     const questions = Object.keys(this.props.forumQuestions)
       .map(key => {
@@ -20,9 +25,17 @@ class QuestionListView extends Component {
       });
     return (
       <View>
+        <Modal animationType="slide" transparent visible={this.state.showCreateQuestion}>
+          <CreateQuestionView
+            closeWindow={() => {
+              this.setState({ showCreateQuestion: false });
+            }}
+            navigation={this.props.navigation}
+          />
+        </Modal>
         <TouchableOpacity
           onPress={() => {
-            console.log('pop up create question view');
+            this.setState({ showCreateQuestion: true });
           }}
         >
           <Text style={{ textAlign: 'right', marginRight: 2 }}>Create Question</Text>

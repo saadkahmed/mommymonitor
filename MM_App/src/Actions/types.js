@@ -61,3 +61,5 @@ export const FETCH_QUESTION_ANSWERS_SUCCESS = 'fetch_forum_question_answers_succ
 export const FETCH_QUESTION_ANSWERS_FAIL = 'fetch_forum_question_answers_fail';
 export const ALL_QUESTIONS_FETCH_SUCCESS = 'forum_questions_fetch_success';
 export const ALL_QUESTIONS_FETCH_FAIL = 'forum_questions_fetch_fail';
+export const CREATE_QUESTION_SUCCESS = 'forum_create_question_success';
+export const CREATE_QUESTION_FAIL = 'forum_create_question_fail';
