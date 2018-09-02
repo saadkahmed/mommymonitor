@@ -58,17 +58,23 @@ class PersonalInfo extends Component {
   Registration2Submit = (values) => {
     console.log(values);
     const { currentUser } = firebase.auth();
-      firebase
-        .database()
-        .ref(`/users/${currentUser.uid}/userinfo`)
-        .update({ ...values })
-        .then(() => {
-            this.props.navigation.navigate('PregnancyInfo');
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
+
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/publicinfo`)
+      .update({ first_name: values.first_name, last_name: values.last_name });
+
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/userinfo`)
+      .update({ ...values })
+      .then(() => {
+          this.props.navigation.navigate('PregnancyInfo');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
 
   render() {
