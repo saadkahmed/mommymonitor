@@ -5,6 +5,7 @@ import SettingsPage from '../Components/Settings';
 import DailyQuestionnaire from '../Components/DailyQuestionnaire';
 import ConversationView from '../Components/Chat/ConversationView';
 import ConversationListView from '../Components/Chat/ConversationListView';
+import QuestionListView from '../Components/Forum/QuestionListView';
 
 const LoggedInNavigator = createDrawerNavigator(
   {
@@ -36,6 +37,13 @@ const LoggedInNavigator = createDrawerNavigator(
       screen: ConversationListView,
       navigationOptions: {
         title: 'Mentor Chat List',
+        gesturesEnabled: true
+      }
+    },
+    Forum: {
+      screen: QuestionListView,
+      navigationOptions: {
+        title: 'Forum',
         gesturesEnabled: true
       }
     }
