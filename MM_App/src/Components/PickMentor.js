@@ -8,10 +8,7 @@ import _ from 'lodash';
 import firebase from 'firebase';
 
 import { FlatList, Text, View, Image, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
-
-import { MentorFetch, AssignMentor } from '../Actions';
-import { Button } from './common';
+import { Button, Spinner } from './common';
 
 // if we want to limit the number of people per maternal mentor we can push
 // user ids to the mentor upon selection and only display those with less then x
@@ -29,15 +26,71 @@ import { Button } from './common';
 
 // have a meeting time for when mentors and users wanna meet
 // have maternal mentors log on when and how they meet
+
 class PickMentor extends Component {
+    state = {
+        NewMentors: [],
+        loading: true
+    };
+
   componentWillMount() {
-    this.props.MentorFetch();
-    //console.log('this is the PickMentor screen \n', this.props);
+          const { currentUser } = firebase.auth();
+          //make sure to check package here!!!!!!!!!!!!!!
+              if (currentUser != null) {
+                  firebase
+                  .database()
+                  .ref('/MaternalMentors')
+                  .on('value', snapshot => {
+                      this.setState({ NewMentors: _.map(snapshot.val(), (val, id) => {
+                           let arr = {};
+                           arr = val;
+                           firebase
+                           .storage()
+                           .ref(`images/${arr.name}.jpg`)
+                           .getDownloadURL()
+                           .then(pic => {
+                              NewMentors = this.state.NewMentors.map((object) => {
+                                 if (object.id === id) {
+                                     const newobj = object;
+                                     newobj.picurl = pic;
+                                     return newobj;
+                                 }
+                                 return object;
+                              });
+                              this.setState({ NewMentors });
+                             })
+                           .catch(err => {
+                               console.log(err);
+                           });
+                           return { ...arr, id };
+                       }),
+                       loading: false });
+                  });
+              }
+          }
+    // console.log('this is the PickMentor screen \n', this.props);
     // Create a reference with an initial file path and name
-  }
-  componentWillReceiveProps(props) {
-    console.log('these are the props', props);
-  }
+
+    AssignMentor = mentor => {
+      const { currentUser } = firebase.auth();
+        firebase
+          .database()
+          .ref(`/users/${currentUser.uid}/MaternalMentor/`)
+          .set(mentor)
+          .then(() => {
+            firebase
+              .database()
+              .ref(`/users/${currentUser.uid}/registration`)
+              .set({ complete: true });
+             firebase
+                .auth()
+                .signOut();
+                this.props.navigation.navigate('MainScreen');
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    };
 
   keyExtractor = item => item.id.toString();
 
@@ -67,17 +120,29 @@ class PickMentor extends Component {
       </View>
 
       <View>
-        <Button onPress={() => this.props.AssignMentor(item)}>{item.name}</Button>
+        <Button
+            onPress={() => this.AssignMentor(item)}
+        >
+        {item.name}</Button>
       </View>
     </View>
   );
   render() {
-    return (
-      <FlatList
-        data={this.props.mentors}
-        keyExtractor={this.keyExtractor}
-        renderItem={this.renderItem}
-      />
+      if (this.state.loading === true) {
+          console.log('loading');
+        return (
+            <View>
+                <Spinner size="large" />
+            </View>
+        );
+      }
+      console.log('this is the array', this.state);
+      return (
+          <FlatList
+              data={this.state.NewMentors}
+              keyExtractor={this.keyExtractor}
+              renderItem={this.renderItem}
+          />
     );
   }
 }
@@ -92,33 +157,5 @@ const styles = StyleSheet.create({
     padding: 5
   }
 });
-//cant scrooll all the way down?
-const mapStateToProps = state => {
-  const mentors = _.map(state.PickMentor, (val, id) => {
-    //lodash (_) takes the array and makes it an object so here we
-    //reassign that array to a variable so that we can manipulate it
-    //then each time a new object is read we pull the download url
-    //and add it to the object as a key value pair of
-    //picurl = the address for the picture
-    //have to redefine val i dont know why but it doesnt work otherwise
-    let arr = {};
-    arr = val;
-    firebase
-      .storage()
-      .ref(`images/${arr.name}.jpg`)
-      .getDownloadURL()
-      .then(pic => {
-        arr.picurl = pic;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    return { ...arr, id };
-  });
-  return { mentors };
-};
 
-export default connect(
-  mapStateToProps,
-  { MentorFetch, AssignMentor }
-)(PickMentor);
+export default PickMentor;

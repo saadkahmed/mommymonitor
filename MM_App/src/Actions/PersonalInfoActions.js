@@ -1,3 +1,7 @@
+/***
+** This file is not being used
+**
+**/
 import firebase from 'firebase';
 import { NavigationActions } from 'react-navigation';
 import { MAININFORMATIONUPDATE, LOADING_DATA } from './types';

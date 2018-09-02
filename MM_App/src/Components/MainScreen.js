@@ -36,7 +36,18 @@ class MainScreen extends Component {
   //attempt to log user in
   onLoginPress() {
     const { email, password } = this.state; // destructuring email and pass for login verification
-    this.props.loginUser({ email, password }); //loginUser is expecting an object
+    this.props.loginUser({ email, password })
+    .then(() => {
+        this.setState({ password: ''});
+        console.log(this.props);
+        if (this.props.user.uid != null) {
+            this.props.navigation.navigate(this.props.nextScreen);
+        }
+    }
+    )
+    .catch(e => {
+        console.log(e);
+    }); //loginUser is expecting an object
   }
 
   // text handlers
@@ -136,8 +147,8 @@ let styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { loading } = state.auth;
-  return { loading };
+  const { loading, nextScreen, user } = state.auth;
+  return { loading, nextScreen, user };
 };
 
 export default connect(

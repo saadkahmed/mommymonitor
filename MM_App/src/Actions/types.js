@@ -19,7 +19,8 @@ export const LOADING_DATA = 'loading_data';
 //MaternalMentors types
 export const MENTOR_FETCH_SUCCESS = 'mentor_fetch_success';
 export const MENTOR_FETCH_FAILED = 'mentor_fetch_failed';
-
+export const MENTOR_ASSIGN_SUCCESS = 'mentor_assign_success';
+export const MENTOR_PICTURE_FETCH_SUCCESS = 'mentor_picture_fetch_success';
 //registration/user info types
 export const MAININFORMATIONUPDATE = 'main_information_update';
 export const CHOSENMATERNALMENTOR = 'chosen_maternal_mentor';

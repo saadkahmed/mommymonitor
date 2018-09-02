@@ -1,14 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { addNavigationHelpers, StackNavigator } from 'react-navigation';
+//import { connect } from 'react-redux';
+// import { addNavigationHelpers, createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
 import forgot from '../Components/Forgot';
 import LoggedInRouter from './LoggedInRouter';
 import RegisterRouter from './RegisterRouter';
 import MainScreen from '../Components/MainScreen';
-import { addListener } from '../utils/redux';
+//import { addListener } from '../utils/redux';
 
-export const RootNavigator = StackNavigator({
+export const RootNavigator = createStackNavigator({
   MainScreen: {
     screen: MainScreen,
     navigationOptions: {
@@ -38,23 +39,32 @@ export const RootNavigator = StackNavigator({
 }
 );
 
+// class AppWithNavigationState extends React.Component {
+//   render() {
+//     const { dispatch, nav } = this.props;
+//     return (
+//       <RootNavigator
+//         navigation={addNavigationHelpers({
+//           dispatch,
+//           state: nav,
+//           addListener,
+//         })}
+//       />
+//     );
+//   }
+// }
+
 class AppWithNavigationState extends React.Component {
   render() {
-    const { dispatch, nav } = this.props;
     return (
-      <RootNavigator
-        navigation={addNavigationHelpers({
-          dispatch,
-          state: nav,
-          addListener,
-        })}
-      />
+      <RootNavigator />
     );
   }
 }
 
-const mapStateToProps = state => ({
-  nav: state.nav,
-});
+// const mapStateToProps = state => ({
+//   nav: state.nav,
+// });
 
-export default connect(mapStateToProps)(AppWithNavigationState);
+// export default connect(mapStateToProps)(AppWithNavigationState);
+export default AppWithNavigationState;

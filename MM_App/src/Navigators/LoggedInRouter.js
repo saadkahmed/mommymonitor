@@ -1,4 +1,4 @@
-import { DrawerNavigator } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation';
 
 import ProfileAnalytics from '../Components/ProfileAnalytics';
 import SettingsPage from '../Components/Settings';
@@ -7,7 +7,7 @@ import ConversationView from '../Components/Chat/ConversationView';
 import ConversationListView from '../Components/Chat/ConversationListView';
 import QuestionListView from '../Components/Forum/QuestionListView';
 
-const LoggedInNavigator = DrawerNavigator(
+const LoggedInNavigator = createDrawerNavigator(
   {
     Profile: {
       screen: ProfileAnalytics

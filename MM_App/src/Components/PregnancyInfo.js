@@ -1,4 +1,5 @@
-/** this is the Pregnancy info forum
+/**
+** this is the Pregnancy info forum
 ** i use my own text input class so dont change anything inside
 ** the ExTextInput jsx. this also uses a async function to display
 ** time and date on android. both datepickers are fixed and working.

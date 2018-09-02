@@ -1,13 +1,14 @@
 import {
   createReactNavigationReduxMiddleware,
-  createReduxBoundAddListener,
+  reduxifyNavigator,
 } from 'react-navigation-redux-helpers';
 
 const middleware = createReactNavigationReduxMiddleware(
   'root',
   state => state.nav,
 );
-const addListener = createReduxBoundAddListener('root');
+
+const addListener = reduxifyNavigator('root');
 
 export {
   middleware,

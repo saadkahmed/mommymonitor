@@ -12,8 +12,9 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case REGISTER_COMPLETE: {
+        const { nextScreen } = action.payload;
       //register user complete
-      return INITIAL_STATE; // why wipe the state now
+      return { INITIAL_STATE, nextScreen };
     }
 
     default:

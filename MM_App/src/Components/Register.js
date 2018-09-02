@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Switch, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
-import { registerUser, mentorRegister } from '../Actions';
+import { registerUser } from '../Actions';
 
 import { Button, CardSection, Input } from '../Components/common';
 
@@ -26,11 +26,14 @@ class Register extends React.Component {
   }
 
   onRegisterPress() {
-    this.props.registerUser(this.state);
+    this.props.registerUser(this.state)
+    .then(() => {
+        this.props.navigation.navigate(this.props.nextScreen);
+    });
   }
 
   onMentorRequestPress = () => {
-    this.props.mentorRegister();
+      this.props.navigation.navigate('MentorRegister');
   };
 
   switchchange(value) {
@@ -74,7 +77,7 @@ class Register extends React.Component {
           />
           <Text style={{ backgroundColor: 'transparent' }}> Accept Terms and Conditions </Text>
         </View>
-
+        {/** we need to make this a link to the terms and agreements**/}
         <View style={styles.buttonContainer}>
           <Button onPress={this.onRegisterPress.bind(this)}>Register</Button>
         </View>
@@ -113,8 +116,9 @@ let styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = () => {
-    return {};
+const mapStateToProps = state => {
+    const { nextScreen } = state.reg;
+    return { nextScreen };
 };
 
-export default connect(mapStateToProps, { registerUser, mentorRegister })(Register);
+export default connect(mapStateToProps, { registerUser })(Register);

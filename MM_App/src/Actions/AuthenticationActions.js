@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import { Alert } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+//import { NavigationActions } from 'react-navigation';
 import { Analytics } from 'aws-amplify';
 import {
   LOGIN_USER,
@@ -11,13 +11,14 @@ import {
 
 export const loginUser = ({ email, password }) => {
   let err;
-  const navToLogin = NavigationActions.navigate({
-    routeName: 'LoggedInRouter'
-  });
-  const navToPersonalInfo = NavigationActions.navigate({
-    routeName: 'PersonalInfo'
-  });
-  return dispatch => {
+  let nextScreen;
+  // const navToLogin = NavigationActions.navigate({
+  //   routeName: 'LoggedInRouter'
+  // });
+  // const navToPersonalInfo = NavigationActions.navigate({
+  //   routeName: 'PersonalInfo'
+  // });
+  return dispatch => new Promise((resolve, reject) => {
     if (email.trim() === '' || password.trim() === '') {
       err = 'Fields Left Blank';
     }
@@ -25,26 +26,29 @@ export const loginUser = ({ email, password }) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(user => {
-        //console.log(user.uid);
-        firebase
-          .database()
-          .ref(`/users/${user.uid}/registration`)
-          .on('value', snapshot => {
-            if (snapshot.val().complete === false) {
-              dispatch(navToPersonalInfo);
-            } else {
-              dispatch(navToLogin);
-            }
-            dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
-            //Analytics.updateEndpoint({ UserId: user.uid });
-            Analytics.record({
-              name: '_userauth.sign_in',
-              userId: user.uid
-            });
-          });
-      })
+      .then(userobj => {
+          const { user } = userobj;
+          console.log('user id is', user.uid);
+            firebase
+              .database()
+              .ref(`/users/${user.uid}/registration`)
+              .on('value', snapshot => {
+                if (snapshot.val().complete === false) {
+                    nextScreen = 'PersonalInfo';
+                } else {
+                    nextScreen = 'LoggedInRouter';
+                }
+                dispatch({ type: LOGIN_USER_SUCCESS, payload: { user, nextScreen } });
+                resolve();
+                //Analytics.updateEndpoint({ UserId: user.uid });
+                Analytics.record({
+                  name: '_userauth.sign_in',
+                  userId: user.uid
+                });
+              });
+          })
       .catch(e => {
+        reject(e);
         if (err) {
           Alert.alert(err);
         } else {
@@ -52,24 +56,26 @@ export const loginUser = ({ email, password }) => {
         }
         dispatch({ type: LOGIN_USER_FAIL });
       });
-  };
+  });
 };
 
-export const logoutUser = () => {
-  const navToMain = NavigationActions.navigate({
-    routeName: 'MainScreen'
-  });
+// const navToMain = NavigationActions.navigate({
+//   routeName: 'MainScreen'
+// });
 
-  return dispatch => {
+export const logoutUser = () => {
+  return dispatch => new Promise((resolve) => {
     firebase
       .auth()
       .signOut()
       .then(() => {
-        dispatch(navToMain);
-        dispatch({ type: LOGOUT_USER });
+        dispatch({ type: LOGOUT_USER, payload: { nextScreen: 'MainScreen' } });
+        resolve();
       })
       .catch(e => {
         Alert.alert(e.message);
+        resolve();
       });
-  };
+      setTimeout(() => reject('error'), 20000);
+  });
 };
