@@ -3,12 +3,14 @@ import { AppRegistry } from 'react-native';
 import { Font } from 'expo';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import Amplify, { Analytics } from 'aws-amplify';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk'; // thunk is middleware
 import AppWithNavigationState from './src/Navigators/LoginRouter';
 import reducers from './src/Reducers';
-import Amplify, { Analytics } from 'aws-amplify';
 import awsmobile from './aws-exports';
+
+fjalla = require('./assets/fonts/FjallaOne-Regular.ttf');
 
 Amplify.configure(awsmobile);
 //create new firebase key and stuff before publishing
@@ -27,7 +29,7 @@ class Application extends React.Component {
 
   componentDidMount() {
     Font.loadAsync({
-      'fjalla-one': require('./assets/fonts/FjallaOne-Regular.ttf')
+      'fjalla-one': fjalla
     });
   }
 

@@ -6,8 +6,10 @@ const INITIAL_STATE = { loading: false };
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FORGOT_REQUEST_SUCCESS: {
-      //when the forgot email request is being sent
-      return { ...state, loading: true };
+        const { nextScreen } = action.payload;
+        console.log('nextsceen is', nextScreen);
+        //when the forgot email request is being sent
+        return { ...state, loading: true, nextScreen };
     }
 
     case SENT_FORGOT_REQUEST: {

@@ -9,7 +9,8 @@ import {
 //   PASSWORD_CHANGED, moved out of global state
 const INITIAL_STATE = {
   user: null,
-  loading: false
+  loading: false,
+  nextScreen: null
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -20,10 +21,12 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case LOGIN_USER_SUCCESS: {
+        const { user, nextScreen } = action.payload;
       //after user has successfully logged in
       return {
         INITIAL_STATE,
-        user: action.payload
+        user,
+        nextScreen
       };
     }
 
@@ -33,8 +36,9 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case LOGOUT_USER: {
+        const { nextScreen } = action.payload;
       //once user logs out return inital states
-      return INITIAL_STATE;
+      return { INITIAL_STATE, nextScreen };
     }
 
     default:

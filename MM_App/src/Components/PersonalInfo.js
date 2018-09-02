@@ -1,5 +1,5 @@
 /** this is the personal info forum
-** i use my own text input class so dont change anything inside 
+** i use my own text input class so dont change anything inside
 ** the ExTextInput jsx.
 **
 **
@@ -81,7 +81,7 @@ class PersonalInfo extends Component {
             </View>
             <ScrollView>
                 <Text style={styles.titleLabelStyle}>
-                'Personal Info'.toUpperCase()
+                Personal Info
                 </Text>
 
                 <ExTextInput
@@ -118,21 +118,21 @@ class PersonalInfo extends Component {
                 <ExTextInput
                     textStyle={styles.inputStyle}
                     textChange={(text) => {
-                        this.setState({ postal_code: text });
-                      }}
-                    capital='characters'
-                    value={this.state.postal_code}
-                    holder='POSTAL CODE'
-                />
-
-                <ExTextInput
-                    textStyle={styles.inputStyle}
-                    textChange={(text) => {
                         this.setState({ age: text });
                       }}
                     value={this.state.age}
                     keyboard='numeric'
                     holder='AGE'
+                />
+
+                <ExTextInput
+                    textStyle={styles.inputStyle}
+                    textChange={(text) => {
+                        this.setState({ postal_code: text });
+                      }}
+                    capital='characters'
+                    value={this.state.postal_code}
+                    holder='POSTAL CODE'
                 />
 
                 <View style={styles.itemContainer}>

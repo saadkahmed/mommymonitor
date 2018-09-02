@@ -30,15 +30,15 @@ class PickPackage extends Component {
               </View>
                 <Text style={styles.titleLabelStyle}>PICK A PACKAGE</Text>
                 <CardSection>
-                  <Button onPress={() => this.goToPay(1)}> Option 1 </Button>
+                  <Button onPress={() => this.goToPay('option 1')}> Option 1 </Button>
                 </CardSection>
 
                 <CardSection>
-                  <Button onPress={() => this.goToPay(2)}> Option 2 </Button>
+                  <Button onPress={() => this.goToPay('option 2')}> Option 2 </Button>
                 </CardSection>
 
                 <CardSection>
-                  <Button onPress={() => this.goToPay(3)}> Option 3 </Button>
+                  <Button onPress={() => this.goToPay('option 3')}> Option 3 </Button>
                 </CardSection>
             </View>
         );

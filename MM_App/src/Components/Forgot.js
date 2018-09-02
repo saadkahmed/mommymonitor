@@ -16,14 +16,18 @@ class IForgot extends React.Component {
       Alert.alert(this.props.message);
     }
   }
-  
+
   onEmailChange(text) {
     this.setState({ email: text });
   }
 
   submitForgot() {
     const { email } = this.state;
-    this.props.sendForgot(email);
+    this.props.sendForgot(email)
+    .then(() => {
+        console.log(this.props);
+        this.props.navigation.navigate(this.props.nextScreen);
+    });
   }
 
   render() {
@@ -64,8 +68,8 @@ let styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { message } = state.forg;
-  return { message };
+  const { message, nextScreen } = state.forg;
+  return { message, nextScreen };
 };
 
 export default connect(

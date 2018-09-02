@@ -89,7 +89,7 @@ let styles = StyleSheet.create({
 });
 
 export default connect(
-  {},
+  () => { return {}; },
   {
     sendMentorRequest
   }

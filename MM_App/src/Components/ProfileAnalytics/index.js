@@ -1,7 +1,7 @@
 import React from 'react';
 import ChartView from 'react-native-highcharts';
 import { connect } from 'react-redux';
-import { View, Text, Image, Modal, TouchableOpacity } from 'react-native';
+import { View, Text, Image, Modal } from 'react-native';
 import Button from '../common/Button';
 import { FetchQuestions } from '../../Actions/ProfileAnalyticsActions';
 import styles from './styles';
