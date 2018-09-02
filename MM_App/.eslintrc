@@ -1,15 +1,27 @@
 {
-  "extends": "rallycoding",
-  "parserOptions": {
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "es6": true,
+    },
+    "plugins": [
+        "react"
+    ],
+    "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",
         "ecmaFeatures": {
-            "jsx": true
-            }
-            },
-  "rules": {
-    "arrow-body-style": 0,
-    "no-undef": 0,
-  },
-  "env": { "es6": true }
+            "jsx": true,
+        }
+    },
+    "rules": {
+      "arrow-body-style": 0,
+      "no-undef": 0,
+      "no-console": 0,
+      "react/prop-types": 0,
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
 }
