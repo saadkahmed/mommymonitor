@@ -1,6 +1,5 @@
 import React from 'react';
-import { TouchableHighlight, Text } from 'react-native';
-import { StackNavigator, NavigationActions } from 'react-navigation';
+import { createStackNavigator, NavigationActions, HeaderBackButton } from 'react-navigation';
 import Register from '../Components/Register';
 import PersonalInfo from '../Components/PersonalInfo';
 import PickPackage from '../Components/PickPackage';
@@ -9,18 +8,16 @@ import RegistrationComplete from '../Components/RegistrationComplete';
 import MentorRegister from '../Components/MentorRegister';
 import PregnancyInfo from '../Components/PregnancyInfo';
 
-const RegisterRouter = StackNavigator({
+const RegisterRouter = createStackNavigator({
     Register: {
         screen: Register,
         navigationOptions: ({ navigation }) => ({
             gesturesEnabled: false,
             headerTitle: 'Registration',
             headerLeft: (
-                <TouchableHighlight
+                <HeaderBackButton
                     onPress={() => navigation.dispatch(NavigationActions.back())}
-                >
-                    <Text> back </Text>
-                </TouchableHighlight>
+                />
             ) }),
     },
     PersonalInfo: {

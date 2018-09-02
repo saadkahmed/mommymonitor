@@ -2,62 +2,59 @@ import React from 'react';
 import { View, Switch, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
-import { emailChangedReg,
-         passwordChangedReg,
-         passwordChangedConfirm,
-         registerUser,
-         switchchange,
-         mentorRegister
-              } from '../Actions';
+import { registerUser } from '../Actions';
 
 import { Button, CardSection, Input } from '../Components/common';
 
 const backgroundpic = require('../../pictures/BackgroundForPages.jpg');
 
 class Register extends React.Component {
-    componentWillMount() {
-        //console.log('this is the register screen \n', this.props);
-    }
-    onEmailChange(text) {
-      this.props.emailChangedReg(text);
-    }
-    onPasswordChange(text) {
-      this.props.passwordChangedReg(text);
-    }
-    onPasswordConfirmChange(text) {
-      this.props.passwordChangedConfirm(text);
-    }
+  state = {
+    email: '',
+    password: '',
+    confirmPassword: '',
+    switchvalue: false
+  };
+  onEmailChange(text) {
+    this.setState({ email: text });
+  }
+  onPasswordChange(text) {
+    this.setState({ password: text });
+  }
+  onPasswordConfirmChange(text) {
+    this.setState({ confirmPassword: text });
+  }
 
-    onRegisterPress() {
-      const { email, password, confirmPassword, switchvalue } = this.props;
-      this.props.registerUser({ email, password, confirmPassword, switchvalue });
-    }
+  onRegisterPress() {
+    this.props.registerUser(this.state)
+    .then(() => {
+        this.props.navigation.navigate(this.props.nextScreen);
+    });
+  }
 
-    onMentorRequestPress = () => {
-      console.log(this.props);
-      this.props.mentorRegister();
-    }
+  onMentorRequestPress = () => {
+      this.props.navigation.navigate('MentorRegister');
+  };
 
-
+  switchchange(value) {
+    this.setState({ switchvalue: value });
+  }
   render() {
     return (
-      <ImageBackground
-        source={backgroundpic}
-        style={styles.backgroundImage}
-      >
+      <ImageBackground source={backgroundpic} style={styles.backgroundImage}>
         <CardSection>
           <Input
             label="Email"
             placeholder="JohnSmith@hotmail.com"
             onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.email}
+            value={this.state.email}
           />
         </CardSection>
 
         <CardSection>
           <Input
             onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
+            value={this.state.password}
             label="Password"
             placeholder="password"
             secureTextEntry
@@ -67,78 +64,61 @@ class Register extends React.Component {
         <CardSection>
           <Input
             onChangeText={this.onPasswordConfirmChange.bind(this)}
-            value={this.props.confirmPassword}
+            value={this.state.confirmPassword}
             label="Confirm password"
             placeholder="password"
             secureTextEntry
           />
         </CardSection>
-          <View style={styles.contract}>
-              <Switch
-                  onValueChange={(value) => this.props.switchchange(value)}
-                  value={this.props.switchvalue}
-              />
-              <Text style={{ backgroundColor: 'transparent' }}> Accept Terms and Conditions </Text>
+        <View style={styles.contract}>
+          <Switch
+            onValueChange={value => this.switchchange(value)}
+            value={this.state.switchvalue}
+          />
+          <Text style={{ backgroundColor: 'transparent' }}> Accept Terms and Conditions </Text>
+        </View>
+        {/** we need to make this a link to the terms and agreements**/}
+        <View style={styles.buttonContainer}>
+          <Button onPress={this.onRegisterPress.bind(this)}>Register</Button>
+        </View>
 
-          </View>
-
-          <View style={styles.buttonContainer}>
-            <Button onPress={this.onRegisterPress.bind(this)} >
-              Register
-            </Button>
-          </View>
-
-          <TouchableOpacity
-            onPress={this.onMentorRequestPress}
-            style={{ padding: 10, backgroundColor: 'transparent' }}
-          >
-            <Text>
-              Are you a Maternal-Mentor?
-            </Text>
-          </TouchableOpacity>
-
+        <TouchableOpacity
+          onPress={this.onMentorRequestPress}
+          style={{ padding: 10, backgroundColor: 'transparent' }}
+        >
+          <Text>Are you a Maternal-Mentor?</Text>
+        </TouchableOpacity>
       </ImageBackground>
     );
   }
 }
 
 let styles = StyleSheet.create({
-    backgroundImage: {
-      flex: 1,
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      paddingTop: 10
-    },
-    contract: {
-      padding: 15,
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    buttonContainer: {
-      backgroundColor: 'transparent',
-      padding: 5,
-      paddingTop: 10,
-      flexDirection: 'row',
-      position: 'relative',
-      width: 150
-    }
+  backgroundImage: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 10
+  },
+  contract: {
+    padding: 15,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonContainer: {
+    backgroundColor: 'transparent',
+    padding: 5,
+    paddingTop: 10,
+    flexDirection: 'row',
+    position: 'relative',
+    width: 150
   }
-);
+});
 
 const mapStateToProps = state => {
- return {
-   email: state.reg.email,
-   password: state.reg.password,
-   confirmPassword: state.reg.confirmPassword,
-   switchvalue: state.reg.switchvalue
- };
+    const { nextScreen } = state.reg;
+    return { nextScreen };
 };
 
-export default connect(mapStateToProps, { emailChangedReg,
-                                          passwordChangedReg,
-                                          passwordChangedConfirm,
-                                          registerUser,
-                                          switchchange,
-                                          mentorRegister
-                                          })(Register);
+export default connect(mapStateToProps, { registerUser })(Register);

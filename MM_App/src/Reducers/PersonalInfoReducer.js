@@ -1,3 +1,7 @@
+/***
+** This file is not being used
+**
+**/
 import { MAININFORMATIONUPDATE, LOADING_DATA } from '../Actions/types';
 
 const INITIAL_STATE = {

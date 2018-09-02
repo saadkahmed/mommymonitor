@@ -1,21 +1,28 @@
 import React from 'react';
 import _ from 'lodash';
 import { Ionicons } from '@expo/vector-icons';
-import { FlatList, Text, TextInput, View, StyleSheet } from 'react-native';
+import { FlatList, Text, TextInput, View, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { QuestionnaireFetch, answerTextChanged } from './../Actions';
+import { QuestionnaireFetch, answerTextChanged, sendAnswers } from './../Actions';
 import { Button } from './common';
+
+const backgroundpic = require('./../../pictures/BackgroundForPages.jpg');
 
 const UNCHECKED_ICON = 'ios-checkmark-circle-outline';
 const CHECKED_ICON = 'ios-checkmark-circle';
 
-class Questionnaire extends React.Component {
+class DailyQuestionnaire extends React.Component {
   componentWillMount() {
     this.props.QuestionnaireFetch();
   }
 
   onAnswerTextChanged(id, answer) {
     this.props.answerTextChanged(id, answer);
+  }
+
+  onSubmitPressed = () => {
+    this.props.sendAnswers(this.props.answers);
+    this.props.onSubmit();
   }
 
   getIconName(id) {
@@ -25,7 +32,7 @@ class Questionnaire extends React.Component {
     return UNCHECKED_ICON;
   }
 
-  keyExtractor = (item) => item.id;
+  keyExtractor = (item) => String(item.id);
 
   renderItem = ({ item }) => (
         <View style={styles.itemContainer}>
@@ -42,25 +49,24 @@ class Questionnaire extends React.Component {
 
   render() {
       return (
+            <View style={styles.questionnaireContainer}>
               <View>
-                <View>
-                  <Text style={styles.titleStyle}>
-                  {'Some quick questions to help us set up your profile'.toUpperCase()}
-                  </Text>
-                  {/* TODO: Randomize Questions */}
-                  <FlatList
-                      data={this.props.questions.slice(0, 3)}
-                      keyExtractor={this.keyExtractor}
-                      renderItem={this.renderItem}
-                  />
-                </View>
+                <Text style={styles.titleLabelStyle}>
+                {'Some quick questions to help us set up your profile'.toUpperCase()}
+                </Text>
+              </View>
+              <View>
+                <FlatList
+                    data={this.props.questions}
+                    keyExtractor={this.keyExtractor}
+                    renderItem={this.renderItem}
+                />
+              </View>
                 <View style={styles.buttonRow}>
                   <View style={styles.buttonContainer}>
-                    {/* TODO: Save answers in firebase when pressed */}
-                    <Button style={styles.button}> Submit </Button>
+                    <Button style={styles.button} onPress={this.onSubmitPressed}> Submit </Button>
                   </View>
                 </View>
-
               </View>
 
       );
@@ -68,25 +74,36 @@ class Questionnaire extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const questions = _.map(state.Questionnaire.questions, (val, id) => {
-    return { ...val, id };
-  });
+  const questions = state.Questionnaire.questions;
   const answers = state.Questionnaire.answers;
   return { questions, answers };
 };
 
 const styles = StyleSheet.create({
-  titleStyle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#852053',
+  questionnaireContainer: {
+    backgroundColor: 'white',
+    margin: 25,
+    borderRadius: 4,
+    borderColor: 'black',
+    paddingTop: 10,
+  },
+  titleLabelStyle: {
+    paddingLeft: 16,
+    paddingRight: 8,
+    fontSize: 20,
+    color: '#00bbdd',
+    fontFamily: 'fjalla-one',
     textAlign: 'center',
-    justifyContent: 'center',
-    padding: 16,
+    justifyContent: 'center'
   },
   buttonContainer: {
     flexDirection: 'row',
-    width: 150
+    width: 150,
+    padding: 16,
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   itemContainer: {
     padding: 16,
@@ -96,10 +113,6 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     flex: 1,
     alignSelf: 'stretch'
-  },
-  buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'center'
   },
   inputStyle: {
     height: 50,
@@ -115,4 +128,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps, { QuestionnaireFetch, answerTextChanged })(Questionnaire);
+export default connect(mapStateToProps, {
+  QuestionnaireFetch,
+  answerTextChanged,
+  sendAnswers
+})(DailyQuestionnaire);

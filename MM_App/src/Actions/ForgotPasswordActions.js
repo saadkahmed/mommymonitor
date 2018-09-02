@@ -1,31 +1,25 @@
 import firebase from 'firebase';
 import { Alert } from 'react-native';
-import { NavigationActions } from 'react-navigation';
-import { EMAIL_CHANGEDF,
-        FORGOT_REQUEST_SUCCESS,
-        SENT_FORGOT_REQUEST
-        } from './types';
+import { FORGOT_REQUEST_SUCCESS } from './types';
+// import { EMAIL_CHANGEDF, FORGOT_REQUEST_SUCCESS } from './types'; removed email from global
 
 // for forgot password
-export const emailChangedF = (text) => {
-  return {
-    type: EMAIL_CHANGEDF,
-    payload: text
-  };
-};
 
-export const sendForgot = (emailf) => {
-    const navToLogin = NavigationActions.navigate({
-              routeName: 'Main'
+export const sendForgot = email => {
+    let nextScreen;
+    return dispatch => new Promise((resolve, reject) => {
+        firebase
+        .auth()
+        .sendPasswordResetEmail(email)
+        .then(() => {
+            nextScreen = 'MainScreen';
+            Alert.alert('Email sent');
+            dispatch({ type: FORGOT_REQUEST_SUCCESS, payload: { nextScreen } });
+            resolve();
+            })
+            .catch(e => {
+                Alert.alert(e.message);
+                reject(e);
             });
-
-  return (dispatch) => {
-      dispatch({ type: FORGOT_REQUEST_SUCCESS });
-      firebase.auth().sendPasswordResetEmail(emailf)
-      .then(() => {
-          Alert.alert('Email sent');
-          dispatch(navToLogin);
-          dispatch({ type: SENT_FORGOT_REQUEST });
-    }).catch((e) => { Alert.alert(e.message); });
-  };
-};
+        });
+    };

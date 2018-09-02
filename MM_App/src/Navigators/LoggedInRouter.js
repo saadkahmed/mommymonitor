@@ -1,11 +1,12 @@
-import { DrawerNavigator } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation';
 
 import ProfileAnalytics from '../Components/ProfileAnalytics';
 import SettingsPage from '../Components/Settings';
-import Questionnaire from '../Components/DailyQuestionnaire';
+import DailyQuestionnaire from '../Components/DailyQuestionnaire';
 import ConversationView from '../Components/Chat/ConversationView';
+import ConversationListView from '../Components/Chat/ConversationListView';
 
-const LoggedInNavigator = DrawerNavigator(
+const LoggedInNavigator = createDrawerNavigator(
   {
     Profile: {
       screen: ProfileAnalytics
@@ -17,8 +18,8 @@ const LoggedInNavigator = DrawerNavigator(
         gesturesEnabled: true
       }
     },
-    Questionnaire: {
-      screen: Questionnaire,
+    DailyQuestionnaire: {
+      screen: DailyQuestionnaire,
       navigationOptions: {
         title: 'Questionnaire',
         gesturesEnabled: true
@@ -28,6 +29,13 @@ const LoggedInNavigator = DrawerNavigator(
       screen: ConversationView,
       navigationOptions: {
         title: 'Messages',
+        gesturesEnabled: true
+      }
+    },
+    MentorChatList: {
+      screen: ConversationListView,
+      navigationOptions: {
+        title: 'Mentor Chat List',
         gesturesEnabled: true
       }
     }
