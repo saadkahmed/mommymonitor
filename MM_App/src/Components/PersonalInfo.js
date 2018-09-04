@@ -40,7 +40,8 @@ class PersonalInfo extends Component {
       marital_status: 0,
       phone_number: '',
       postal_code: '',
-      languages: [],
+      first_language: '',
+      second_language: '',
       citizenship: '',
       Sexual_Orientation: '',
       Gender_Identity: '',
@@ -80,63 +81,6 @@ class PersonalInfo extends Component {
         console.log(err);
       });
   }
-
-  languages = [{
-        id:"English",
-        name:"English"
-    },
-    {
-        id:"French",
-        name:"French"
-    },
-    {
-        id:"Cantonese",
-        name:"Cantonese"
-    },
-    {
-        id:"Mandarin",
-        name:"Mandarin"
-    },
-    {
-        id:"Tagalog",
-        name:"Tagalog"
-    },
-    {
-        id:"Italian",
-        name:"Italian"
-    },
-    {
-        id:"Spanish",
-        name:"Spanish"
-    },
-    {
-        id:"Tamil",
-        name:"Tamil"
-    },
-    {
-        id:"Urdu",
-        name:"Urdu"
-    },
-    {
-        id:"Portugese",
-        name:"Portugese"
-    },
-    {
-        id:"Panjabi (or Punjabi)",
-        name:"Panjabi (or Punjabi)"
-    },
-    {
-        id:"Arabic",
-        name:"Arabic"
-    },
-    {
-        id:"Somali",
-        name:"Somali"
-    },
-    {
-        id:"Other",
-        name:"Other"
-    }];
 
   render() {
     return (
@@ -200,6 +144,26 @@ class PersonalInfo extends Component {
                     capital='characters'
                     value={this.state.postal_code}
                     holder='POSTAL CODE'
+                />
+
+                <ExTextInput
+                    textStyle={styles.inputStyle}
+                    textChange={(text) => {
+                        this.setState({ first_language: text });
+                      }}
+                    capital='words'
+                    value={this.state.first_language}
+                    holder='English'
+                />
+
+                <ExTextInput
+                    textStyle={styles.inputStyle}
+                    textChange={(text) => {
+                        this.setState({ second_language: text });
+                      }}
+                    capital='words'
+                    value={this.state.second_language}
+                    holder='French'
                 />
 
                 <View style={styles.itemContainer}>
@@ -454,3 +418,61 @@ const styles = {
 };
 
 export default PersonalInfo;
+
+
+// languages = [{
+//       id:"English",
+//       name:"English"
+//   },
+//   {
+//       id:"French",
+//       name:"French"
+//   },
+//   {
+//       id:"Cantonese",
+//       name:"Cantonese"
+//   },
+//   {
+//       id:"Mandarin",
+//       name:"Mandarin"
+//   },
+//   {
+//       id:"Tagalog",
+//       name:"Tagalog"
+//   },
+//   {
+//       id:"Italian",
+//       name:"Italian"
+//   },
+//   {
+//       id:"Spanish",
+//       name:"Spanish"
+//   },
+//   {
+//       id:"Tamil",
+//       name:"Tamil"
+//   },
+//   {
+//       id:"Urdu",
+//       name:"Urdu"
+//   },
+//   {
+//       id:"Portugese",
+//       name:"Portugese"
+//   },
+//   {
+//       id:"Panjabi (or Punjabi)",
+//       name:"Panjabi (or Punjabi)"
+//   },
+//   {
+//       id:"Arabic",
+//       name:"Arabic"
+//   },
+//   {
+//       id:"Somali",
+//       name:"Somali"
+//   },
+//   {
+//       id:"Other",
+//       name:"Other"
+//   }];
