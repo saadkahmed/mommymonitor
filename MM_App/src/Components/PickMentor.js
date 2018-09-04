@@ -33,7 +33,7 @@ class PickMentor extends Component {
         loading: true
     };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
           const { currentUser } = firebase.auth();
           //make sure to check package here!!!!!!!!!!!!!!
               if (currentUser != null) {
@@ -129,14 +129,12 @@ class PickMentor extends Component {
   );
   render() {
       if (this.state.loading === true) {
-          console.log('loading');
         return (
             <View>
                 <Spinner size="large" />
             </View>
         );
       }
-      console.log('this is the array', this.state);
       return (
           <FlatList
               data={this.state.NewMentors}

@@ -7,6 +7,7 @@
 import firebase from 'firebase';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import React, { Component } from 'react';
+
 import {
   View,
   Text,
@@ -39,10 +40,14 @@ class PersonalInfo extends Component {
       marital_status: 0,
       phone_number: '',
       postal_code: '',
+      languages: [],
+      citizenship: '',
+      Sexual_Orientation: '',
+      Gender_Identity: '',
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
       const { currentUser } = firebase.auth();
       //pull the info and pass it to payload
       firebase
@@ -76,6 +81,62 @@ class PersonalInfo extends Component {
       });
   }
 
+  languages = [{
+        id:"English",
+        name:"English"
+    },
+    {
+        id:"French",
+        name:"French"
+    },
+    {
+        id:"Cantonese",
+        name:"Cantonese"
+    },
+    {
+        id:"Mandarin",
+        name:"Mandarin"
+    },
+    {
+        id:"Tagalog",
+        name:"Tagalog"
+    },
+    {
+        id:"Italian",
+        name:"Italian"
+    },
+    {
+        id:"Spanish",
+        name:"Spanish"
+    },
+    {
+        id:"Tamil",
+        name:"Tamil"
+    },
+    {
+        id:"Urdu",
+        name:"Urdu"
+    },
+    {
+        id:"Portugese",
+        name:"Portugese"
+    },
+    {
+        id:"Panjabi (or Punjabi)",
+        name:"Panjabi (or Punjabi)"
+    },
+    {
+        id:"Arabic",
+        name:"Arabic"
+    },
+    {
+        id:"Somali",
+        name:"Somali"
+    },
+    {
+        id:"Other",
+        name:"Other"
+    }];
 
   render() {
     return (
@@ -211,6 +272,111 @@ class PersonalInfo extends Component {
                       <Picker.Item
                           label="Other"
                           value="11"
+                      />
+                  </Picker>
+                </View>
+
+                <View style={styles.itemContainer}>
+                         this.languages
+                </View>
+                {/**add text picker for if the user picked other**/}
+
+                <View style={styles.itemContainer}>
+                  <Text style={styles.subTitleStyle}> Sexual Orientation </Text>
+                  <Picker
+                      itemStyle={styles.tabTextStyle}
+                      style={styles.pickerStyle}
+                      selectedValue={this.state.Sexual_Orientation}
+                      onValueChange={(value) => {
+                          this.setState({ Sexual_Orientation: value });
+                       }}
+                  >
+                      <Picker.Item
+                          label="Heterosexual"
+                          value="Heterosexual"
+                      />
+                      <Picker.Item
+                          label="Bisexual"
+                          value="Bisexual"
+                      />
+                      <Picker.Item
+                          label="Gay/Lesbian"
+                          value="Gay/Lesbian"
+                      />
+                      <Picker.Item
+                          label="Other"
+                          value="Other"
+                      />
+                  </Picker>
+                </View>
+                {/**add text picker for if the user picked other**/}
+
+                <View style={styles.itemContainer}>
+                  <Text style={styles.subTitleStyle}> Gender Identity </Text>
+                  <Picker
+                      itemStyle={styles.tabTextStyle}
+                      style={styles.pickerStyle}
+                      selectedValue={this.state.Gender_Identity}
+                      onValueChange={(value) => {
+                          this.setState({ Gender_Identity: value });
+                       }}
+                  >
+                      <Picker.Item
+                          label="Female"
+                          value="Female"
+                      />
+                      <Picker.Item
+                          label="Male"
+                          value="Male"
+                      />
+                      <Picker.Item
+                          label="Transgender"
+                          value="Transgender"
+                      />
+                      <Picker.Item
+                          label="Non-Binary"
+                          value="Non-Binary"
+                      />
+                      <Picker.Item
+                          label="Two-spirit"
+                          value="Two-spirit"
+                      />
+                      <Picker.Item
+                          label="other"
+                          value="Other"
+                      />
+                  </Picker>
+                </View>
+                {/**add text picker for if the user picked other**/}
+                <View style={styles.itemContainer}>
+                  <Text style={styles.subTitleStyle}> Citizenship </Text>
+                  <Picker
+                      itemStyle={styles.tabTextStyle}
+                      style={styles.pickerStyle}
+                      selectedValue={this.state.citizenship}
+                      onValueChange={(value) => {
+                          this.setState({ citizenship: value });
+                       }}
+                  >
+                      <Picker.Item
+                          label="Permenant resident"
+                          value="Permenant resident"
+                      />
+                      <Picker.Item
+                          label="Refugee"
+                          value="Refugee"
+                      />
+                      <Picker.Item
+                          label="Asylum Seeker"
+                          value="Asylum Seeker"
+                      />
+                      <Picker.Item
+                          label="Undocumented"
+                          value="Undocumented"
+                      />
+                      <Picker.Item
+                          label="Prefer Not To Disclose"
+                          value="Prefer Not To Disclose"
                       />
                   </Picker>
                 </View>
