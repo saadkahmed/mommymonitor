@@ -57,9 +57,13 @@ export const CONVERSATION_LIST_FETCH_FAIL = 'conversation_list_fetch_fail';
 //form types
 export const ANSWERS_FETCH_SUCCESS = 'forum_answers_fetch_success';
 export const ANSWERS_FETCH_FAIL = 'forum_answers_fetch_fail';
+export const SELECT_QUESTION_SUCCESS = 'select_forum_question_success';
+export const SELECT_QUESTION_FAIL = 'select_forum_question_fail';
 export const FETCH_QUESTION_ANSWERS_SUCCESS = 'fetch_forum_question_answers_success';
 export const FETCH_QUESTION_ANSWERS_FAIL = 'fetch_forum_question_answers_fail';
 export const ALL_QUESTIONS_FETCH_SUCCESS = 'forum_questions_fetch_success';
 export const ALL_QUESTIONS_FETCH_FAIL = 'forum_questions_fetch_fail';
 export const CREATE_QUESTION_SUCCESS = 'forum_create_question_success';
 export const CREATE_QUESTION_FAIL = 'forum_create_question_fail';
+export const CREATE_ANSWER_SUCCESS = 'forum_create_answer_success';
+export const CREATE_ANSWER_FAIL = 'forum_create_answer_fail';

@@ -1,39 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { Ionicons } from '@expo/vector-icons';
 import { Text, TextInput, View, StyleSheet } from 'react-native';
 import { Button } from '../common';
-import { createQuestion } from '../../Actions';
+import { createAnswer } from '../../Actions';
 import { FontAwesome } from '@expo/vector-icons';
 
-class CreateQuestionView extends Component {
+class CreateAnswerView extends Component {
   componentWillMount() {}
   state = {
-    title: '',
     text: ''
   };
-  handleTitleChange(title) {
-    this.setState({ title });
-  }
+
   handleTextChange(text) {
     this.setState({ text });
   }
-  handleCreateQuestion() {
-    const { title, text } = this.state;
-    this.props.createQuestion(title, text);
+  handleCreateAnswer() {
+    const { text } = this.state;
+    const { id } = this.props.question;
+    this.props.createAnswer(id, text);
     this.props.closeWindow();
   }
   render() {
     return (
-      <View style={styles.createQuestion}>
+      <View style={styles.createAnswer}>
         <FontAwesome name="close" size={30} onPress={this.props.closeWindow} />
-        <Text>Question Title</Text>
-        <TextInput style={styles.inputStyle} onChangeText={text => this.handleTitleChange(text)} />
-        <Text>Question Text</Text>
+        <Text>Answer Text</Text>
         <TextInput style={styles.inputStyle} onChangeText={text => this.handleTextChange(text)} />
         <View style={styles.buttonRow}>
           <View style={styles.buttonContainer}>
-            <Button onPress={this.handleCreateQuestion.bind(this)}> Create </Button>
+            <Button onPress={this.handleCreateAnswer.bind(this)}> Create </Button>
           </View>
         </View>
       </View>
@@ -42,7 +39,7 @@ class CreateQuestionView extends Component {
 }
 
 const styles = StyleSheet.create({
-  createQuestion: {
+  createAnswer: {
     marginTop: 100,
     marginLeft: 20,
     marginRight: 20,
@@ -68,9 +65,10 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return state;
+  const { question } = state.forum;
+  return { question };
 };
 export default connect(
   mapStateToProps,
-  { createQuestion }
-)(CreateQuestionView);
+  { createAnswer }
+)(CreateAnswerView);

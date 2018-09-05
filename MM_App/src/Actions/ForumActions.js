@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import moment from 'moment';
 import { Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import {
@@ -7,7 +8,10 @@ import {
   ALL_QUESTIONS_FETCH_SUCCESS,
   ALL_QUESTIONS_FETCH_FAIL,
   CREATE_QUESTION_SUCCESS,
-  CREATE_QUESTION_FAIL
+  CREATE_QUESTION_FAIL,
+  CREATE_ANSWER_SUCCESS,
+  CREATE_ANSWER_FAIL,
+  SELECT_QUESTION_SUCCESS
 } from './types';
 
 export const fetchQuestionAnswers = questionId => {
@@ -40,22 +44,58 @@ export const fetchAllQuestions = () => {
   };
 };
 
-export const createQuestion = (title, text, date) => {
+export const createQuestion = (title, text) => {
   const { currentUser } = firebase.auth();
-  const user_id = currentUser ? currentUser.uid : '';
-  const userRef = firebase.database().ref(`users/${user_id}/userinfo`);
+  const { uid } = currentUser;
+  const date = moment().format('MMM DD, YYYY @ hh:mma');
+  const userRef = firebase.database().ref(`users/${uid}/userinfo`);
   const questionRef = firebase.database().ref('forum/Questions');
   return dispatch => {
-    if (user_id != '') {
+    if (uid) {
       userRef.on('value', snapshot => {
-        const userinfo = snapshot.val();
-        const user_name = `${userinfo.first_name} ${userinfo.last_name}`;
-        const question = { user_id, user_name, title, text, date, votes: 0 };
-        const dbQuestion = questionRef.push(question);
-        if (dbQuestion.key) {
-          dispatch({ type: CREATE_QUESTION_SUCCESS, payload: { key: dbQuestion.key, question } });
+        const { first_name, last_name } = snapshot.val();
+        const user_name = `${first_name} ${last_name}`;
+        const question = { user_id: uid, user_name, title, text, date, votes: 0 };
+        const { key } = questionRef.push(question);
+        if (key) {
+          dispatch({ type: CREATE_QUESTION_SUCCESS, payload: { key, question } });
+        } else {
+          dispatch({ type: CREATE_QUESTION_FAIL, payload: null });
         }
       });
+    }
+  };
+};
+
+export const createAnswer = (questionId, text) => {
+  const { currentUser } = firebase.auth();
+  const { uid } = currentUser;
+  const date = moment().format('MMM DD, YYYY @hh:mma');
+  const userRef = firebase.database().ref(`users/${uid}/userinfo`);
+  const answerRef = firebase.database().ref(`forum/Answers/${questionId}`);
+  return dispatch => {
+    if (uid) {
+      userRef.on('value', snapshot => {
+        const { first_name, last_name } = snapshot.val();
+        const user_name = `${first_name} ${last_name}`;
+        const answer = { user_id: uid, user_name, text, date, votes: 0 };
+        const { key } = answerRef.push(answer);
+        if (key) {
+          dispatch({ type: CREATE_ANSWER_SUCCESS, payload: { key, answer } });
+        } else {
+          dispatch({ type: CREATE_ANSWER_FAIL, payload: null });
+        }
+      });
+    }
+  };
+};
+
+export const selectQuestion = question => {
+  return dispatch => {
+    if (question) {
+      dispatch({ type: SELECT_QUESTION_SUCCESS, payload: question });
+    } else {
+      dispatch({ type: SELECT_QUESTION_FAIL, payload: null });
     }
   };
 };

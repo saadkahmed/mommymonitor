@@ -6,7 +6,6 @@ import { CardSection, Input, Button, Spinner } from '../common';
 
 class AnswerListView extends Component {
   render() {
-    //dummy data
     const answers = this.props.answers.sort((a, b) => {
       return b.votes - a.votes;
     });

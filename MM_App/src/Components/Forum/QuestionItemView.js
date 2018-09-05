@@ -20,7 +20,6 @@ class QuestionItemView extends Component {
         <View style={styles.body}>
           <TouchableOpacity
             onPress={() => {
-              // transition to question view with this question as a param
               this.props.navigation.navigate('QuestionView', this.question);
             }}
           >
