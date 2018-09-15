@@ -3,7 +3,8 @@ import {
   ALL_QUESTIONS_FETCH_SUCCESS,
   CREATE_QUESTION_SUCCESS,
   CREATE_ANSWER_SUCCESS,
-  SELECT_QUESTION_SUCCESS
+  SELECT_QUESTION_SUCCESS,
+  DELETE_QUESTION_SUCCESS
 } from '../Actions/types';
 
 const INITIAL_STATE = { question: {}, forumQuestions: {}, questionAnswers: {} };
@@ -26,6 +27,12 @@ export default (state = INITIAL_STATE, action) => {
     case CREATE_ANSWER_SUCCESS: {
       const { key, answer } = action.payload;
       return { ...state, questionAnswers: { ...state.questionAnswers, [key]: answer } };
+    }
+    case DELETE_QUESTION_SUCCESS: {
+      const { question_id } = action.payload;
+      const questions = { ...state.forumQuestions };
+      delete questions[[question_id]];
+      return { ...state, forumQuestions: { ...questions } };
     }
 
     default:

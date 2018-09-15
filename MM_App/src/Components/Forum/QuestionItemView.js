@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
+import { Entypo, FontAwesome } from '@expo/vector-icons';
+import { deleteQuestion } from '../../Actions';
 
 class QuestionItemView extends Component {
   constructor(props) {
     super(props);
     this.question = this.props.question;
+  }
+
+  deleteHandler() {
+    const { user_id, id } = this.question;
+    this.props.deleteQuestion(user_id, id);
   }
 
   render() {
@@ -15,7 +21,7 @@ class QuestionItemView extends Component {
         <View style={styles.side}>
           <Text style={styles.sideText}>{votes}</Text>
           <Entypo name="thumbs-up" size={30} color="blue" />
-          <Entypo name="thumbs-down" size={30} color="red" />
+          <FontAwesome name="close" size={30} onPress={this.deleteHandler.bind(this)} />
         </View>
         <View style={styles.body}>
           <TouchableOpacity

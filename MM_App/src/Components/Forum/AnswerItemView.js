@@ -8,7 +8,6 @@ class AnswerItemView extends Component {
   constructor(props) {
     super(props);
     this.answer = this.props.answer;
-    console.log(this.answer);
   }
 
   render() {
@@ -23,7 +22,6 @@ class AnswerItemView extends Component {
         </View>
         <View style={{ flexDirection: 'row' }}>
           <Entypo name="thumbs-up" style={styles.vote} size={30} color="blue" />
-          <Entypo name="thumbs-down" style={styles.vote} size={30} color="red" />
           <CardSection>
             <Text style={styles.body}>{text}</Text>
           </CardSection>
@@ -45,7 +43,8 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   date: {
-    marginLeft: 5
+    marginLeft: 5,
+    fontSize: 12
   },
   votes: { marginLeft: 1 },
   body: { marginLeft: 15, width: 260, color: '#2f2f2f', fontSize: 15 },

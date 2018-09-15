@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, StyleSheet, ScrollView, View, Text, TouchableOpacity } from 'react-native';
-import moment from 'moment';
 import QuestionItemView from './QuestionItemView';
-import { fetchAllQuestions } from '../../Actions';
+import { fetchAllQuestions, deleteQuestion } from '../../Actions';
 import { CardSection, Input, Button, Spinner } from '../common';
 import CreateQuestionView from './CreateQuestionView';
 
@@ -47,6 +46,7 @@ class QuestionListView extends Component {
                 key={index}
                 question={question}
                 navigation={this.props.navigation}
+                deleteQuestion={this.props.deleteQuestion}
               />
             );
           })}
@@ -63,5 +63,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchAllQuestions }
+  { fetchAllQuestions, deleteQuestion }
 )(QuestionListView);

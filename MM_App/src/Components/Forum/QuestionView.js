@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text, TouchableOpacity, Modal } from 'react-native';
-import moment from 'moment';
 import { fetchQuestionAnswers, selectQuestion } from './../../Actions';
 import AnswerListView from './AnswerListView';
 import CreateAnswerView from './CreateAnswerView';

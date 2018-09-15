@@ -67,3 +67,5 @@ export const CREATE_QUESTION_SUCCESS = 'forum_create_question_success';
 export const CREATE_QUESTION_FAIL = 'forum_create_question_fail';
 export const CREATE_ANSWER_SUCCESS = 'forum_create_answer_success';
 export const CREATE_ANSWER_FAIL = 'forum_create_answer_fail';
+export const DELETE_QUESTION_SUCCESS = 'forum_delete_question_success';
+export const DELETE_QUESTION_FAIL = 'forum_delete_question_fail';

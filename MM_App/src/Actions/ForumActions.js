@@ -11,7 +11,9 @@ import {
   CREATE_QUESTION_FAIL,
   CREATE_ANSWER_SUCCESS,
   CREATE_ANSWER_FAIL,
-  SELECT_QUESTION_SUCCESS
+  SELECT_QUESTION_SUCCESS,
+  DELETE_QUESTION_SUCCESS,
+  DELETE_QUESTION_FAIL
 } from './types';
 
 export const fetchQuestionAnswers = questionId => {
@@ -86,6 +88,22 @@ export const createAnswer = (questionId, text) => {
           dispatch({ type: CREATE_ANSWER_FAIL, payload: null });
         }
       });
+    }
+  };
+};
+
+export const deleteQuestion = (user_id, question_id) => {
+  const { currentUser } = firebase.auth();
+  const { uid } = currentUser;
+  const answerRef = firebase.database().ref(`forum/Answers/${question_id}`);
+  const questionRef = firebase.database().ref(`forum/Questions/${question_id}`);
+  return dispatch => {
+    if (uid == user_id) {
+      answerRef.remove();
+      questionRef.remove();
+      dispatch({ type: DELETE_QUESTION_SUCCESS, payload: { question_id } });
+    } else {
+      dispatch({ type: DELETE_QUESTION_FAIL });
     }
   };
 };
