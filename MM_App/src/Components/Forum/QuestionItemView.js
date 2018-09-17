@@ -5,18 +5,17 @@ import { deleteQuestion } from '../../Actions';
 
 class QuestionItemView extends Component {
   deleteHandler() {
-    const { user_id, id } = this.question;
+    const { user_id, id } = this.props.question;
     this.props.deleteQuestion(user_id, id);
   }
 
   toggleLike() {
-    const { id } = this.question;
+    const { id } = this.props.question;
     this.props.toggleLike(id);
   }
 
   render() {
     const { date, user_name, likes, title, id } = this.props.question;
-    console.log(id, likes);
     return (
       <View style={styles.question}>
         <View style={styles.side}>
@@ -27,7 +26,7 @@ class QuestionItemView extends Component {
         <View style={styles.body}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('QuestionView', this.question);
+              this.props.navigation.navigate('QuestionView', this.props.question);
             }}
           >
             <Text style={styles.title}>{title}</Text>
