@@ -4,7 +4,9 @@ import {
   CREATE_QUESTION_SUCCESS,
   CREATE_ANSWER_SUCCESS,
   SELECT_QUESTION_SUCCESS,
-  DELETE_QUESTION_SUCCESS
+  DELETE_QUESTION_SUCCESS,
+  LIKE_QUESTION,
+  UNLIKE_QUESTION
 } from '../Actions/types';
 
 const INITIAL_STATE = { question: {}, forumQuestions: {}, questionAnswers: {} };
@@ -33,6 +35,34 @@ export default (state = INITIAL_STATE, action) => {
       const questions = { ...state.forumQuestions };
       delete questions[[question_id]];
       return { ...state, forumQuestions: { ...questions } };
+    }
+    case LIKE_QUESTION: {
+      const { question_id, uid } = action.payload;
+      // console.log(state.forumQuestions[[question_id]]);
+      return {
+        ...state,
+        forumQuestions: {
+          ...state.forumQuestions,
+          [question_id]: {
+            ...state.forumQuestions[[question_id]],
+            likes: { ...state.forumQuestions[[question_id]].likes, [uid]: true }
+          }
+        }
+      };
+    }
+    case UNLIKE_QUESTION: {
+      const { question_id, newLikes } = action.payload;
+      // console.log(state.forumQuestions[[question_id]]);
+      return {
+        ...state,
+        forumQuestions: {
+          ...state.forumQuestions,
+          [question_id]: {
+            ...state.forumQuestions[[question_id]],
+            likes: newLikes
+          }
+        }
+      };
     }
 
     default:

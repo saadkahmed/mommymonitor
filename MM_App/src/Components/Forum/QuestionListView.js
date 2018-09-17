@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, StyleSheet, ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import QuestionItemView from './QuestionItemView';
-import { fetchAllQuestions, deleteQuestion } from '../../Actions';
+import { fetchAllQuestions, deleteQuestion, toggleLike } from '../../Actions';
 import { CardSection, Input, Button, Spinner } from '../common';
 import CreateQuestionView from './CreateQuestionView';
 
@@ -19,8 +19,15 @@ class QuestionListView extends Component {
       .map(key => {
         return { ...this.props.forumQuestions[key], id: key };
       })
+      .map(question => {
+        let likeInt = 0;
+        if (question.likes) {
+          likeInt = Object.keys(question.likes).length;
+        }
+        return { ...question, likes: likeInt };
+      })
       .sort((a, b) => {
-        return b.votes - a.votes;
+        return b.likes - a.likes;
       });
     return (
       <View>
@@ -47,6 +54,7 @@ class QuestionListView extends Component {
                 question={question}
                 navigation={this.props.navigation}
                 deleteQuestion={this.props.deleteQuestion}
+                toggleLike={this.props.toggleLike}
               />
             );
           })}
@@ -63,5 +71,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchAllQuestions, deleteQuestion }
+  { fetchAllQuestions, deleteQuestion, toggleLike }
 )(QuestionListView);

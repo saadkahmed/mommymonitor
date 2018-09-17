@@ -20,7 +20,7 @@ class QuestionView extends Component {
     this.props.fetchQuestionAnswers(id);
   }
   render() {
-    const { votes, title, text, user_name } = this.props.question;
+    const { likes, title, text, user_name } = this.props.question;
     const { questionAnswers } = this.props;
     const ans = questionAnswers
       ? Object.keys(questionAnswers).map(key => questionAnswers[key])
@@ -43,7 +43,7 @@ class QuestionView extends Component {
           <Text style={{ textAlign: 'right', marginRight: 3 }}>Create Answer</Text>
         </TouchableOpacity>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={styles.votes}>{votes}</Text>
+          <Text style={styles.likes}>{likes}</Text>
           <Text style={styles.title}>{title}</Text>
         </View>
         <Text style={styles.text}>{text}</Text>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginLeft: 5
   },
-  votes: {
+  likes: {
     marginLeft: 2,
     fontSize: 20
   },

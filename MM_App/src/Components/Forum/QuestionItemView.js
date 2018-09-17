@@ -4,23 +4,24 @@ import { Entypo, FontAwesome } from '@expo/vector-icons';
 import { deleteQuestion } from '../../Actions';
 
 class QuestionItemView extends Component {
-  constructor(props) {
-    super(props);
-    this.question = this.props.question;
-  }
-
   deleteHandler() {
     const { user_id, id } = this.question;
     this.props.deleteQuestion(user_id, id);
   }
 
+  toggleLike() {
+    const { id } = this.question;
+    this.props.toggleLike(id);
+  }
+
   render() {
-    const { date, user_name, votes, title, id } = this.question;
+    const { date, user_name, likes, title, id } = this.props.question;
+    console.log(id, likes);
     return (
       <View style={styles.question}>
         <View style={styles.side}>
-          <Text style={styles.sideText}>{votes}</Text>
-          <Entypo name="thumbs-up" size={30} color="blue" />
+          <Text style={styles.sideText}>{likes}</Text>
+          <Entypo name="thumbs-up" size={30} color="blue" onPress={this.toggleLike.bind(this)} />
           <FontAwesome name="close" size={30} onPress={this.deleteHandler.bind(this)} />
         </View>
         <View style={styles.body}>

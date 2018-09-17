@@ -13,7 +13,9 @@ import {
   CREATE_ANSWER_FAIL,
   SELECT_QUESTION_SUCCESS,
   DELETE_QUESTION_SUCCESS,
-  DELETE_QUESTION_FAIL
+  DELETE_QUESTION_FAIL,
+  LIKE_QUESTION,
+  UNLIKE_QUESTION
 } from './types';
 
 export const fetchQuestionAnswers = questionId => {
@@ -57,7 +59,7 @@ export const createQuestion = (title, text) => {
       userRef.on('value', snapshot => {
         const { first_name, last_name } = snapshot.val();
         const user_name = `${first_name} ${last_name}`;
-        const question = { user_id: uid, user_name, title, text, date, votes: 0 };
+        const question = { user_id: uid, user_name, title, text, date, likes: { [uid]: true } };
         const { key } = questionRef.push(question);
         if (key) {
           dispatch({ type: CREATE_QUESTION_SUCCESS, payload: { key, question } });
@@ -105,6 +107,26 @@ export const deleteQuestion = (user_id, question_id) => {
     } else {
       dispatch({ type: DELETE_QUESTION_FAIL });
     }
+  };
+};
+
+export const toggleLike = question_id => {
+  const { currentUser } = firebase.auth();
+  const { uid } = currentUser;
+  const likesRef = firebase.database().ref(`forum/Questions/${question_id}/likes`);
+  return dispatch => {
+    likesRef.once('value', snapshot => {
+      const likes = snapshot.val();
+      if (likes[[uid]]) {
+        const newLikes = { ...likes };
+        delete newLikes[[uid]];
+        snapshot.ref.set({ ...newLikes });
+        dispatch({ type: UNLIKE_QUESTION, payload: { question_id, newLikes } });
+      } else {
+        snapshot.ref.set({ ...likes, [uid]: true });
+        dispatch({ type: LIKE_QUESTION, payload: { question_id, uid } });
+      }
+    });
   };
 };
 
